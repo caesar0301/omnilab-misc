@@ -1,0 +1,2 @@
+Ping-pong Effect Detection
+=========================

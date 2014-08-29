@@ -1,0 +1,26 @@
+Log preprocessing utilities:
+--------------
+
+by chenxm
+
+
+* trafficStatRawDpiLog.py
+
+This script obtains the statistics about traffic on link on protocal map.
+Each line in the output file gives traffic breakdown about each protocal
+with PROTOCAL NAME, FLOW COUNT, PACKET COUNT, BYTES COUNT.
+
+
+* trafficStatRawTstatLog.py
+
+This script obtains the statistics about TCP and UDP traffic from Tstat output.
+The TCP statistics contains both complete and incomplete flows, which is stored in
+"log_tcp_complete" and "log_tcp_nocomplete" respectively.
+Each line in the output gives the traffic breakdown during a hour;
+from the second ahead, the first five values give FLOW COUNT, UL PACKETS, DL PACKETS,
+UL BYTES and DL BYTES about TCP, and the left gives those about UDP.
+
+NOTE:The BYTES values present only the payload volume without header consumpution 
+carried by TCP and UDP. 
+And the directions of upload and download are determined by the "IP_REGEX" parameter
+that gives the source IP pattern in the script.

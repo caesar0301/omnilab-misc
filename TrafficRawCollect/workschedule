@@ -1,0 +1,15 @@
+# The crontab file to run network-traffic-capturing work.
+# Use command "sudo crontab [this file]" to add this work schedule for root user.
+#
+# The traffic covers the time priod of 12:59-14:01 on the day of 4,11,18,25 for each month,
+# i.e., one work-day hour every 7 days for a month.
+#
+# by chenxm
+
+#59 12 4,11,18,25 12 * /home/front/TraceCollectionScripts/tcpdump_adapter.sh -c /opt/netronome/bin/tcpdump -i nfe0.1.20 -o /home/front/tcpdump/SEIEE -n seiee
+#02 14 4,11,18,25 12 * /home/front/TraceCollectionScripts/stop_tcpdump.sh
+#15 14 4,11,18,25 12 * /home/front/TraceCollectionScripts/move_data.sh -i /home/front/tcpdump/SEIEE -o /mnt/nfs_cxm_np/data.sjtu/tcpdump/SEIEE/
+
+#29 09 7 12 * /home/front/TraceCollectionScripts/tcpdump_adapter.sh -c /opt/netronome/bin/tcpdump -i nfe0.1.19 -o /home/front/tcpdump/WIFI -n wifi
+#32 10 7 12 * /home/front/TraceCollectionScripts/stop_tcpdump.sh
+#45 10 7 12 * /home/front/TraceCollectionScripts/move_data.sh -i /home/front/tcpdump/WIFI -o /mnt/nfs_cxm_np/data.sjtu/tcpdump/WIFI/

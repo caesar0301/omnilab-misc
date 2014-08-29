@@ -1,0 +1,4 @@
+Install pynids
+
+Use the github version instead of the home page.
+The former removes dependencies of libnet and glib.

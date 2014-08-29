@@ -1,0 +1,25 @@
+Example to show how to use avro storage in pig.
+
+-- Author Xiaming Chen
+-- chenxm35@gmail.com
+
+HOWTO
+-----
+
+#cd pig-avro-example
+#hadoop fs -put sample-small.avro
+
+If your pig works against hadoop-0.20.x or 1.x, please 
+register piggyback as version 20;
+If your pig works against hadoop-0.23.x or 2.x, please
+register piggyback as version 23;
+The run
+
+#pig example.pig
+#hfs -tail traffic.stat/part-r-00000
+DEST-2F-01	11	9
+TSG-1-3F-01	396	353
+TSG-2-3F-02	5942	6823
+YXL-2-5F-03	1020	988
+YXL-3-1F-05	5	4
+BYGTSG-4F-06	155	139

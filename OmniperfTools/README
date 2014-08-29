@@ -1,0 +1,31 @@
+Utilities to process Omniperf/ARO logs
+------------------
+
+* Trace inspection
+
+|-- packetBurst.py: inspect data trend of packet burst of trace
+|-- flowBurst.py: inspect data trend of flow burst of trace
+|-- flow_burst_single.py: backend of flowBurst.py; it swallow a pcap file
+|-- userClicks.py: inspect user touching screen of trace
+
+
+* Model preparation
+
+|-- exHttp.py: extract Http logs from pcap file of trace
+`-- webtree.py: data structure used by models
+   |-- exWebTree.py: inspect the relationship of entities
+   `-- user.py: inspect user activities from HTTP logs
+
+
+* AEM model implementation and evaluation:
+
+|-- aem.py: implementation of AEM model
+   `-- runAEM.py: example of running AEM model
+|-- groundtruth.py: implementation of groundtruth based on user click data.
+|-- perf_aem.py: evaluate AEM performance against GT
+|-- perf_streamstructure.py: evaluate StreamStructure alg. against GT
+
+
+* Batch scripts:
+
+|-- *.sh: run jobs in a batch mode

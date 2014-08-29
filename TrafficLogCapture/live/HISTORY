@@ -1,0 +1,87 @@
+Passive Data Collection Proj. in OMNI-Lab
+===============
+
+By chenxm
+chenxm35@gmail.com
+
+Log storage:
+-----------------
+
+OMNILAB-NAS:/traces.sjtu/tcpdump/wifilog_archive/
+
+
+Collection Syslog:
+-------------------
+
+Start up at 20130422T1700
+
+20130528T0900 to 20130528T1000 (2hr)
+Software update.
+Data lost.
+
+20130527Txx:xx to 20130602Txx:xx
+Some log may be lost during daytime for unknown errors.
+With checking other days, there was lostness of varing extend
+in busy hours, eg, 15:00.
+Partial lost.
+
+20130602T2200 to 20130602T2300
+This may be caused by memory limiation.
+Software debug.
+All Data lost.
+
+20130610T18:00
+Update pcapDPI to a new version and segmentation fault occurs.
+All Data lost!
+
+20130617T11:00 to 20130621T14.30
+network shock.
+All Data lost.
+
+20130716T21:00
+NFS server reboot.
+All data lost.
+
+20130722T03:00 to 20130722T17:00
+network down!
+All data lost.
+
+20130724T00:00 to 20130724T1300
+network down!
+All data lost.
+
+20131014T21:00 to 20131016T17:00
+Network change influncing IP allocation from 111.x to 10.x.
+All data lost.
+
+20131019T22:00
+Restart to upgrade system to 12.04.
+All data lost.
+
+20131019T22:00 to 20131020T14:00
+pcapDPI changed to timeout version.
+Duplicated DPI info for UDP flows.
+
+20131020T15:00
+pcapDPI changed to original version.
+
+20131102Txx:00
+tstat runs for several days at specific/some hour.
+TCP data duplication.
+
+20131119T10:00 to 20131125T19:00
+Omnilab made an improvement of servers and networks.
+All data lost
+
+20131126T09:00 to 20131126T17:00
+DPI info lost as for unkonwn reasons.
+
+20131204T19:00 to 20131205T10:00
+The first tem mins of each hour are lost because of wrong configuration of
+crontab.
+
+20131206T1500 to 20131206T1600
+Offline for an hour. Debug pcapDPI program.
+
+20140709T1800 to 20140712T1300
+Offline. Enhance the quality of script to kill threads correctly.

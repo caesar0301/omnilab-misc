@@ -1,0 +1,8 @@
+## Capture start
+00 * * * * /home/front/workspace/omnilab-misc/TrafficLogCapture/live/traffic-logger.sh -i em2 -o /mnt/traces.sjtu/tcpdump/log_working start
+
+## Capture stop
+57 * * * * /home/front/workspace/omnilab-misc/TrafficLogCapture/live/traffic-logger.sh stop
+
+## Start gziping
+30 00 * * * /home/front/workspace/omnilab-misc/TrafficLogCapture/live/gzip_log.sh /mnt/traces.sjtu/tcpdump/log_working
