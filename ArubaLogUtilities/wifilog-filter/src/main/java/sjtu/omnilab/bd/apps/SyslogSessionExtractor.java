@@ -1,4 +1,4 @@
-package sjtu.omnilab.bd.wifilogfilter;
+package sjtu.omnilab.bd.apps;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -11,6 +11,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.apache.commons.io.FilenameUtils;
+import sjtu.omnilab.bd.wifilogfilter.SessionExtraction;
+import sjtu.omnilab.bd.wifilogfilter.Utils;
 
 /**
  * This class extract the wifi sessions from filtered wifi logs, which is output by SyslogFilter.java.
@@ -26,12 +28,6 @@ import org.apache.commons.io.FilenameUtils;
 public class SyslogSessionExtractor {
 
 	public static void main(String[] args) throws IOException, ParseException {
-		/**
-         *Options:
-         *-i  --input_file_location
-         *-o  --output_file_location
-         */
-		
 		// Initial options
         String input_location = "";
         String output_location = "";
@@ -47,7 +43,7 @@ public class SyslogSessionExtractor {
         }
         
         if(input_location.length() == 0 ) {
-            System.out.println("Usage: java -jar sessionextractor -i <userfolder> -o <session_output_folder>");
+            System.out.println("Usage: sjtu.omnilab.bd.apps.SyslogSessionExtractor -i <source> -o <destination>>");
             System.exit(-1);
         }
         

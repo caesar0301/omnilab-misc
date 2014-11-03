@@ -1,4 +1,4 @@
-package sjtu.omnilab.bd.wifilogfilter;
+package sjtu.omnilab.bd.apps;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -14,6 +14,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.io.FilenameUtils;
+import sjtu.omnilab.bd.wifilogfilter.SessionExtraction;
+import sjtu.omnilab.bd.wifilogfilter.Utils;
 
 /**
  * Extract wifi sessions from filtered logs (SyslogFilter.java).
@@ -24,12 +26,6 @@ import org.apache.commons.io.FilenameUtils;
 public class SyslogSplitterAndExtractor {
 
 	public static void main(String[] args) throws IOException, ParseException {
-		/**
-         *Options:
-         *-i  --input_file_location
-         *-o  --output_file_location
-         */
-		
 		//Initial options
         String input_location = "";
         String output_location = "";
@@ -45,7 +41,7 @@ public class SyslogSplitterAndExtractor {
         }
         
         if(input_location.length() == 0 ||  output_location.length() == 0 ) {
-            System.out.println("Usage: java -jar splitterandextractor.jar -i <filtered_output_file/folder> -o <output_folder>");
+            System.out.println("Usage: sjtu.omnilab.bd.apps.SyslogSplitterAndExtractor -i <source> -o <destination>");
             System.exit(-1);
         }
         

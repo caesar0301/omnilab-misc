@@ -1,4 +1,4 @@
-package sjtu.omnilab.bd.wifilogfilter;
+package sjtu.omnilab.bd.apps;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -9,9 +9,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.nio.charset.UnmappableCharacterException;
 import java.text.ParseException;
 import java.util.LinkedList;
 import java.util.List;
@@ -21,6 +18,7 @@ import java.util.regex.Pattern;
 import java.util.zip.GZIPInputStream;
 
 import org.apache.commons.io.FilenameUtils;
+import sjtu.omnilab.bd.wifilogfilter.Utils;
 
 /**   
  * Description: This class is used to filter the information which is related to 
@@ -43,14 +41,6 @@ public class SyslogFilter {
 	private static BufferedWriter unmatchedBW = null; // for debugging
     
     public static void main(String[] args) throws FileNotFoundException, IOException, ParseException{
-        /**
-         *Parse the command line options (input_file_location, output_file_location)
-         *usage: java cn.edu.sjtu.omnilab.arubasyslogparser.SyslogFilter [options]
-         *Options:
-         *-i  --input_file_location
-         *-o  --output_file_location
-         */
-        
         //Initial options
         String input_location = "";
         String output_location = "";
@@ -66,7 +56,7 @@ public class SyslogFilter {
         }
         
         if(input_location.length() == 0 || output_location.length() == 0) {
-            System.out.println("Usage: java -jar syslogfilter -i <original_log_folder/file> -o <filtered_output_folder>");
+            System.out.println("Usage: sjtu.omnilab.bd.apps.SyslogFilter -i <source> -o <destination>");
             System.exit(-1);
         }
         

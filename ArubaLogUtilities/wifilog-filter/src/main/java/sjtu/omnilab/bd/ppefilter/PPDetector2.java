@@ -7,43 +7,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-
-class PPPair{
-	/*
-	 * A ping-pong pair consists of two AP records.
-	 * The first can be any record of the AP sequence and the other
-	 * be the nearest record of the same AP after it.
-	 * Here, we define dist(pair) <= 3.
-	 * E.g., for AP sequence {A B C A D E C} we only get AP pair
-	 * p(0,3) for "A".
-	 */
-	public int offset;		// offset to the head of AP sequence.
-	public int distance;	// distance between the head and tail of AP pair
-	
-	
-	public PPPair(int offset, int distance){
-		this.offset = offset;
-		this.distance = distance;
-	}
-	
-	
-	public int coverage(PPPair p){
-		/*
-		 * c(.) is the function to calculate the coverage of two AP pairs.
-		 * Here we define c(.) as dist(i) - |offset(i) - offset(j)| where i < j;
-		 */
-		return (this.offset < p.offset ? this.distance : p.distance) - Math.abs(this.offset - p.offset);
-	}
-}
-
-
-
 public class PPDetector2 {
 	
 	public PPDetector2(){}
 	
 	
-	public static List<ApRecord> removePingPong (
+	public static List<APRecord> removePingPong (
 			List<String> tmp_ap_list, List<Long> tmp_start_times, 
 			List<Long> tmp_durations, List<Boolean> tmp_flags)
 			/*
@@ -66,7 +35,7 @@ public class PPDetector2 {
 			}
 		}
 		
-		List<ApRecord> filtered_records = new ArrayList<ApRecord>();
+		List<APRecord> filtered_records = new ArrayList<APRecord>();
 		List<PPPair> pp_pairs_list = new ArrayList<PPPair>();
 		
 		if ( ap_count >= 3) {
@@ -229,7 +198,7 @@ public class PPDetector2 {
 				//****************************************
 				
 				// Add this new record
-				filtered_records.add(new ApRecord(fap_name, fap_start_time, fap_duration));
+				filtered_records.add(new APRecord(fap_name, fap_start_time, fap_duration));
 				if (DebugFlag.debug){
 					System.out.println("Merged result:");
 					System.out.println(fap_name+"\t"+fap_start_time+"\t"+fap_duration);
@@ -240,11 +209,11 @@ public class PPDetector2 {
 		// Add the left records which are not contained by the ping-pong segments
 		for ( int j=0; j<ap_flag_list.size(); j++)
 			if ( ap_flag_list.get(j) == true)
-				filtered_records.add(new ApRecord(ap_list.get(j), ap_start_time_list.get(j), ap_duration_list.get(j)));
+				filtered_records.add(new APRecord(ap_list.get(j), ap_start_time_list.get(j), ap_duration_list.get(j)));
 		
 		// Order the records by start_time
-		Collections.sort(filtered_records,new Comparator<ApRecord>(){   
-	           public int compare(ApRecord arg0, ApRecord arg1) {   
+		Collections.sort(filtered_records,new Comparator<APRecord>(){
+	           public int compare(APRecord arg0, APRecord arg1) {
 	               return new Long(arg0.start_time).compareTo(new Long(arg1.start_time));   
 	            }   
 	        }); 

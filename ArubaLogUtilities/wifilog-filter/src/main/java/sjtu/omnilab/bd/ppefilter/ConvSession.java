@@ -3,17 +3,6 @@ package sjtu.omnilab.bd.ppefilter;
 import java.util.ArrayList;
 import java.util.List;
 
-class ApRecord {
-	public String name;
-	public long start_time;
-	public long duration;
-	public ApRecord(String name, long start_time, long duration){
-		this.name = name;
-		this.start_time = start_time;
-		this.duration = duration;
-	}
-}
-
 public class ConvSession {
 	/*
 	 * Unit of clearing AP PingPong subsequence.
@@ -48,14 +37,14 @@ public class ConvSession {
 		this.latest_time = timestamp;
 	}
 	
-	public List<ApRecord> removePingPongEffect () {
+	public List<APRecord> removePingPongEffect () {
 		/*
 		 * Remove PingPong series from ap sequence and return 
 		 * a list of ap records without PP.
 		 */
 		System.out.println("*****New session of user " + user_id + "*****");
 		
-		if (DebugFlag.debug) 
+		if (DebugFlag.debug)
 		{
 			// Print the original records
 			int i = 0;
@@ -64,7 +53,7 @@ public class ConvSession {
 			System.out.println(ap_list.get(i));
 		}
 		
-		List<ApRecord> final_records = new ArrayList<ApRecord>();
+		List<APRecord> final_records = new ArrayList<APRecord>();
 		List<String>	tmp_ap_list = new ArrayList<String>();
 		List<Long>		tmp_start_times = new ArrayList<Long>();
 		List<Long> 	tmp_durations = new ArrayList<Long>();
@@ -77,7 +66,7 @@ public class ConvSession {
 					// longer than SESSION_DURATION_WITHOUT_PPE;
 					if (tmp_ap_list.size() == 0 || tmp_flags.get(tmp_flags.size()-1).booleanValue() == false){
 						// Add this record to the final list
-						final_records.add(new ApRecord(ap_list.get(d), ap_start_times.get(d), ap_durations.get(d)));
+						final_records.add(new APRecord(ap_list.get(d), ap_start_times.get(d), ap_durations.get(d)));
 						
 						// clear the tmp data
 						tmp_ap_list.clear();
@@ -101,7 +90,7 @@ public class ConvSession {
 						tmp_durations.clear();
 						tmp_flags.clear();
 						// Add this record to the final list
-						final_records.add(new ApRecord(ap_list.get(d), ap_start_times.get(d), ap_durations.get(d)));
+						final_records.add(new APRecord(ap_list.get(d), ap_start_times.get(d), ap_durations.get(d)));
 					}
 				}
 				// copy the record

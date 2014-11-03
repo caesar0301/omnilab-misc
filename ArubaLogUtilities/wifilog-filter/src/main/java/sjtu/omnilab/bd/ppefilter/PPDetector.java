@@ -10,42 +10,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-class DataPoint {
-	public int i;	// mask length - 3
-	public int j;	// start
-	public int pair_count;
-	public int item_undup;
-	public int item_total;
-	public int distance;
-	public int max_distance;
-	public DataPoint(int i, int j){
-		this.i = i;
-		this.j = j;
-	}
-	public double measure() {
-		/*
-		 * Measure the closeness of PingPong records
-		 */
-		double score = -1.0;
-		if ( distance != 0) {
-			score = Math.pow(pair_count, 2) / (double) distance * (1 - (double)item_undup / item_total);
-			if (score == Double.POSITIVE_INFINITY){
-				score = -1.0;
-			}
-		}
-		return score;
-	}
-	public int start_index(){
-		return j;
-	}
-	public int stop_index(){
-		return j+i+2;
-	}
-	public int mask_length(){
-		return i+3;
-	}
-}
-
 public class PPDetector {
 	/*
 	 * Main class to detect Ping-Pong effect and remove it from the ap records
@@ -199,7 +163,7 @@ public class PPDetector {
 		return points;
 	}
 	
-	public static ArrayList<ApRecord> RemovePP(ArrayList<String> tmp_ap_list,
+	public static ArrayList<APRecord> RemovePP(ArrayList<String> tmp_ap_list,
 			ArrayList<Long> tmp_start_times, ArrayList<Long> tmp_durations, ArrayList<Boolean> tmp_flags)
 	/*
 	 *  The core algorithm of filtering the Ping-Pong-Effect data points
@@ -208,7 +172,7 @@ public class PPDetector {
 		
 		System.out.println("len: " + tmp_ap_list.size());
 		
-		ArrayList<ApRecord> filtered_records = new ArrayList<ApRecord>();
+		ArrayList<APRecord> filtered_records = new ArrayList<APRecord>();
 		int ap_count = tmp_durations.size();
 		if ( ap_count >= 3) {
 			// Calculating the Ping-pong-effect measure matrix
@@ -264,16 +228,16 @@ public class PPDetector {
 					else
 						fap_name += (","+s);
 				}
-				filtered_records.add(new ApRecord(fap_name, fap_start_time, fap_duration));
+				filtered_records.add(new APRecord(fap_name, fap_start_time, fap_duration));
 			}
 		}
 		// Add the left records which are not contained by the ping-pong segments
 		for ( int j=0; j<tmp_flags.size(); j++)
 			if ( tmp_flags.get(j) )
-				filtered_records.add(new ApRecord(tmp_ap_list.get(j), tmp_start_times.get(j), tmp_durations.get(j)));
+				filtered_records.add(new APRecord(tmp_ap_list.get(j), tmp_start_times.get(j), tmp_durations.get(j)));
 		// Order the records by start_time
-		Collections.sort(filtered_records,new Comparator<ApRecord>(){   
-	           public int compare(ApRecord arg0, ApRecord arg1) {   
+		Collections.sort(filtered_records,new Comparator<APRecord>(){
+	           public int compare(APRecord arg0, APRecord arg1) {
 	               return new Long(arg0.start_time).compareTo(new Long(arg1.start_time));   
 	            }   
 	        });  

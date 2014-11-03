@@ -2,10 +2,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>bd.omnilab.sjtu</groupId>
+	<groupId>sjtu.omnilab.bd</groupId>
 	<artifactId>wifilogfilter</artifactId>
 	<version>1.0.1</version>
 	<packaging>jar</packaging>
+
 	<name>wifilogfilter</name>
 	<url>http://gitlab.com/caesar0301</url>
 
@@ -29,115 +30,31 @@
 
 	<build>
 		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.1</version>
-				<configuration>
-					<fork>false</fork>
-					<compilerVersion>1.6</compilerVersion>
-				</configuration>
-			</plugin>
-
-			<plugin>
-				<artifactId>maven-assembly-plugin</artifactId>
-				<version>2.4</version>
-				<executions>
-					<!-- syslogfilter.jar -->
-					<execution>
-						<id>syslogfilter</id>
-						<configuration>
-							<appendAssemblyId>false</appendAssemblyId>
-							<archive>
-								<manifest>
-									<mainClass>sjtu.omnilab.bd.wifilogfilter.SyslogFilter</mainClass>
-								</manifest>
-							</archive>
-							<descriptors>
-								<descriptor>${project.basedir}/assembly.xml</descriptor>
-							</descriptors>
-							<descriptorRefs>
-								<descriptorRef>jar-with-dependencies</descriptorRef>
-							</descriptorRefs>
-							<finalName>${project.artifactId}-syslogfilter</finalName>
-						</configuration>
-						<phase>package</phase>
-						<goals>
-							<goal>single</goal>
-						</goals>
-					</execution>
-					<!-- syslogsplitter.jar -->
-					<execution>
-						<id>syslogsplitter</id>
-						<configuration>
-							<appendAssemblyId>false</appendAssemblyId>
-							<archive>
-								<manifest>
-									<mainClass>sjtu.omnilab.bd.wifilogfilter.SyslogSplitter</mainClass>
-								</manifest>
-							</archive>
-							<descriptors>
-								<descriptor>${project.basedir}/assembly.xml</descriptor>
-							</descriptors>
-							<descriptorRefs>
-								<descriptorRef>jar-with-dependencies</descriptorRef>
-							</descriptorRefs>
-							<finalName>${project.artifactId}-syslogsplitter</finalName>
-						</configuration>
-						<phase>package</phase>
-						<goals>
-							<goal>single</goal>
-						</goals>
-					</execution>
-					<!-- sessionextractor.jar -->
-					<execution>
-						<id>sessionextractor</id>
-						<configuration>
-							<appendAssemblyId>false</appendAssemblyId>
-							<archive>
-								<manifest>
-									<mainClass>sjtu.omnilab.bd.wifilogfilter.SyslogSessionExtractor</mainClass>
-								</manifest>
-							</archive>
-							<descriptors>
-								<descriptor>${project.basedir}/assembly.xml</descriptor>
-							</descriptors>
-							<descriptorRefs>
-								<descriptorRef>jar-with-dependencies</descriptorRef>
-							</descriptorRefs>
-							<finalName>${project.artifactId}-sessionextractor</finalName>
-						</configuration>
-						<phase>package</phase>
-						<goals>
-							<goal>single</goal>
-						</goals>
-					</execution>
-					<!-- SyslogSplitterAndExtractor.jar -->
-					<execution>
-						<id>splitterandextractor</id>
-						<configuration>
-							<appendAssemblyId>false</appendAssemblyId>
-							<archive>
-								<manifest>
-									<mainClass>sjtu.omnilab.bd.wifilogfilter.SyslogSplitterAndExtractor</mainClass>
-								</manifest>
-							</archive>
-							<descriptors>
-								<descriptor>${project.basedir}/assembly.xml</descriptor>
-							</descriptors>
-							<descriptorRefs>
-								<descriptorRef>jar-with-dependencies</descriptorRef>
-							</descriptorRefs>
-							<finalName>${project.artifactId}-splitterandextractor</finalName>
-						</configuration>
-						<phase>package</phase>
-						<goals>
-							<goal>single</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <configuration>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                </configuration>
+            </plugin>
 		</plugins>
-
 	</build>
 </project>

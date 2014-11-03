@@ -1,4 +1,7 @@
-package sjtu.omnilab.bd.ppefilter;
+package sjtu.omnilab.bd.apps;
+
+import sjtu.omnilab.bd.ppefilter.APRecord;
+import sjtu.omnilab.bd.ppefilter.ConvSession;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -13,21 +16,8 @@ import java.util.TimeZone;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-class DebugFlag {
-	static boolean debug = true;
-}
-
 public class PPEffectFilter {
 	public static void main(String[] args) throws IOException{
-		
-		/**
-	     *Parse the command line options (input_file_location, output_file_location)
-	     *usage: java cn.edu.sjtu.omnilab.arubasyslogparser.SyslogFilter [options]
-	     *Options:
-	     *-i  --input_file_location
-	     *-o  --output_file_location
-	     */
-	
     	//Initial options
         String input_file_location = "";
         String output_file_location = "";
@@ -40,6 +30,11 @@ public class PPEffectFilter {
             } else if ("-o".equals(args[optSetting])) {  
                 output_file_location = args[++optSetting];  
             }
+        }
+
+        if(input_file_location.length() == 0 || output_file_location.length() == 0) {
+            System.out.println("Usage: sjtu.omnilab.bd.apps.PPEffectFilter -i <source> -o <destination>");
+            System.exit(-1);
         }
         
         //prepare for reading files one by one
@@ -118,11 +113,11 @@ public class PPEffectFilter {
 				
 				// Filter the Ping-Pong Effect on the basis of each session,
 				// and write the new session into an output file.
-				List<ApRecord> final_records = cs.removePingPongEffect();
+				List<APRecord> final_records = cs.removePingPongEffect();
 				SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 				TimeZone tz = TimeZone.getTimeZone("GMT-04:00");	//New York timezone
 				df.setTimeZone(tz);
-				for ( ApRecord r : final_records) {
+				for ( APRecord r : final_records) {
 					Date start = new Date(r.start_time*1000);
 					Date end = new Date((r.start_time+r.duration)*1000);
 					obr.write(r.name+"\t"+df.format(start)+"\t"+r.duration+"\t"+df.format(end)+"\n");

@@ -1,3 +1,6 @@
+WiFiLogFilter
+===================
+
 Author: Wenjuan Gong
 05-2013
 
@@ -15,17 +18,35 @@ The message content is matched and extracted using Regular expression.
 It's easy to extend the message filter capability.
 
 
-HOW TO USE:
+HOW TO USE
+------------
 
 This tool runs on Java 1.6+ and makes to be compiled with Maven.
 As Java and Maven are installed, you can start with:
 
-        $cd wifilogfilter
-        $mvn package
+        $ cd wifilogfilter
+        $ mvn clean && mvn package
 
-and use the tool with:
+Apps shipped with this package contains:
 
-        $ java -jar ./target/wifilogfilter-<version>.jar
+1. Remove Ping-Pong effect from original logs:
+
+        $ java -cp wifilogfilter.jar sjtu.omnilab.bd.apps.PPEffectFilter -i [source] -o [destination]
+
+2. Filter the information which is related to location information and IP information in the ArubaSyslog:
+
+        $ java -cp wifilogfilter.jar sjtu.omnilab.bd.apps.SyslogFilter -i [source] -o [destination]
+
+3. Separate the filtered logs (output of SyslogFilter.java) into individual users.
+
+        $ java -cp wifilogfilter.jar sjtu.omnilab.bd.apps.SyslogSplitter -i [source] -o [destination]
+
+4. One-step manipulation of step 3 and 4:
+
+        $ java -cp wifilogfilter.jar sjtu.omnilab.bd.apps.SyslogSessionExtractor -i [source] -o [destination]
+
+NOTICE
+----------
 
 To avoid Out of Memory error, -Xmx1G or other option should be add to java command;
 You can also use export this option to enviroment using

@@ -1,4 +1,4 @@
-package sjtu.omnilab.bd.wifilogfilter;
+package sjtu.omnilab.bd.apps;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.Arrays;
 
 import org.apache.commons.io.FilenameUtils;
+import sjtu.omnilab.bd.wifilogfilter.Utils;
 
 /**
  * Separate the filtered logs (output of SyslogFilter.java) into individual users.
@@ -17,12 +18,6 @@ import org.apache.commons.io.FilenameUtils;
 public class SyslogSplitter {
 
 	public static void main(String[] args) throws IOException {
-		/**
-         *Options:
-         *-i  --input_file_location
-         *-o  --output_file_location
-         */
-		
 		//Initial options
         String input_location = "";
         String output_location = "";
@@ -38,7 +33,7 @@ public class SyslogSplitter {
         }
         
         if(input_location.length() == 0 ) {
-            System.out.println("Usage: java -jar syslogsplitter -i <filtered_output_file/folder> -o <output_folder>");
+            System.out.println("Usage: sjtu.omnilab.bd.apps.SyslogSplitter -i <source> -o <destination>");
             System.exit(-1);
         }
         
