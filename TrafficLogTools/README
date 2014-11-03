@@ -1,8 +1,20 @@
-Log preprocessing utilities:
---------------
+How o Check Raw Data
+-------------------
 
-by chenxm
+* checkRawTstatLogOfTCP.py
 
+Verify the completeness of the TCP log output by Tstat.
+This TCP log locates in the subfolder under Tstat output place
+with name "log_tcp_complete.gz" and "log_tcp_nocomplete.gz"
+
+
+* checkRawTcptraceLogOfTCP.py
+
+Verify the completeness of the TCP log output by Tcptrace.
+
+
+How To Get Traffic Breakdown
+------------------------------
 
 * trafficStatRawDpiLog.py
 
@@ -24,3 +36,12 @@ NOTE:The BYTES values present only the payload volume without header consumputio
 carried by TCP and UDP. 
 And the directions of upload and download are determined by the "IP_REGEX" parameter
 that gives the source IP pattern in the script.
+
+
+How To Merge Raw Data
+------------------------
+
+You have an approach to merge HTTP, TCP and DPI information
+into a unified form.
+
+See merge/README.md for details.
