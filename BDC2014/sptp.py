@@ -26,7 +26,8 @@ def select_news_fields(n):
     pns = set() # People names
     ons = set() # Organization names
 
-    for item in n.segresult.split(' '):
+    # Select favorite fields from segresult
+    for item in n[16].split(' '):
         item = item.strip(' ')
         if item == '':
             continue
@@ -42,7 +43,7 @@ def select_news_fields(n):
             ons.add(content)
         else:
             pass
-    return [n.url_crc, n.siteurl_crc, n.release_day,
+    return [n[1], n[8], n[5],
             ';'.join(list(lns)),
             ';'.join(list(pns)),
             ';'.join(list(ons))]
@@ -53,34 +54,29 @@ def main():
         exit(-1)
 
     sc = SparkContext(appName="testbdc2014")
-    sqlc = SQLContext(sc)
 
     input = sys.argv[1]
     output = sys.argv[2]
 
-    # Read data and define schema
-    data = sc.textFile(input).cache()
-    parts = data.map(split_line)
-    news = parts.map(lambda p: Row(
-        id = p[0],
-        url_crc = long(p[1]),
-        release_date = p[2],
-        source_type = int(p[3]),
-        media_name = p[4],
-        release_day = p[5],
-        title = p[6],
-        format_content = p[7],
-        siteurl_crc = long(p[8]),
-        hit_tag = p[9],
-        navigation = p[10],
-        abs = p[11],
-        content_media_name = p[12],
-        words = int(p[13]),
-        type = p[14],
-        post_source = p[15],
-        segresult = p[16]
-        ))
-    sqlc.inferSchema(news).registerTempTable("news")
+    # Read data
+	# 'id': str,
+	# 'url_crc': long,
+	# 'release_date': str,
+	# 'source_type': str,
+	# 'media_name': int,
+	# 'release_day': str,
+	# 'title': str,
+	# 'format_content': str,
+	# 'siteurl_crc': long,
+	# 'hit_tag': str,
+	# 'navigation': str,
+	# 'abs': str,
+	# 'content_media_name': str,
+	# 'words': int,
+	# 'type': str,
+	# 'post_source': str,
+	# 'segresult': str
+    news = sc.textFile(input).map(split_line)
     news.map(select_news_fields)\
         .sortBy(lambda x: x[2])\
         .map(lambda x: ','.join([str(i) for i in x]))\
