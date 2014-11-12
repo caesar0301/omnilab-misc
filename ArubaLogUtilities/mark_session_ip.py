@@ -22,7 +22,7 @@
 #
 import sys
 
-from PyOmniMisc.wifi.movement import ApEntry, LocationDB
+from omnipy.data.reader.wifi import ApEntry, LocationDB
 
 def print_usage():
     print("Usage: python parseWifiSessions.py <inputpath/file> <outputfile>")

@@ -2,7 +2,7 @@
 import cProfile, pstats
 import sys
 
-from PyOmniMisc.wifi.movement import LocationDB
+from omnipy.data.reader.wifi import LocationDB
 
 def print_usage():
     print("Usage: python parser.py inputfolder outputfile")

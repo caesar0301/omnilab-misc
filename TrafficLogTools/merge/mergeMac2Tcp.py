@@ -12,9 +12,9 @@ import os
 import datetime
 import logging
 
-import PyOmniMisc.utils.gzip_mod as gzip_mod
-from PyOmniMisc.utils.file import FileReader
-from PyOmniMisc.wifi.movement import ApEntry, LocationDB
+import omnipy.utils.gzip_mod as gzip_mod
+from omnipy.data.reader import FileReader
+from omnipy.data.reader.wifi import ApEntry, LocationDB
 
 # File name patterns
 WIFILOG_FN_PATTERN = r'wifilog\d{4}-\d{2}-\d{2}'

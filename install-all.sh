@@ -6,7 +6,7 @@ set -o pipefail
 
 echo "Installing omnilab-misc tools ... "
 
-cd PyOmniMisc && python setup.py install && cd -
+easy_install -U omnipy
 
 prefix="/usr/local/bin"
 if [ $1 == ""]; then

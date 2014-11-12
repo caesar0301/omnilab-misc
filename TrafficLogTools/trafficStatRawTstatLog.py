@@ -27,7 +27,7 @@ from datetime import datetime
 
 import pytz
 from cStringIO import StringIO
-import PyOmniMisc.utils.gzip_mod as gzip_mo
+import omnipy.utils.gzip_mod as gzip_mod
 
 
 IP_REGEX = '^111\.186.*'

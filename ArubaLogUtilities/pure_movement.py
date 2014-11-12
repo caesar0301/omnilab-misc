@@ -4,7 +4,7 @@ __author__ = 'Jamin X. Chen'
 __email__ = 'chen_xm@sjtu.edu.cn'
 
 import sys, os
-from PyOmniMisc.utils.file import FileReader
+from omnipy.data.reader import FileReader
 
 def main():
     if len(sys.argv) < 3:

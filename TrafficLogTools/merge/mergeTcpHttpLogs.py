@@ -67,8 +67,8 @@ import time, datetime
 import socket, struct
 import csv, StringIO
 
-from PyOmniMisc.utils import gzip_mod
-from PyOmniMisc.utils.file import FileReader
+from omnipy.utils import gzip_mod
+from omnipy.data.reader import FileReader
 
 # File name patterns
 TMP_FOLDER = "./merged-tcp-http-tmp"

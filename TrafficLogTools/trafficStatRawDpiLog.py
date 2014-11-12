@@ -18,7 +18,7 @@ from glob import glob
 from datetime import datetime
 
 import pytz
-import PyOmniMisc.utils.gzip_mod as gzip_mod
+import omnipy.utils.gzip_mod as gzip_mod
 
 if len(sys.argv) != 2:
     print("Usage: program <dpi_out_folder>")

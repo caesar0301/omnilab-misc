@@ -33,8 +33,8 @@
 import os, sys, datetime
 import logging
 
-import PyOmniMisc.utils.gzip_mod as gzip_mod
-from PyOmniMisc.utils.file import FileReader
+import omnipy.utils.gzip_mod as gzip_mod
+from omnipy.data.reader import FileReader
 
 # File name patterns
 OUT_FOLDER = './merged-tcp-http-dpi-tmp'
