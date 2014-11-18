@@ -1,0 +1,210 @@
+\documentclass[a4paper,10pt]{article}
+
+\usepackage[nofonts]{ctex}
+\setmainfont{Times New Roman}
+\setCJKmainfont[BoldFont={SimHei},ItalicFont={KaiTi}]{SimSun}
+\setCJKmonofont{SimSun}
+\setCJKsansfont{SimHei}
+
+\usepackage{multicol}
+
+\setCJKfamilyfont{song}{SimSun}
+\setCJKfamilyfont{kai}{KaiTi}
+\setCJKfamilyfont{hei}{SimHei}
+\setCJKfamilyfont{yao}{FZYaoTi}
+
+\newcommand\song{\CJKfamily{song}}
+\newcommand\kai{\CJKfamily{kai}}
+\newcommand\hei{\CJKfamily{hei}}
+\newcommand\yao{\CJKfamily{yao}}
+
+\newcommand{\erhao}{\fontsize{22pt}{\baselineskip}\selectfont}
+\newcommand{\xiaoerhao}{\fontsize{18pt}{\baselineskip}\selectfont}
+\newcommand{\sanhao}{\fontsize{16pt}{\baselineskip}\selectfont}
+\newcommand{\xiaosanhao}{\fontsize{15pt}{\baselineskip}\selectfont}
+\newcommand{\sihao}{\fontsize{14pt}{\baselineskip}\selectfont}
+\newcommand{\xiaosihao}{\fontsize{12pt}{\baselineskip}\selectfont}
+\newcommand{\wuhao}{\fontsize{10.5pt}{\baselineskip}\selectfont}
+\newcommand{\xiaowuhao}{\fontsize{9pt}{\baselineskip}\selectfont}
+\newcommand{\liuhao}{\fontsize{7.5pt}{\baselineskip}\selectfont}
+
+%%%段落首行缩进两个字
+\makeatletter
+\let\@afterindentfalse\@afterindenttrue
+\@afterindenttrue
+\makeatother
+\setlength{\parindent}{2em}%中文缩进两个汉字位
+
+%%%%%%%%%% 定理类环境的定义 %%%%%%%%%%
+%% 必须在导入中文环境之后
+\newtheorem{example}{例}             % 整体编号
+\newtheorem{algorithm}{算法}
+\newtheorem{theorem}{定理}[section]  % 按 section 编号
+\newtheorem{definition}{定义}
+\newtheorem{axiom}{公理}
+\newtheorem{property}{性质}
+\newtheorem{proposition}{命题}
+\newtheorem{lemma}{引理}
+\newtheorem{corollary}{推论}
+\newtheorem{remark}{注解}
+\newtheorem{condition}{条件}
+\newtheorem{conclusion}{结论}
+\newtheorem{assumption}{假设}
+
+%%%%%%%%%% 一些重定义 %%%%%%%%%%
+%% 必须在导入中文环境之后
+\renewcommand{\contentsname}{目录}     % 将Contents改为目录
+\renewcommand{\abstractname}{摘\ \ 要} % 将Abstract改为摘要
+\renewcommand{\refname}{参考文献}      % 将References改为参考文献
+\renewcommand{\indexname}{索引}
+\renewcommand{\figurename}{图}
+\renewcommand{\tablename}{表}
+\renewcommand{\appendixname}{附录}
+%\renewcommand{\proofname}{证明}
+\renewcommand{\algorithm}{算法}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  packages
+%    这部分声明需要用到的包
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{graphicx}    % EPS 图片支持
+\usepackage{indentfirst} % 中文段落首行缩进
+\usepackage{bm}          % 公式中的粗体字符（用命令\boldsymbol）
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  lengths
+%    下面的命令重定义页面边距，使其符合中文刊物习惯。
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\addtolength{\topmargin}{-54pt}
+\setlength{\oddsidemargin}{0.63cm}  % 3.17cm - 1 inch
+\setlength{\evensidemargin}{\oddsidemargin}
+\setlength{\textwidth}{14.66cm}
+\setlength{\textheight}{24.00cm}    % 24.62
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  定义标题格式，包括title，author，affiliation，email等。
+%  在任何用到中文的地方，用\begin{CJK} ... \end{CJK}将其括起来。
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{\hei{系列危害公共安全事件的关联关系挖掘及预测}}
+\author{作者名\footnote{通讯作者：xxx@gmail.com}~~~~~~
+作者名\footnote{xxx@gmail.com}~~~~~~
+作者名\footnote{xxx@gmail.com}~~~~~~
+作者名\footnote{xxx@gmail.com}\\[8pt]
+\xiaowuhao 上海交通大学，OMNI-Lab\\[4pt]
+}
+\date{}  % 这一行用来去掉默认的日期显示
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  自定义命令
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 此行使文献引用以上标形式显示
+\newcommand{\supercite}[1]{\textsuperscript{\cite{#1}}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  显示title，并设页码为空（按杂志社要求）
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\maketitle  \pagestyle{empty} \thispagestyle{empty}
+\vspace{-20pt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  中文摘要
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{center}
+\parbox{\textwidth}{
+%\rule{2em}{0pt}
+\hei{摘要：}\song{各类危害公共安全的事件给广大人民群众的生命和财产带来了严重损害，极大地影响着社会稳定和民族团结。本文基于新闻和微博数据集，结合其他多源数据，通过基于TF-IDF的事件提取算法以及开放数据人工标注，对公交车爆炸事件、极端民族主义导致的系列暴恐事件、幼儿园砍伤事件这三类事件进行提取。通过关联规则分析与数据可视化的方法对已提取的事件的媒体传播规律和事件发生共性进行分析研究。最后通过已有公共事件的传播规律和关联规则，通过时间、空间、语义三个维度，采用GradientBoosting算法对未来某一时段、某一地点公共事件是否发生预测，用决策树回归算法对某一时段、某地点事件发生的频次进行预测。并通过Leave-one-out、K-Fold多等种评估算法对结果交叉验证。}\\[5pt]
+\hei{关键词：}\song{公共事件；TF-IDF；GradientBoosting算法；决策树回归算法；Leave-one-out；K-Fold；交叉验证}
+\\[5pt]
+}
+\end{center}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  英文摘要
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{center}
+%\sihao{\textbf{Understanding counterexamples using Craig Interpolation}}\\[7pt]
+%\normalsize
+%Hongtao Huang~~~~~~
+%ShaobinHuang~~~~~~
+%Tao Zhang~~~~~~
+%Zhiyuan Chen\\[7pt]
+%\xiaowuhao College of Computer Science and Technology\\
+%Harbin Engineering University, Heilongjiang Harbin 150001\\[10pt]
+%\end{center}
+%\begin{center}
+%\parbox{\textwidth}{
+%\textbf{Abstract:} Model checking is an automatic technique for verifying finite-state reactive systems, such as sequential circuit designs and communication protocols. Specifications are expressed in temporal logic, and the reactive system is modeled as a state-transition graph. An efficient search procedure is used to determine whether or not the state-transition graph satisfies the specifications.
+%We describe the basic model checking algorithm and show how it can be used with binary decision diagrams to verify properties of large state-transition graphs. We illustrate the power of model checking to find subtle errors by verifying part of the Contingency Guidance Requirements for the Space Shuttle.\\[4pt]
+%\textbf{Keywords:} Key; Key; the Key
+%}
+%\end{center}
+
+
+\section{引言}
+
+各类危害公共安全的事件给广大人民群众的生命和财产带来了严重损害，极大地影响着社会稳定和民族团结，诸如系列公交车爆炸事件、极端民族主义导致的系列暴恐事件、幼儿园砍伤事件等，影响及其恶劣。系列事件的发生并非偶然，有些是有组织有预谋的群体性破坏行动（近期越来越呈现离散化发生趋势），有些可能是经由某些社会因素影响（诸如媒体大规模报导、网民舆论传播带来的启发和情绪影响等）发酵形成的个体行为，个体行为导致的事件一旦形成模式，危险性不亚于群体性事件。了解这些危害公共安全事件在互联网上的触发、传播机理，找到相关事件的影响关系和共性，具有重要的研究意义。
+
+互联网媒体数据种类多样，既有新闻数据、又有微博数据。一个事件可能会由多种类型媒体（新闻、微博）、多家媒体报导，而且时间跨度会不一，短则几天，长可达数月。此外，不同媒体对同一事件的描述风格迥异，而且会有一个事件被一个媒体来源多次传播的情况（比如一个微博用户多次转发同一事件的不同来源的新闻）。如何从这些海量、多样的互联网媒体数据中，对每条新闻进行标注，从这些新闻中提取出发生的事件，是一项艰巨的任务。事件的发生原因多种多样，有的事件可能是时间发起人受到媒体传播的类似事件的影响而引发，有的事件可能预谋已久。如何发现事件之间的关联，找到影响这些事件发生的因素，进而对今后未发生的事件进行预测，具有很大的挑战。
+
+本文首先针对原始数据的不足及进行了数据预处理工作，包括数据的清洗、修正、融合。之后把基于语义的事件提取算法与基于开放数据的事件标注相结合，对媒体报导进行事件提取。其中事件提取算法采用了TF-IDF提取文本关键字，通过计算余弦相似度对同类事件进行聚类。之后借用基于Ckan的开放数据平台，通过众包的方式对新闻进行人工标注，再对事件提取算法进行修正。之后对提取的事件进行分析，包括媒体传播对事件发生的影响，以及通过关联规则分析的方法分析事件的共性。最后通过局部时间、空间、语义分析与全局时空分析相结合对未来发生的公共事件进行了预测。
+给出整体架构图，参考UAir论文的整体架构图
+
+\section{数据集与预处理}
+
+\subsection{数据集介绍}
+
+针对本课题，我们有3个核心数据集合。分别是新闻和微博数据集、新闻传播信息数据集、微博用户资料数据集。
+\begin{itemize}
+\item 新闻和微博数据集：主要包含每条新闻的信息。包括新闻的唯一标识ID、新闻发布时间、新闻标题、新闻导语、新闻正文、发布媒体等。
+\item 新闻传播信息数据集：数据集(1)中某条新闻在互联网上的传播情况。包括新闻的来源、评论数、转发数、点赞数。
+\item 微博用户资料数据集：数据集(1)中微博用户的个人资料。包括用户所在地、出生日期、注册时间、关注数、粉丝数、状态数、活跃天数、等级数等。
+\end{itemize}
+
+
+\subsection{数据预处理}
+
+原始数据存在一些问题，主要有三点：数据有重复、数据不完整、数据有错误。
+
+原始数据存在重复数据，比如在微博用户资料数据集中，存在两条完全相同的记录，也有同一微博用户存在两条差别很小的记录（如仅仅是粉丝数有稍许变化），新闻传播信息数据集也存在类似的问题。这些杂质数据对后续的时间特征提取工作等会造成很大的影响，比如计算某个事件在微博上传播了多少次，会因为杂志数据造成较大的错误，如统计一条新闻被多少个微博用户转发，若微博用户资料重复，会造成很大的统计误差。因此我们需要对数据进行去重工作，对于多条完全相同的记录，通过去重的方法去除多余的记录，只保留一条；而对于多条差别很小的记录，取最后更新的一条，而删除其他记录。
+
+从媒体报导的标题、内容，我们能够分析出事件发生的时间、空间特征，但有很多特征是原始数据集中不包含的，比如事件发生在重大节日期间、事件发生地的人口数、经济发展状况、汉族人口比例等，然而这些特征对分析事件的传播、关联具有重要的意义。因此，我们采集其他数据源，如中国各省市GDP数据、日期与节日对应表等，与已有数据源融合，为完善数据特征做准备工作。
+
+新闻和微博数据集已通过hit\_tag数据集媒体报导进行了标注，有公交车爆炸、暴恐事件、校园砍伤事件，然而经过对数据进行采样验证，我们发现hit\_tag的标注准确率很低。为了更准确地进行后续工作，我们对每一条新闻重新进行了事件类型标注。首先针对三类事件，人工建立含有少量相关词汇的语义库，之后用相关词扩充算法，对每一类事件已有的语义库进行扩充，最后对每一条新闻的标题进行分词，与所建立的词库进行词语匹配，对每一条新闻进行标注。如果某一条新闻没有与3类事件中的任何意见相匹配，我们把这条新闻定义为无关数据(或杂质数据)。
+
+\section{事件提取}
+
+\subsection{整体思想}
+
+经过数据预处理之后，我们采用基于语义的事件提取算法进行事件提取，为了提升算法的准确率及交叉验证，我们采用开放数据平台，用众包的方式对每一天新闻所属的事件人工标注。机器、人工相结合方法相结合。整体架构如图1所示。
+
+\subsection{基于语义的事件提取算法}
+
+我们做如下两个假设：
+假设1 事件发生时间与第一条新闻发表时间相隔很近，可认为时间发生时间就是第一条新闻的报导时间。
+假设2 某事件可以由事件、地点、人物三个要素唯一确定
+
+\section{参考文献}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  参考文献
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\small
+\begin{thebibliography}{99}
+\setlength{\itemsep}{0pt}
+\setlength{\parskip}{0pt}  %段落之间的竖直距离
+\bibitem{mc1} Clarke E, Emerson E. Design and synthesis of synchronization skeletons using branching time temporal logic[J]. Logics of Programs, 1982: 52-71.
+
+\bibitem{mc2} Queille J, Sifakis J. Specification and verification of concurrent systems in CESAR[C]//International Symposium on Programming. 1982: 337-351.
+
+\bibitem{mc3}G.O. Clarke, E.M.Emerson. Model Checking[M]. Cambridge: MIT Press, 1999.
+
+\bibitem{np1} Ben-David S. Applications of Description Logic and Causality in Model Checking[D]. University of Waterloo, 2009.
+
+\bibitem{np2} Beer I, Ben-David S, Chockler H, et al. Explaining counterexamples using causality[C]//Computer Aided Verification. 2009: 94-108.
+
+\bibitem{np3} Jalbert N, Sen K. A trace simplification technique for effective debugging of concurrent programs[C]//Proceedings of the eighteenth ACM SIGSOFT international symposium on Foundations of software engineering. 2010: 57-66.
+
+
+
+
+\end{thebibliography}
+
+\end{document}
