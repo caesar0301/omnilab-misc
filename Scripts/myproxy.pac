@@ -48,7 +48,7 @@ function FindProxyForURL(url, host) {
 
     for(var i=0; i<proxyBypassPatterns.length; i++) {
         var value = proxyBypassPatterns[i];
-        if ( shExpMatch(host, value) ) {
+        if ( localHostOrDomainIs(host, value) ) {
             return "DIRECT";
         }
     }
