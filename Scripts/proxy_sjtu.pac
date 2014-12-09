@@ -6,25 +6,22 @@ function isAcademicDomain(url, host){
         "arxiv.org",
         "citeulike.org",
         "computer.org",
-        "computer.org",
         "cshlp.org",
         "ieee.org",
         "iiisci.org",
         "iop.org",
         "jstor.org",
-        "jstor.org",
         "metapress.com",
         "nature.com",
-        "nih.gov",
         "nih.gov",
         "pnas.org",
         "projecteuclid.org",
         "science.com",
         "sciencedirect.com",
         "sciencemag.org",
-        "sciencemag.org",
         "siam.org",
         "springer.com",
+        "ssrn.com",
         "tandfonline.com",
         "wiley.com"
     );
@@ -47,7 +44,10 @@ function isDomesticDomain(url, host){
         "dianpingoa.com",
         "github.com",
         "qq.com",
-        "taobao.com"
+        "taobao.com",
+        "useso.com",
+        "mi.com",
+        "xiaomi.com"
     );
     for(var i=0; i<domains.length; i++) {
         if (dnsDomainIs(host, domains[i]) ||
