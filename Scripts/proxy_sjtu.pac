@@ -42,7 +42,6 @@ function isDomesticDomain(url, host){
         "alipay.com",
         "dianping.com",
         "dianpingoa.com",
-        "github.com",
         "qq.com",
         "taobao.com",
         "useso.com",
