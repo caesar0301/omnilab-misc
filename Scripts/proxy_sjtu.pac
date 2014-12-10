@@ -96,10 +96,10 @@ function FindProxyForURL(url, host) {
         return PROXY_NONE;
     
     if (isInNet(dnsResolve(host), "10.50.0.0", "255.255.0.0"))
-        return PROXY_SJTU;
+        return PROXY_OMNI;
         
     if (isAcademicDomain(url, host))
-        return PROXY_SJTU;
+        return PROXY_NONE;
 
     if (inGFWList(url, host))
         return PROXY_OMNI;
