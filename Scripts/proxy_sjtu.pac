@@ -92,20 +92,19 @@ function FindProxyForURL(url, host) {
     PROXY_OMNI = "PROXY jackfan.com:4000; DIRECT";
     PROXY_NONE = "DIRECT"
 
-    if (dnsResolve(host) == "127.0.0.1")
+    if (isInNet(dnsResolve(host), "10.0.0.0", "255.0.0.0") ||
+        isInNet(dnsResolve(host), "192.168.0.0", "255.255.0.0") ||
+        isInNet(dnsResolve(host), "127.0.0.0", "255.255.255.0"))
         return PROXY_NONE;
-    
-    if (isInNet(dnsResolve(host), "10.50.0.0", "255.255.0.0"))
-        return PROXY_OMNI;
         
     if (isAcademicDomain(url, host))
+        return PROXY_NONE;
+        
+    if (isDomesticDomain(url, host))
         return PROXY_NONE;
 
     if (inGFWList(url, host))
         return PROXY_OMNI;
-
-    if (isDomesticDomain(url, host))
-        return PROXY_NONE;
-
+    
     return PROXY_OMNI;
 }
