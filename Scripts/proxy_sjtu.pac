@@ -97,7 +97,7 @@ function FindProxyForURL(url, host) {
         return PROXY_NONE;
         
     if (isAcademicDomain(url, host))
-        return PROXY_NONE;
+        return PROXY_SJTU;
         
     if (isDomesticDomain(url, host))
         return PROXY_NONE;
@@ -105,5 +105,5 @@ function FindProxyForURL(url, host) {
     if (inGFWList(url, host))
         return PROXY_OMNI;
     
-    return PROXY_OMNI;
+    return PROXY_NONE;
 }
