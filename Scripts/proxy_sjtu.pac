@@ -222,5 +222,5 @@ function FindProxyForURL(url, host) {
     if (inGFWList(url, host))
         return PROXY_OMNI;
     
-    return PROXY_SJTU;
+    return PROXY_OMNI;
 }
