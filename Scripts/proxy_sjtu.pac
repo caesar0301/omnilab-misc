@@ -135,6 +135,7 @@ function inGFWList(url, host){
         "nytimes.com",
         "odesk.com",
         "ouedkniss.com",
+        "*orange*.com",
         "pastebin.com",
         "pchome.com.tw",
         "pixnet.net",
