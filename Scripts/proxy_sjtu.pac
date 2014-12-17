@@ -213,11 +213,14 @@ function FindProxyForURL(url, host) {
         isInNet(dnsResolve(host), "127.0.0.0", "255.255.255.0"))
         return PROXY_NONE;
         
+    if (isDomesticDomain(host, url))
+        return PROXY_NONE;
+        
     if (isAcademicDomain(url, host))
         return PROXY_SJTU;
 
     if (inGFWList(url, host))
         return PROXY_OMNI;
     
-    return PROXY_NONE;
+    return PROXY_SJTU;
 }
