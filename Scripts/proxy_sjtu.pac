@@ -36,17 +36,32 @@ function isDomesticDomain(url, host){
     var domains = new Array(
         "cn",
         "dp",
+        "hk",
+        "163.com",
+        "alipay.com",
+        "alipay.com",
         "baidu.com",
-        "hsiamin.com",
-        "alipay.com",
-        "alipay.com",
+        "bing.com"
+        "csdn.net",
+        "dangdang.com",
         "dianping.com",
         "dianpingoa.com",
-        "qq.com",
-        "taobao.com",
-        "useso.com",
+        "douban.com",
+        "hao123.com",
+        "hsiamin.com",
+        "jd.com",
         "mi.com",
-        "xiaomi.com"
+        "qq.com",
+        "sohu.com",
+        "sougou.com",
+        "taobao.com",
+        "tmall.com",
+        "tudou.com",
+        "useso.com",
+        "weibo.com",
+        "xiaomi.com",
+        "yixun.com",
+        "youku.com"
     );
     for(var i=0; i<domains.length; i++) {
         if (dnsDomainIs(host, domains[i]) ||
