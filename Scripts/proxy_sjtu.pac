@@ -234,8 +234,8 @@ function FindProxyForURL(url, host) {
     if (isAcademicDomain(url, host))
         return PROXY_NONE;
 
-    // if (inGFWList(url, host))
-    //     return PROXY_OMNI;
+    if (inGFWList(url, host))
+        return PROXY_OMNI;
     
-    return PROXY_OMNI;
+    return PROXY_NONE;
 }
