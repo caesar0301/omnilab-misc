@@ -54,6 +54,7 @@ function isDomesticDomain(url, host){
         "qq.com",
         "sohu.com",
         "sougou.com",
+        "soku.com",
         "taobao.com",
         "tmall.com",
         "tudou.com",
