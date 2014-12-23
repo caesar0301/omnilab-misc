@@ -117,7 +117,6 @@ function inGFWList(url, host){
         "feedburner.com",
         "flickr.com",
         "freelancer.com",
-        "github.com",
         "globo.com",
         "gmail.com",
         "goo.gl",
