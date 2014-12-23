@@ -209,7 +209,7 @@ function inGFWList(url, host){
 function FindProxyForURL(url, host) {
 
     PROXY_SJTU = "PROXY inproxy.sjtu.edu.cn:8000; DIRECT";
-    PROXY_OMNI = "PROXY jackfan.com:4000; DIRECT";
+    PROXY_OMNILAB = "PROXY jackfan.com:4000; DIRECT";
     PROXY_NONE = "DIRECT"
 
     if (isInNet(dnsResolve(host), "10.0.0.0", "255.0.0.0") ||
@@ -223,8 +223,8 @@ function FindProxyForURL(url, host) {
     if (isAcademicDomain(url, host))
         return PROXY_NONE;
 
-    if (inGFWList(url, host))
-        return PROXY_OMNI;
+    // if (inGFWList(url, host))
+    //     return PROXY_OMNILAB;
     
-    return PROXY_NONE;
+    return PROXY_OMNILAB;
 }
