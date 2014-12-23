@@ -47,6 +47,7 @@ function isDomesticDomain(url, host){
         "dianping.com",
         "dianpingoa.com",
         "douban.com",
+        "github.com",
         "hao123.com",
         "hsiamin.com",
         "jd.com",
