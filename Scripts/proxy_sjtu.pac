@@ -196,7 +196,8 @@ function inGFWList(url, host){
         "yahoo.com",
         "youporn.com",
         "yourlust.com",
-        "youtube.com"
+        "youtube.com",
+        "ytimg.com"
     );
     for(var i=0; i<domains.length; i++) {
         if (dnsDomainIs(host, domains[i]) || shExpMatch(host, domains[i]))
