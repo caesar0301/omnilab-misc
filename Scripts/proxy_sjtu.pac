@@ -61,7 +61,8 @@ function isDomesticDomain(url, host){
         "weibo.com",
         "xiaomi.com",
         "yixun.com",
-        "youku.com"
+        "youku.com",
+        "ykimg.com"
     );
     for(var i=0; i<domains.length; i++) {
         if (dnsDomainIs(host, domains[i]) ||
