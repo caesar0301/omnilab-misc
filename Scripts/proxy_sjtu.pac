@@ -116,7 +116,6 @@ function inGFWList(url, host){
         "feedburner.com",
         "flickr.com",
         "freelancer.com",
-        "github.com",
         "globo.com",
         "gmail.com",
         "goo.gl",
@@ -205,17 +204,6 @@ function inGFWList(url, host){
     }
     return false;
 }
-
-// function inNetSJTU(){
-//     myIP = myIpAddress();
-//     if (isInNet(myIP, "202.120.32.0", "255.255.255.0"))
-//         return true;
-//     return false;
-//     return true;
-// }
-
-// function outNetSJTU(){
-// }
 
 function FindProxyForURL(url, host) {
 
