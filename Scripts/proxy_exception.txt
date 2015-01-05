@@ -23,6 +23,7 @@ computer.org
 cshlp.org
 ieee.org
 iiisci.org
+informs.org
 iop.org
 jstor.org
 metapress.com
@@ -38,5 +39,3 @@ springer.com
 ssrn.com
 tandfonline.com
 wiley.com
-informs.org
-tandfonline.com
