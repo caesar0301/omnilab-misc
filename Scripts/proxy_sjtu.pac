@@ -9,6 +9,7 @@ function isAcademicDomain(url, host){
         "cshlp.org",
         "ieee.org",
         "iiisci.org",
+        "informs.org",
         "iop.org",
         "jstor.org",
         "metapress.com",
