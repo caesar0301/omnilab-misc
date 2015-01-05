@@ -38,3 +38,5 @@ springer.com
 ssrn.com
 tandfonline.com
 wiley.com
+informs.org
+tandfonline.com
