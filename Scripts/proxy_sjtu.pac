@@ -16,6 +16,7 @@ function isAcademicDomain(url, host){
         "metapress.com",
         "nature.com",
         "nih.gov",
+        "oxfordjournals.org",
         "pnas.org",
         "projecteuclid.org",
         "science.com",
