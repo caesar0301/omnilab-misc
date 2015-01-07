@@ -210,15 +210,19 @@ function inGFWList(url, host){
     return false;
 }
 
+function pureHost(host) {
+    return host.split(":")[0]
+}
+
 function FindProxyForURL(url, host) {
 
     PROXY_SJTU = "PROXY inproxy.sjtu.edu.cn:8000; DIRECT";
     PROXY_OMNILAB = "PROXY jackfan.com:4000; DIRECT";
     PROXY_NONE = "DIRECT"
 
-    if (isInNet(dnsResolve(host), "10.0.0.0", "255.0.0.0") ||
-        isInNet(dnsResolve(host), "192.168.0.0", "255.255.0.0") ||
-        isInNet(dnsResolve(host), "127.0.0.0", "255.255.255.0"))
+    if (isInNet(dnsResolve(pureHost(host)), "10.0.0.0", "255.0.0.0") ||
+        isInNet(dnsResolve(pureHost(host)), "192.168.0.0", "255.255.0.0") ||
+        isInNet(dnsResolve(pureHost(host)), "127.0.0.0", "255.255.255.0"))
         return PROXY_NONE;
         
     if (isDomesticDomain(url, host))
