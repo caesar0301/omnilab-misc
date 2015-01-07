@@ -7,6 +7,7 @@ function isAcademicDomain(url, host){
         "citeulike.org",
         "computer.org",
         "cshlp.org",
+        "icevirtuallibrary.com",
         "ieee.org",
         "iiisci.org",
         "informs.org",
