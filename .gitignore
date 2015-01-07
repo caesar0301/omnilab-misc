@@ -1,3 +1,5 @@
+*.aux
+*.DS_Store
 *.settings*
 *.classpath
 
