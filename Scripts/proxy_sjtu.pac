@@ -19,6 +19,7 @@ function isAcademicDomain(url, host){
         "nih.gov",
         "oxfordjournals.org",
         "pnas.org",
+        "popline.org",
         "projecteuclid.org",
         "science.com",
         "sciencedirect.com",
