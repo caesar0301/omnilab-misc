@@ -5,6 +5,7 @@ function isAcademicDomain(url, host){
         "aps.org",
         "arxiv.org",
         "citeulike.org",
+        "cnki.net",
         "computer.org",
         "cshlp.org",
         "envplan.com",
