@@ -1,45 +1,159 @@
 #!/bin/bash
 # Automatically create LVS volume and export it with NFS
-# 
+# Support NFS service with nfs-utils
+#
 # By chenxm
 # 2013-07
-#
-######################
-regName="tmp-test"
-vol=20GB
-######################
+##
 
-## Create new LVM volume and format it using ext4 by default
-echo "Creating new LVM volumn..."
-echo "Register name: $regName"
-echo "Volumn: $vol"
-echo "Format: ext4"
-echo "Do you wish to create?"
-select yn in "Yes" "No"; do
+VERSION=0.2.0
+
+###########################################
+##           VG Configuration
+## Change only to match your local settings
+VGGROUP=nova-volumes
+NFS_PATH=/export
+NFS_CONFIG=/etc/exports
+FSTAB=/etc/fstab
+###########################################
+
+function display_version() {
+cat <<EOF
+
+________      _____    _______  .___.____          ___.     
+\_____  \    /     \   \      \ |   |    |   _____ \_ |__   
+ /   |   \  /  \ /  \  /   |   \|   |    |   \__  \ | __ \  
+/    |    \/    Y    \/    |    \   |    |___ / __ \| \_\ \ 
+\_______  /\____|__  /\____|__  /___|_______ (____  /___  / 
+        \/         \/         \/            \/    \/    \/  
+
+Automatical LVS/NFS exportion utility.
+
+Copyright 2013-2015, OMNILab
+Author Xiaming Chen <chenxm35@gmail.com>
+Version $VERSION
+
+EOF
+}
+
+function die () {
+    echo "${@}"
+    exit 1
+}
+
+display_version
+echo "Creating new LVM volumn ..."
+
+# Read volume name from user
+while true; do
+    read -e -p "Enter new volumn name: " -i "" VOLNAME
+    if [ -z "$VOLNAME" ]; then
+        echo "Please enter a valid name."
+    else
+        break
+    fi
+done
+
+# Read volume size from user
+while true; do
+    read -e -p "Enter volume size (xxTB/GB/MB): " -i "" VOLSIZE
+    match=$([[ $VOLSIZE =~ ^[0-9]*[TtGgMm]B$ ]] && echo "yes" || echo "no")
+    if [ $match == "no" ]; then
+        echo "Please enter a valid size with unit."
+    else
+        break
+    fi
+done
+
+# Read volume format
+while true; do
+    read -e -p "Enter volume format (default ext4): " -i "ext4" VOLFORMAT
+    if [ -z "$VOLFORMAT" ]; then
+        echo "Please enter a valid format."
+    else
+        break
+    fi
+done
+
+# Make sure the user inputs right settings
+cat <<EOF
+Creat new column with configurations:
+
+++-------------------------------------
+  Volume name: $VOLNAME
+  Volume size: $VOLSIZE
+  Volume type: $VOLFORMAT
+++-------------------------------------
+
+EOF
+
+while true; do
+    read -p "Do you have correct settings and continue? [Y/n]: " yn
     case $yn in
-        Yes ) break;;
-        No ) exit;;
+        [Y]* ) break;;
+        [y]* ) echo "Input upper case 'Y' to make sure.";;
+        [Nn]* ) exit;;
+        * ) echo "Please answer yes or no.";;
     esac
 done
-lvcreate -L $vol -n $regName nova-volumes
-mkfs.ext4 /dev/nova-volumes/$regName
 
-## Mount to local /export folder with given name
-lp="/export/$regName"
-echo "Mount to point: $lp"
-echo `mkdir -p $lp`
+# Check volume format at runtime
+case "$VOLFORMAT" in
+cramfs)
+    MKFSCMD=mkfs.cramfs;;
+bfs)
+    MKFSCMD=mkfs.bfs;;
+ext2)
+    MKFSCMD=mkfs.ext2;;
+ext3)
+    MKFSCMD=mkfs.ext3;;
+ext4)
+    MKFSCMD=mkfs.ext4;;
+ext4dev)
+    MKFSCMD=mkfs.ext4dev;;
+minix)
+    MKFSCMD=mkfs.minix;;
+fat)
+    MKFSCMD=mkfs.fat;;
+ntfs)
+    MKFSCMD=mkfs.ntfs;;
+msdos)
+    MKFSCMD=mkfs.msdos;;
+vfat)
+    MKFSCMD=mkfs.vfat;;
+*)
+    die " ERROR: Format '$VOLFORMAT' not supported."
+    ;;
+esac
 
-## Write mount option to /etc/fstab
-echo "" >> /etc/fstab
-echo "# NFS mounted automatically  at `date`" >> /etc/fstab
-echo "/dev/nova-volumes/$regName        $lp     ext4    noatime 0       0" >> /etc/fstab
-mount -a
+# Do creation
+echo "Creating volume in group '$VGGROUP' ..."
+lvcreate -L $VOLSIZE -n $VOLNAME $VGGROUP
 
-## Add new configuration to /etc/exports
-echo "Exporting with NFS..."
-echo "" >> /etc/exports
-echo "# NFS exported automatically at `date`" >> /etc/exports
-echo "/export/$regName 10.50.0.0/20(rw,nohide,insecure,no_subtree_check,async,no_root_squash)" >> /etc/exports
+echo "Formatting volume in $VOLFORMAT ..."
+$MKFSCMD /dev/$VGGROUP/$VOLNAME
+
+# Mount to local /export folder with given name
+MP=$NFS_PATH/$VOLNAME
+echo "Mounting to local point: $MP"
+mkdir -p $MP
+
+# Write mount option to /etc/fstab
+echo "" >> $FSTAB
+echo "# NFS mounted automatically at $(date)" >> $FSTAB
+echo "/dev/$VGGROUP/$VOLNAME	$MP	$VOLFORMAT	noatime	0	0" \
+    >> $FSTAB
+echo "Reloading mount settings ..." && mount -a
+
+# Add NFS exporting to /etc/exports
+echo "Exporting via NFS ($MP) ..."
+echo "" >> $NFS_CONFIG
+echo "# NFS exported automatically at $(date)" >> $NFS_CONFIG
+echo "$NFS_PATH/$VOLNAME 10.50.0.0/20(rw,nohide,insecure,no_subtree_check,async,no_root_squash)" \
+    >> $NFS_CONFIG
 
 ## reload NFS configurations
-service nfs reload
+echo "Reloading NFS configurations ..."
+service nfs reload || service nfs-kernel-server reload || die " Failed to reload NFS service."
+
+echo "Success!"
