@@ -66,7 +66,7 @@ function checkDirExist () {
 
 # check vggroup existence
 function checkVGGroup () {
-    $(! vgscan | grep -q $1) && die $2
+    $(! vgscan | grep -q \"$1\") && die $2
 }
 
 ##           USEFUL FUNCTIONS
