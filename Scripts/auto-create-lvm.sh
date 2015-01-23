@@ -56,17 +56,17 @@ function checkRootPrivilege () {
 
 # check file existence
 function checkFileExist () {
-    [ -f $1 ] || echo $2 && exit 1
+    [ ! -f $1 ] && die $2
 }
 
 # check folder existence
 function checkDirExist () {
-    [ -d $1 ] || echo $2 && exit 1
+    [ ! -d $1 ] && die $2
 }
 
 # check vggroup existence
 function checkVGGroup () {
-    $(vgscan | grep $1) || echo $2 && exit 1
+    $(! vgscan | grep -q $1) && die $2
 }
 
 ##           USEFUL FUNCTIONS
