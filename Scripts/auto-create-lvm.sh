@@ -65,9 +65,8 @@ function checkDirExist () {
 }
 
 # check vggroup existence
-functio checkVGGroup () {
-    vg=$(vgscan | grep $1)
-    [ vg != "" ] || echo $2 && exit 1
+function checkVGGroup () {
+    $(vgscan | grep $1) || echo $2 && exit 1
 }
 
 ##           USEFUL FUNCTIONS
