@@ -9,15 +9,19 @@
 VERSION=0.2.0
 
 ###########################################
-##           VG Configuration
+##           VG CONFIGURATIONS
 ## Change only to match your local settings
 VGGROUP=nova-volumes
 NFS_PATH=/export
 NFS_CONFIG=/etc/exports
 FSTAB=/etc/fstab
+##           VG CONFIGURATIONS
 ###########################################
 
-function display_version() {
+###########################################
+##           USEFUL FUNCTIONS
+
+function displayVersion() {
 cat <<EOF
 
 ________      _____    _______  .___.____          ___.     
@@ -36,12 +40,48 @@ Version $VERSION
 EOF
 }
 
+# exit echo utility
 function die () {
     echo "${@}"
     exit 1
 }
 
-display_version
+# if root privilege authorized
+function checkRootPrivilege () {
+    if [[ $EUID -ne 0 ]]; then
+        echo "You must be a ROOT user to carry on!" 2>&1
+        exit 1
+    fi
+}
+
+# check file existence
+function checkFileExist () {
+    [ -f $1 ] || echo $2 && exit 1
+}
+
+# check folder existence
+function checkDirExist () {
+    [ -d $1 ] || echo $2 && exit 1
+}
+
+# check vggroup existence
+functio checkVGGroup () {
+    vg=$(vgscan | grep $1)
+    [ vg != "" ] || echo $2 && exit 1
+}
+
+##           USEFUL FUNCTIONS
+###########################################
+
+# Check user configurations
+displayVersion
+checkRootPrivilege
+checkVGGroup   $VGGROUP "LVM group '$VGGROUP' does not exist!"
+checkDirExist  $NFS_PATH "NFS exporting folder '$NFS_PATH' does not exist!"
+checkFileExist $NFS_CONFIG "NFS configuration file '$NFS_CONFIG' does not exist!"
+checkFileExist $FSTAB "File '$FSTAB' does not exist!"
+
+# Start creation process
 echo "Creating new LVM volumn ..."
 
 # Read volume name from user
