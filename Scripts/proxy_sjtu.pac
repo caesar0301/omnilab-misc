@@ -13,6 +13,7 @@ function isAcademicDomain(url, host){
         "ieee.org",
         "iiisci.org",
         "informs.org",
+        "ingentaconnect.com",
         "iop.org",
         "jstor.org",
         "metapress.com",
