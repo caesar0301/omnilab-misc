@@ -46,36 +46,38 @@ start(){
 
     # Network interface to sniff.
     INTERFACE=$netinf
-    mkdir -p $outfolder
+    OUTPERMONTH=$outfolder/`date +%Y%m`
+    mkdir -p $OUTPERMONTH
 
     # Create each folder with the name taged by datetime
     # e.g., 20130101-0100*
     datetime=`date '+%Y%m%d-%H%M'`
 
     # Output log folder names
-    NAME_TSTAT_LOG="log_tcp"
-    NAME_JUSTNIFFER_LOG="log_http"
-    NAME_PCAPDPI_LOG="log_dpi"
+    TSTAT_LOG="tcp"
+    JUSTNIFFER_LOG="http"
+    PCAPDPI_LOG="dpi"
 
     # Run tstat utility
     # Network configuration denotes source and destination network IP addresses.
     # All output logs are compressed by gzip.
-    mkdir -p $outfolder/$NAME_TSTAT_LOG
+    mkdir -p $OUTPERMONTH/$TSTAT_LOG
     TSTAT_NET_CONF=$THISHOME/../conf/tstat-net.conf
-    $CMD_TSTAT -Z -l -i $INTERFACE -N $TSTAT_NET_CONF -s $outfolder/$NAME_TSTAT_LOG  &
+    $CMD_TSTAT -Z -l -i $INTERFACE -N $TSTAT_NET_CONF -s $OUTPERMONTH/$TSTAT_LOG  &
 
     # Run justniffer utility
     # We have a predefined configuration files about HTTP message fields.
     # The suffix "light" means we only capture neccessary fields as we need.
     # All output logs are compressed by gzip.
     JUSTNIFFER_CONF=$THISHOME/../conf/justniffer-light.conf
-    mkdir -p $outfolder/$NAME_JUSTNIFFER_LOG
-    $CMD_JUSTNIFFER -i $INTERFACE -F -c $JUSTNIFFER_CONF > $outfolder/$NAME_JUSTNIFFER_LOG/$datetime.jn.out  &
+    mkdir -p $OUTPERMONTH/$JUSTNIFFER_LOG
+    $CMD_JUSTNIFFER -i $INTERFACE -F -c $JUSTNIFFER_CONF > $OUTPERMONTH/$JUSTNIFFER_LOG/$datetime.jn.out  &
 
     # Run pcapDPI utility.
     # The output is dump at the tail of each hour.
-    mkdir -p $outfolder/$NAME_PCAPDPI_LOG
-    $CMD_PCAPDPI -i $INTERFACE -w $outfolder/$NAME_PCAPDPI_LOG/$datetime.dpi.out  &
+    mkdir -p $OUTPERMONTH/$PCAPDPI_LOG
+    $CMD_PCAPDPI -i $INTERFACE -w $OUTPERMONTH/$PCAPDPI_LOG/$datetime.dpi.out  &
+
     wait
 }
 
