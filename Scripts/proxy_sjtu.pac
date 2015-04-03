@@ -26,6 +26,7 @@ function isAcademicDomain(url, host){
         "science.com",
         "sciencedirect.com",
         "sciencemag.org",
+        "spiedigitallibrary.org",
         "siam.org",
         "springer.com",
         "ssrn.com",
