@@ -9,8 +9,10 @@ Preprocess HTTP logs to EMC data challenge.
 -- %declare input 'justniffer.dat'
 -- %declare output 'http_logs_clean.out'
 
-SET debug off
-SET job.name 'Cleansing HTTP'
+SET debug off;
+SET job.name 'Cleansing HTTP';
+SET parquet.compression gzip;
+SET log4j.logger.org.apache.hadoop error;
 
 DEFINE Sessionize datafu.pig.sessions.Sessionize('5m');
 DEFINE GenUUIDRand com.piggybox.uuid.GenUUIDRand();
@@ -55,24 +57,42 @@ DEFINE M_LOAD_RAW_HTTP(input_file) RETURNS data {
 
 	$data = FOREACH $data {
 		chops = STRSPLIT(time_fields, ' ');
-		source_ip = (chararray) chops.$0;
-		source_port = (int) chops.$1;
+		source_ip = (chararray)chops.$0;
+		-- source port
+		sport = REGEX_EXTRACT(chops.$1, '(\\d+)', 1);
+		source_port = (sport is null ? -1 : (int)sport);
 		dest_ip = (chararray) chops.$2;
-		dest_port = (int) chops.$3;
+		-- dest port
+		dport = REGEX_EXTRACT(chops.$3, '(\\d+)', 1);
+		dest_port = (dport is null ? -1 : (int)dport);
+		-- connection info
 		conn = (chararray) chops.$4;
-		conn_ts = (chops.$5 == 'N/A' ? -1 : (double)chops.$5);
-		close_ts = (chops.$6 == 'N/A' ? -1 : (double)chops.$6);
-		conn_dur = (chops.$7 == 'N/A' ? -1 : (double)chops.$7);
-		idle_time0 = (chops.$8 == 'N/A' ? -1 : (double)chops.$8);
-		request_ts = (chops.$9 == 'N/A' ? -1 : (double)chops.$9);
-		request_dur = (chops.$10 == 'N/A' ? -1 : (double)chops.$10);
-		response_ts = (chops.$11 == 'N/A' ? -1 : (double)chops.$11);
-		response_dur_b = (chops.$12 == 'N/A' ? -1 : (double)chops.$12);
-		response_dur_e = (chops.$13 == 'N/A' ? -1 : (double)chops.$13);
-		idle_time1 = (chops.$14 == 'N/A' ? -1 : (double)chops.$14);
-		request_size = (chops.$15 == 'N/A' ? -1 : (int)chops.$15);
-		response_size = (chops.$16 == 'N/A' ? -1 : (int)chops.$16);
-		request_method = (chops.$17 == 'N/A' ? '' : (chararray)chops.$17);
+		time_pattern = '(\\d+\\.?\\d*)';
+		conn_ts = REGEX_EXTRACT(chops.$5, time_pattern, 1);
+		conn_ts = (conn_ts is null ? -1 : (double)conn_ts);
+		close_ts = REGEX_EXTRACT(chops.$6, time_pattern, 1);
+		close_ts = (close_ts is null ? -1 : (double)close_ts);
+		conn_dur = REGEX_EXTRACT(chops.$7, time_pattern, 1);
+		conn_dur = (conn_dur is null ? -1 : (double)conn_dur);
+		idle_time0 = REGEX_EXTRACT(chops.$8, time_pattern, 1);
+		idle_time0 = (idle_time0 is null ? -1 : (double)idle_time0);
+		request_ts = REGEX_EXTRACT(chops.$9, time_pattern, 1);
+		request_ts = (request_ts is null ? -1 : (double)request_ts);
+		request_dur = REGEX_EXTRACT(chops.$10, time_pattern, 1);
+		request_dur = (request_dur is null ? -1 : (double)request_dur);
+		response_ts = REGEX_EXTRACT(chops.$11, time_pattern, 1);
+		response_ts = (response_ts is null ? -1 : (double)response_ts);
+		response_dur_b = REGEX_EXTRACT(chops.$12, time_pattern, 1);
+		response_dur_b = (response_dur_b is null ? -1 : (double)response_dur_b);
+		response_dur_e = REGEX_EXTRACT(chops.$13, time_pattern, 1);
+		response_dur_e = (response_dur_e is null ? -1 : (double)response_dur_e);
+		idle_time1 = REGEX_EXTRACT(chops.$14, time_pattern, 1);
+		idle_time1 = (idle_time1 is null ? -1 : (double)idle_time1);
+		request_size = REGEX_EXTRACT(chops.$15, '(\\d+)', 1);
+		request_size = (request_size is null ? -1 : (int)request_size);
+		response_size = REGEX_EXTRACT(chops.$16, '(\\d+)', 1);
+		response_size = (response_size is null ? -1 : (int)response_size);
+		request_method = REPLACE(chops.$17, '\\"', '');
 		GENERATE
 			source_ip as source_ip:chararray,
 			source_port as source_port:int,
@@ -94,7 +114,10 @@ DEFINE M_LOAD_RAW_HTTP(input_file) RETURNS data {
 			request_method as request_method:chararray,
 			request_url ..;
 	};
+
+	$data = FILTER $data BY source_port != -1 and dest_port != -1 and request_ts != -1 and request_method is not null;
 };
+
 raw_logs = M_LOAD_RAW_HTTP('$input');
 
 -- select required fields in this BDC.
@@ -146,23 +169,17 @@ sessions = FOREACH sgroups {
 	topsp = TOP(1, 1, SumEachBy(sp_traffic, 0, 1));
 	topsp0 = NthTupleFromBag(0, topsp, TOTUPLE(null, null));
 	-- sum up total requests for each service provider
-	toprqt = TOP(1, 1, CountEachFlatten(sp_traffic.$0));
-	toprqt0 = NthTupleFromBag(0, toprqt, TOTUPLE(null, null));
-	-- sum up traffic volumn for each service type
-	-- scat_traffic = FOREACH sessionized GENERATE SCAT, size;
-	-- topscat = TopDesc(2, 1, SumEachBy(scat_traffic, 0, 1));
-	-- topscat0 = NthTupleFromBag(0, topscat, TOTUPLE(null, null));
-	-- topscat1 = NthTupleFromBag(1, topscat, TOTUPLE(null, null));
+	-- toprqt = TOP(1, 1, CountEachFlatten(sp_traffic.$0));
+	-- toprqt0 = NthTupleFromBag(0, toprqt, TOTUPLE(null, null));
 	GENERATE group.$0 as ip: chararray,
 		sstime as sstime: long,
 		setime as setime: long,
 		total_requests as total_requests: long,
 		total_bytes as total_bytes: long,
-		FLATTEN(topsp0) as (service:chararray, bytes:long),
-		FLATTEN(toprqt0) as (service1:chararray, requests:long);
+		FLATTEN(topsp0) as (service:chararray, bytes:long);
 }
 sessions = FOREACH sessions GENERATE ip, sstime, setime, total_requests, total_bytes,
-	FLATTEN(service), bytes, FLATTEN(service1), requests;
+	FLATTEN(service), bytes;
 sessions = FILTER sessions BY setime > 0 and setime >= sstime;
 sessions = ORDER sessions BY ip, sstime;
 

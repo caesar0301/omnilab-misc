@@ -5,6 +5,9 @@ if [ $# -lt 2 ]; then
 	exit -1;
 fi
 
+# remove running logs
+rm -rf pig_*.log
+
 PIGCMD=$(which pig)
 OUTPUT=$2-$(date +"%Y%M%d%H%M%S")
 echo "Output to $OUTPUT"
