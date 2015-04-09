@@ -10,7 +10,7 @@ Preprocess HTTP logs to EMC data challenge.
 -- %declare output 'http_logs_clean.out'
 
 SET debug off;
-SET job.name 'Cleansing HTTP';
+SET job.name 'Cleansing HTTP for EMCBDC2015';
 SET parquet.compression gzip;
 SET log4j.logger.org.apache.hadoop error;
 
@@ -57,97 +57,78 @@ DEFINE M_LOAD_RAW_HTTP(input_file) RETURNS data {
 
 	$data = FOREACH $data {
 		chops = STRSPLIT(time_fields, ' ');
-		source_ip = (chararray)chops.$0;
-		-- source port
-		sport = REGEX_EXTRACT(chops.$1, '(\\d+)', 1);
-		source_port = (sport is null ? -1 : (int)sport);
-		dest_ip = (chararray) chops.$2;
-		-- dest port
-		dport = REGEX_EXTRACT(chops.$3, '(\\d+)', 1);
-		dest_port = (dport is null ? -1 : (int)dport);
-		-- connection info
-		conn = (chararray) chops.$4;
-		time_pattern = '(\\d+\\.?\\d*)';
-		conn_ts = REGEX_EXTRACT(chops.$5, time_pattern, 1);
-		conn_ts = (conn_ts is null ? -1 : (double)conn_ts);
-		close_ts = REGEX_EXTRACT(chops.$6, time_pattern, 1);
-		close_ts = (close_ts is null ? -1 : (double)close_ts);
-		conn_dur = REGEX_EXTRACT(chops.$7, time_pattern, 1);
-		conn_dur = (conn_dur is null ? -1 : (double)conn_dur);
-		idle_time0 = REGEX_EXTRACT(chops.$8, time_pattern, 1);
-		idle_time0 = (idle_time0 is null ? -1 : (double)idle_time0);
-		request_ts = REGEX_EXTRACT(chops.$9, time_pattern, 1);
-		request_ts = (request_ts is null ? -1 : (double)request_ts);
-		request_dur = REGEX_EXTRACT(chops.$10, time_pattern, 1);
-		request_dur = (request_dur is null ? -1 : (double)request_dur);
-		response_ts = REGEX_EXTRACT(chops.$11, time_pattern, 1);
-		response_ts = (response_ts is null ? -1 : (double)response_ts);
-		response_dur_b = REGEX_EXTRACT(chops.$12, time_pattern, 1);
-		response_dur_b = (response_dur_b is null ? -1 : (double)response_dur_b);
-		response_dur_e = REGEX_EXTRACT(chops.$13, time_pattern, 1);
-		response_dur_e = (response_dur_e is null ? -1 : (double)response_dur_e);
-		idle_time1 = REGEX_EXTRACT(chops.$14, time_pattern, 1);
-		idle_time1 = (idle_time1 is null ? -1 : (double)idle_time1);
-		request_size = REGEX_EXTRACT(chops.$15, '(\\d+)', 1);
-		request_size = (request_size is null ? -1 : (int)request_size);
-		response_size = REGEX_EXTRACT(chops.$16, '(\\d+)', 1);
-		response_size = (response_size is null ? -1 : (int)response_size);
-		request_method = REPLACE(chops.$17, '\\"', '');
 		GENERATE
-			source_ip as source_ip:chararray,
-			source_port as source_port:int,
-			dest_ip as dest_ip:chararray,
-			dest_port as dest_port:int,
-			conn as conn:chararray,
-			conn_ts as conn_ts:double,
-			close_ts as close_ts:double,
-			conn_dur as conn_dur:double,
-			idle_time0 as idle_time0:double,
-			request_ts as request_ts:double,
-			request_dur as request_dur:double,
-			response_ts as response_ts:double,
-			response_dur_b as response_dur_b:double,
-			response_dur_e as response_dur_e:double,
-			idle_time1 as idle_time1:double,
-			request_size as request_size:int,
-			response_size as response_size:int,
-			request_method as request_method:chararray,
+			chops.$0 as source_ip:chararray,
+			chops.$1 as source_port:chararray,
+			chops.$2 as dest_ip:chararray,
+			chops.$3 as dest_port:chararray,
+			chops.$4 as conn:chararray,
+			chops.$5 as conn_ts:chararray,
+			chops.$6 as close_ts:chararray,
+			chops.$7 as conn_dur:chararray,
+			chops.$8 as idle_time0:chararray,
+			chops.$9 as request_ts:chararray,
+			chops.$10 as request_dur:chararray,
+			chops.$11 as response_ts:chararray,
+			chops.$12 as response_dur_b:chararray,
+			chops.$13 as response_dur_e:chararray,
+			chops.$14 as idle_time1:chararray,
+			chops.$15 as request_size:chararray,
+			chops.$16 as response_size:chararray,
+			chops.$17 as request_method:chararray,
 			request_url ..;
 	};
 
-	$data = FILTER $data BY source_port != -1 and dest_port != -1 and request_ts != -1 and request_method is not null;
+	$data = FILTER $data BY source_port != 'N/A' and request_ts != 'N/A'
+		and response_ts != 'N/A' and response_dur_b != 'N/A'
+		and response_dur_e != 'N/A' and request_size != 'N/A'
+		and response_size != 'N/A';
 };
 
 raw_logs = M_LOAD_RAW_HTTP('$input');
 
 -- select required fields in this BDC.
-selected_logs = FOREACH raw_logs GENERATE
-	source_ip as ip: chararray,
-	(long)(request_ts * 1000) as stime: long, -- milliseconds
-	(long)((response_ts + response_dur_e) * 1000) as etime: long, -- milliseconds
-	request_size + response_size as size: long,
-	(request_url == 'N/A' ? '' : request_url) as url: chararray,
-	(request_host == 'N/A' ? '' : request_host) as host: chararray,
-	(request_user_agent == 'N/A' ? '' : request_user_agent) as user_agent: chararray,
-	(request_referrer == 'N/A' ? '' : request_referrer) as referrer: chararray;
-selected_logs = FILTER selected_logs BY stime is not null;
+selected_logs = FOREACH raw_logs {
+	time_pattern = '(\\d+\\.?\\d*)';
+	source_port = REGEX_EXTRACT(source_port, '(\\d+)', 1);
+	source_port = (source_port is null ? -1 : (int)source_port);
+	request_ts = REGEX_EXTRACT(request_ts, time_pattern, 1);
+	request_ts = (request_ts is null ? -1 : (long)request_ts);
+	response_ts = REGEX_EXTRACT(response_ts, time_pattern, 1);
+	response_ts = (response_ts is null ? -1 : (long)response_ts);
+	request_size = (long)request_size;
+	response_size = (long)response_size;
+	request_host = (request_host == 'N/A' ? null : request_host);
+	request_url = (request_url == 'N/A' ? null : StripUrl(request_url));
+	request_user_agent = (request_user_agent == 'N/A' ? null : request_user_agent);
+	request_referrer = (request_referrer == 'N/A' ? null : request_referrer);
+	GENERATE
+		source_ip as ip:chararray,
+		source_port as sport: int,
+		(request_ts * 1000) as stime: long, -- milliseconds
+		(long)((response_ts + (double)response_dur_e) * 1000) as etime: long,
+		(request_size + response_size) as size: long,
+		request_host as host: chararray,
+		request_url as url: chararray,
+		request_user_agent as user_agent: chararray,
+		request_referrer as referrer: chararray;
+}
+selected_logs = FILTER selected_logs BY sport > 0 and stime > 0 and etime > 0
+	and size >= 0 and host is not null;
 
 -- add additional fields
 extended = FOREACH selected_logs GENERATE
 	UnixToISO(stime) as isotime: chararray,
-	ip, stime, etime, size,
-	host,
-	StripUrl(url) as url,
-	TopPrivateDomain(host) as tld: chararray,
+	ip, stime, etime, size, host, url,
 	MobileType(user_agent) as mobile: chararray,
+	TopPrivateDomain(host) as tld: chararray,
 	FLATTEN(ServiceCategoryClassify(host)) as (SP:chararray, SCAT:chararray, SCAT1: int);
 
 -- sessonize individual's logs
-ugroups = GROUP extended by ip;
+ugroups = GROUP extended BY ip;
 sessionized = FOREACH ugroups {
-	ordered = ORDER extended BY isotime;
-	GENERATE FLATTEN(Sessionize(ordered)) as (isotime,
-		ip, stime, etime, size, host, url, tld, mobile, SP, SCAT, SCAT1, session_id);
+	ordered = ORDER extended BY stime;
+	GENERATE FLATTEN(Sessionize(ordered));
 }
 sessionized = FOREACH sessionized GENERATE ip .. session_id;
 
