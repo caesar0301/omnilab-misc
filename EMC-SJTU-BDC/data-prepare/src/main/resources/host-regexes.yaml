@@ -1,0 +1,10371 @@
+# This yaml file contains regexes to classify HTTP services according to their hosts.
+# These rules are extracted from Hangzhou mobile dataset @OMNI-Lab
+# host_parser: a list of regexes for different host names;
+# category_classes: a map of category and its subcategories (cls1 refers to
+# the service type and cls2 refers to service venders.)
+# cls1_map: a map of cls1 and its semantic meanings.
+
+host_parser:
+  #### SPECIAL CASES TOP; AUTO GENERATED ####
+  #03书吧
+  - regex: 'dou03\.com'
+    category: '03书吧'
+  #115网盘
+  - regex: '115\.com'
+    category: '115网盘'
+  #126网易免费邮箱
+  - regex: 'mail\.126\.com'
+    category: '126网易免费邮箱'
+  #126邮箱
+  - regex: '126\.com'
+    category: '126邮箱'
+  #1314舞曲
+  - regex: '1314wq\.com'
+    category: '1314舞曲'
+  #139游戏中心
+  - regex: '139game\.net'
+    category: '139游戏中心'
+  #139邮箱
+  - regex: 'mail\.10086\.cn'
+    category: '139邮箱'
+  #16K小说网1
+  - regex: 'du5\.com'
+    category: '16K小说网1'
+  #16K小说网2
+  - regex: '16kk\.com'
+    category: '16K小说网2'
+  #16K小说网3
+  - regex: '16kbook\.org'
+    category: '16K小说网3'
+  #16K小说网4
+  - regex: '16kk\.org'
+    category: '16K小说网4'
+  #17173
+  - regex: '17173\.com'
+    category: '17173'
+  #1718文学
+  - regex: '1718k\.com'
+    category: '1718文学'
+  #176mp3服务器
+  - regex: '176mp3\.com'
+    category: '176mp3服务器'
+  #178游戏网
+  - regex: '178\.com'
+    category: '178游戏网'
+  #17K原创小说文学网
+  - regex: '17k\.com'
+    category: '17K原创小说文学网'
+  #17K手机图书网2
+  - regex: '17kts\.com'
+    category: '17K手机图书网2'
+  #17k手机图书网1
+  - regex: '17kss\.com'
+    category: '17k手机图书网1'
+  #17vee(亿旗体感)
+  - regex: '17vee\.com'
+    category: '17vee(亿旗体感)'
+  #188财富邮箱
+  - regex: '188\.com'
+    category: '188财富邮箱'
+  #189邮箱
+  - regex: 'webmail9\.189\.cn'
+    category: '189邮箱'
+  #19楼社区
+  - regex: '19lou\.com'
+    category: '19楼社区'
+  #19楼社区图片服务器
+  - regex: 'citysbs\.com'
+    category: '19楼社区图片服务器'
+  #19楼论坛
+  - regex: 'dukuai\.com'
+    category: '19楼论坛'
+  #19楼论坛图片
+  - regex: '19louimg\.cn'
+    category: '19楼论坛图片'
+  #1号店
+  - regex: 'yihaodian\.com'
+    category: '1号店'
+  #21CN免费邮箱
+  - regex: 'mail\.21cn\.com'
+    category: '21CN免费邮箱'
+  #21cn
+  - regex: '21cn\.com'
+    category: '21cn'
+  #2345软件大全
+  - regex: '51ct\.cn'
+    category: '2345软件大全'
+  #263手机邮箱
+  - regex: 'm\.263\.net'
+    category: '263手机邮箱'
+  #263邮箱
+  - regex: 'hk263\.net'
+    category: '263邮箱'
+  #2980邮箱
+  - regex: '2980\.com'
+    category: '2980邮箱'
+  #3366小游戏
+  - regex: '3366\.com'
+    category: '3366小游戏'
+  #3366小游戏图片服务器
+  - regex: '3366img\.com'
+    category: '3366小游戏图片服务器'
+  #360图片服务器
+  - regex: 'qhimg\.com'
+    category: '360图片服务器'
+  #360安全卫士1
+  - regex: '360\.cn'
+    category: '360安全卫士1'
+  #360安全卫士2
+  - regex: '360safe\.com'
+    category: '360安全卫士2'
+  #365日历
+  - regex: '365rili\.com'
+    category: '365日历'
+  #3GSOU首页
+  - regex: '3gsou\.com'
+    category: '3GSOU首页'
+  #3G书城
+  - regex: 'book\.3g\.cn'
+    category: '3G书城'
+  #3G体育直播
+  - regex: 'live\.3g\.cn'
+    category: '3G体育直播'
+  #3G华夏网
+  - regex: '3ghxw\.com'
+    category: '3G华夏网'
+  #3G图片服务器
+  - regex: 'img\.3g\.cn'
+    category: '3G图片服务器'
+  #3G娃娃
+  - regex: '3gwawa\.com'
+    category: '3G娃娃'
+  #3G娃娃网
+  - regex: '3gwawa\.net'
+    category: '3G娃娃网'
+  #3G娱乐网
+  - regex: '3gyu\.com'
+    category: '3G娱乐网'
+  #3G新闻
+  - regex: 'news\.3g\.cn'
+    category: '3G新闻'
+  #3G泡泡
+  - regex: 'wpp\.cn'
+    category: '3G泡泡'
+  #3G移动宝典
+  - regex: 'ursns\.com'
+    category: '3G移动宝典'
+  #3G门户
+  - regex: '3g\.cn'
+    category: '3G门户'
+  #3G门户 原创软件
+  - regex: 'goforandroid\.com'
+    category: '3G门户 原创软件'
+  #3G门户2
+  - regex: '3g\.net\.cn'
+    category: '3G门户2'
+  #3G门户新闻
+  - regex: 'news\.3g\.cn'
+    category: '3G门户新闻'
+  #3g小说网
+  - regex: '3gycw\.com'
+    category: '3g小说网'
+  #3g智腾图片服务器
+  - regex: '3gcdn\.cn'
+    category: '3g智腾图片服务器'
+  #3g泡泡网
+  - regex: '3gpp\.net\.cn'
+    category: '3g泡泡网'
+  #3z中文网
+  - regex: 'zzzcn\.com'
+    category: '3z中文网'
+  #4399游戏
+  - regex: '4399\.com'
+    category: '4399游戏'
+  #4399游戏1
+  - regex: 'me4399\.com'
+    category: '4399游戏1'
+  #4399游戏2
+  - regex: 'my4399\.com'
+    category: '4399游戏2'
+  #4399游戏图片服务器
+  - regex: 'img4399\.com'
+    category: '4399游戏图片服务器'
+  #51米泰克网
+  - regex: '51metek\.com'
+    category: '51米泰克网'
+  #51网
+  - regex: '51\.com'
+    category: '51网'
+  #51酷吧
+  - regex: '51coolbar\.com'
+    category: '51酷吧'
+  #56网
+  - regex: '156\.com'
+    category: '56网'
+  #57网
+  - regex: 'cn57\.net'
+    category: '57网'
+  #58团购
+  - regex: 't\.58\.com'
+    category: '58团购'
+  #58同城
+  - regex: '58\.com'
+    category: '58同城'
+  #662安卓软件网
+  - regex: '662\.com'
+    category: '662安卓软件网'
+  #7k7k小游戏
+  - regex: 'k7k7k\.com'
+    category: '7k7k小游戏'
+  #7游戏
+  - regex: '7youxi\.cn'
+    category: '7游戏'
+  #8684公交网
+  - regex: '8684\.cn'
+    category: '8684公交网'
+  #86中文网
+  - regex: '86zw\.com'
+    category: '86中文网'
+  #89文学网
+  - regex: '89wx\.com'
+    category: '89文学网'
+  #90123游戏
+  - regex: '90123\.com'
+    category: '90123游戏'
+  #91单机
+  - regex: '91danji\.com'
+    category: '91单机'
+  #91娱乐门户
+  - regex: '91\.com'
+    category: '91娱乐门户'
+  #91软件下载服务器
+  - regex: '91rb\.com'
+    category: '91软件下载服务器'
+  #9天音乐
+  - regex: '9sky\.com'
+    category: '9天音乐'
+  #AIYUN中文网
+  - regex: 'aiyun\.com'
+    category: 'AIYUN中文网'
+  #AIYUN中文网2
+  - regex: 'upaiyun\.com'
+    category: 'AIYUN中文网2'
+  #APK小游戏
+  - regex: 'apkxyx\.com'
+    category: 'APK小游戏'
+  #ATI
+  - regex: 'ati\.com'
+    category: 'ATI'
+  #Adobe1
+  - regex: 'adobe\.com'
+    category: 'Adobe1'
+  #Adobe2
+  - regex: 'macromedia\.com'
+    category: 'Adobe2'
+  #Amazon
+  - regex: 'amazon\.com'
+    category: 'Amazon'
+  #Amazon Web服务
+  - regex: 'amazonaws\.com'
+    category: 'Amazon Web服务'
+  #Apache Tomcat
+  - regex: 'beeshq\.com'
+    category: 'Apache Tomcat'
+  #Apple Store
+  - regex: 'itunes\.apple\.com'
+    category: 'Apple Store'
+  #Apple应用推荐站
+  - regex: 'appget\.cn'
+    category: 'Apple应用推荐站'
+  #Big Fish
+  - regex: 'bigfishgames\.com'
+    category: 'Big Fish'
+  #BigBoss
+  - regex: 'thebigboss\.org'
+    category: 'BigBoss'
+  #CC视频
+  - regex: 'cc\.com'
+    category: 'CC视频'
+  #CDC游戏集团
+  - regex: 'cdcgames\.net'
+    category: 'CDC游戏集团'
+  #CDN
+  - regex: 'cachefly\.net'
+    category: 'CDN'
+  #Cloud
+  - regex: 'a\.hicloud\.com'
+    category: 'Cloud'
+  #Com2uS
+  - regex: 'com2us\.co'
+    category: 'Com2uS'
+  #Coolmart超市
+  - regex: 'coolmart\.net\.cn'
+    category: 'Coolmart超市'
+  #Dbank网盘
+  - regex: 'dbank\.com'
+    category: 'Dbank网盘'
+  #DreamHost
+  - regex: 'anruanjian\.com'
+    category: 'DreamHost'
+  #Droidhen
+  - regex: 'droidhen\.com'
+    category: 'Droidhen'
+  #EA Mobile Games
+  - regex: 'eamobile\.com'
+    category: 'EA Mobile Games'
+  #ELLE世界时装之苑
+  - regex: 'ellechina\.com'
+    category: 'ELLE世界时装之苑'
+  #ET软件
+  - regex: 'etwap\.com'
+    category: 'ET软件'
+  #Engadget
+  - regex: 'engadget\.com'
+    category: 'Engadget'
+  #E品中文
+  - regex: 'epzw\.com'
+    category: 'E品中文'
+  #Flipboard
+  - regex: 'flipboard\.com'
+    category: 'Flipboard'
+  #Foxmail邮箱
+  - regex: 'foxmail\.com'
+    category: 'Foxmail邮箱'
+  #GO浏览器官网
+  - regex: '3gogo\.net'
+    category: 'GO浏览器官网'
+  #GPS定位
+  - regex: 'gpsonextra\.net'
+    category: 'GPS定位'
+  #Gmail邮箱
+  - regex: 'mail\.google\.com'
+    category: 'Gmail邮箱'
+  #GyPSiiR
+  - regex: 'gypsii\.com\.cn'
+    category: 'GyPSiiR'
+  #HTC
+  - regex: 'htc\.com'
+    category: 'HTC'
+  #HTC Sense
+  - regex: 'htcsense\.com'
+    category: 'HTC Sense'
+  #HTC网络
+  - regex: 'htccomm\.com'
+    category: 'HTC网络'
+  #HotMail
+  - regex: 'hotmail\.com'
+    category: 'HotMail'
+  #IIS
+  - regex: 'awolianw\.com'
+    category: 'IIS'
+  #IS/iSpeak官方网站
+  - regex: 'ispeak\.cn'
+    category: 'IS/iSpeak官方网站'
+  #Iphone网址导航
+  - regex: 'ipdaohang\.com'
+    category: 'Iphone网址导航'
+  #JJ斗地主官网
+  - regex: 'jj\.cn'
+    category: 'JJ斗地主官网'
+  #Kk聊天
+  - regex: 'kktalk\.cn'
+    category: 'Kk聊天'
+  #KooWo酷我
+  - regex: 'koowo\.com'
+    category: 'KooWo酷我'
+  #LBS移动广告
+  - regex: 'vpon\.com'
+    category: 'LBS移动广告'
+  #MIUI
+  - regex: 'miui\.com'
+    category: 'MIUI'
+  #MediaFed
+  - regex: 'feedsportal\.com'
+    category: 'MediaFed'
+  #N多网
+  - regex: 'nduoa\.com'
+    category: 'N多网'
+  #N维空间
+  - regex: 'nwell\.net'
+    category: 'N维空间'
+  #Oppo官方网站
+  - regex: 'oppo\.com'
+    category: 'Oppo官方网站'
+  #Oppo官方网站2
+  - regex: 'myoppo\.com'
+    category: 'Oppo官方网站2'
+  #POCO图片网
+  - regex: 'poco\.cn'
+    category: 'POCO图片网'
+  #PPS导航
+  - regex: 'ppstv\.com'
+    category: 'PPS导航'
+  #PPS影音
+  - regex: 'ppstream\.com'
+    category: 'PPS影音'
+  #PPS服务器
+  - regex: 'webscache\.com'
+    category: 'PPS服务器'
+  #PPS网络电视
+  - regex: 'pps\.tv'
+    category: 'PPS网络电视'
+  #PPTV
+  - regex: 'pptv\.com'
+    category: 'PPTV'
+  #PPlive
+  - regex: 'pplive\.cn'
+    category: 'PPlive'
+  #PPlive2
+  - regex: 'pplive\.com'
+    category: 'PPlive2'
+  #Phpinfo
+  - regex: 'freedown\.mobi'
+    category: 'Phpinfo'
+  #Plat96
+  - regex: 'plat96\.com'
+    category: 'Plat96'
+  #QQ空间图片服务器
+  - regex: 'qzoneapp\.com'
+    category: 'QQ空间图片服务器'
+  #QQ邮箱
+  - regex: 'mail\.qq\.com'
+    category: 'QQ邮箱'
+  #QQ音乐服务器
+  - regex: 'qqmusic\.qq\.com'
+    category: 'QQ音乐服务器'
+  #Redatoms
+  - regex: 'redatoms\.com'
+    category: 'Redatoms'
+  #Rekoo
+  - regex: 'rekoo\.net'
+    category: 'Rekoo'
+  #TOM幻剑书盟
+  - regex: 'hjsm\.tom\.com'
+    category: 'TOM幻剑书盟'
+  #TomVIP邮箱
+  - regex: 'vip\.tom\.com'
+    category: 'TomVIP邮箱'
+  #TOM
+  - regex: 'tom\.com'
+    category: 'TOM'
+  #Tanx广告管理系统
+  - regex: 'mmcdn\.cn'
+    category: 'Tanx广告管理系统'
+  #Tap Sonic音乐
+  - regex: 'playtapsonic\.com'
+    category: 'Tap Sonic音乐'
+  #Teamlava
+  - regex: 'teamlava\.com'
+    category: 'Teamlava'
+  #TinyCo游戏
+  - regex: 'tinyco\.com'
+    category: 'TinyCo游戏'
+  #Tomcat
+  - regex: 'newbook\.mobi'
+    category: 'Tomcat'
+  #Tom免费邮箱
+  - regex: 'mail\.tom\.com'
+    category: 'Tom免费邮箱'
+  #U-Play
+  - regex: 'uplayonline\.com'
+    category: 'U-Play'
+  #UC中文网
+  - regex: 'uczw\.com'
+    category: 'UC中文网'
+  #UC优视
+  - regex: 'ucfly\.com'
+    category: 'UC优视'
+  #UU书库
+  - regex: 'uusk\.net'
+    category: 'UU书库'
+  #VANCL图片服务器
+  - regex: 'vanclimg\.com'
+    category: 'VANCL图片服务器'
+  #VIP126尊享邮箱
+  - regex: 'vip\.126\.com'
+    category: 'VIP126尊享邮箱'
+  #VOA新闻
+  - regex: 'voanews\.com'
+    category: 'VOA新闻'
+  #VS对战平台移动专区
+  - regex: 'vsa\.com\.cn'
+    category: 'VS对战平台移动专区'
+  #VeryCD
+  - regex: 'verycd\.com'
+    category: 'VeryCD'
+  #WhatsApp
+  - regex: 'whatsapp\.com'
+    category: 'WhatsApp'
+  #Wikimedia 
+  - regex: 'wikimedia\.org'
+    category: 'Wikimedia '
+  #WindowsPhone应用市场
+  - regex: 'windowsphone\.com'
+    category: 'WindowsPhone应用市场'
+  #Xlab
+  - regex: 'xlabtech\.com'
+    category: 'Xlab'
+  #YY
+  - regex: 'yy\.com'
+    category: 'YY'
+  #YY小说
+  - regex: 'yylook\.net'
+    category: 'YY小说'
+  #Yahoo广告
+  - regex: 'admsg\.net'
+    category: 'Yahoo广告'
+  #Zcom电子杂志
+  - regex: 'zcom\.com'
+    category: 'Zcom电子杂志'
+  #ZodTTD
+  - regex: 'zodttd\.com'
+    category: 'ZodTTD'
+  #accu天气
+  - regex: 'accu-weather\.com'
+    category: 'accu天气'
+  #acs86广告
+  - regex: 'acs86\.com'
+    category: 'acs86广告'
+  #admob手机广告平台
+  - regex: 'admob\.com'
+    category: 'admob手机广告平台'
+  #adsame
+  - regex: 'adsame\.com'
+    category: 'adsame'
+  #alawar游戏网
+  - regex: 'alawar\.com'
+    category: 'alawar游戏网'
+  #casee架势
+  - regex: 'casee\.cn'
+    category: 'casee架势'
+  #cntv微博
+  - regex: 't\.cntv\.cn'
+    category: 'cntv微博'
+  #doumob\.com
+  - regex: 'doumob\.com'
+    category: 'doumob\.com'
+  #enligner\.com
+  - regex: 'enligner\.com'
+    category: 'enligner\.com'
+  #e书网
+  - regex: 'myeshu\.net'
+    category: 'e书网'
+  #e都市
+  - regex: 'edushi\.com'
+    category: 'e都市'
+  #gameloft
+  - regex: 'gameloft\.com'
+    category: 'gameloft'
+  #geilicdn
+  - regex: '17ce\.com'
+    category: 'geilicdn'
+  #google图片服务器
+  - regex: 'ggpht\.com'
+    category: 'google图片服务器'
+  #google搜索链接
+  - regex: 'youdraw\.cn'
+    category: 'google搜索链接'
+  #hotmusique\.com
+  - regex: 'hotmusique\.com'
+    category: 'hotmusique\.com'
+  #iHandysoft
+  - regex: 'ihandysoft\.com'
+    category: 'iHandysoft'
+  #iPhone游戏下载
+  - regex: 'appifan\.com'
+    category: 'iPhone游戏下载'
+  #ip138查询网
+  - regex: 'ip138\.com'
+    category: 'ip138查询网'
+  #kuailedushu玄幻
+  - regex: 'kuailedushu\.com'
+    category: 'kuailedushu玄幻'
+  #kvbar
+  - regex: 'kvbar\.com'
+    category: 'kvbar'
+  #libsyn
+  - regex: 'libsyn\.com'
+    category: 'libsyn'
+  #m-tunes
+  - regex: 'm-tunes\.com'
+    category: 'm-tunes'
+  #momark智能移动广告平台
+  - regex: 'momark\.cn'
+    category: 'momark智能移动广告平台'
+  #nearMe
+  - regex: 'nearme\.com\.cn'
+    category: 'nearMe'
+  #nearMe2
+  - regex: 'nearme\.com'
+    category: 'nearMe2'
+  #phpwind
+  - regex: 'phpwind\.net'
+    category: 'phpwind'
+  #phpwind官方网
+  - regex: 'phpwind\.com'
+    category: 'phpwind官方网'
+  #rockstargames
+  - regex: 'rockstargames\.com'
+    category: 'rockstargames'
+  #smartcity体验网站
+  - regex: 'escdn\.com'
+    category: 'smartcity体验网站'
+  #soso
+  - regex: 'soso\.com'
+    category: 'soso'
+  #uc浏览器1
+  - regex: 'uc\.cn'
+    category: 'uc浏览器1'
+  #uc浏览器2
+  - regex: 'wxcm\.gt'
+    category: 'uc浏览器2'
+  #uc浏览器3
+  - regex: 'ucweb\.cn'
+    category: 'uc浏览器3'
+  #vivo智能手机
+  - regex: 'vivo\.com'
+    category: 'vivo智能手机'
+  #voa听力网
+  - regex: '51voa\.com'
+    category: 'voa听力网'
+  #yandex\.net
+  - regex: 'yandex\.net'
+    category: 'yandex\.net'
+  #yeah\.net网易免费邮箱
+  - regex: 'yeah\.net'
+    category: 'yeah\.net网易免费邮箱'
+  #yoka时尚网
+  - regex: 'yokacdn\.com'
+    category: 'yoka时尚网'
+  #zaker
+  - regex: 'myzaker\.com'
+    category: 'zaker'
+  #一听音乐
+  - regex: '21ting\.com'
+    category: '一听音乐'
+  #一步二步多媒体实验网
+  - regex: '1bu2bu\.net'
+    category: '一步二步多媒体实验网'
+  #丁点
+  - regex: 'puata\.info'
+    category: '丁点'
+  #万书楼
+  - regex: 'wanshulou\.com'
+    category: '万书楼'
+  #万卷书屋
+  - regex: 'wanshulou\.net'
+    category: '万卷书屋'
+  #万普广告
+  - regex: 'wapx\.cn'
+    category: '万普广告'
+  #万维家电网
+  - regex: 'ea3w\.com'
+    category: '万维家电网'
+  #万达电影
+  - regex: 'wandafilm\.com'
+    category: '万达电影'
+  #三九健康网
+  - regex: '39\.net'
+    category: '三九健康网'
+  #三五小说网
+  - regex: 'xiaoshuo555\.cn'
+    category: '三五小说网'
+  #三味书屋
+  - regex: '3vbook\.net'
+    category: '三味书屋'
+  #三国杀
+  - regex: 'sanguosha\.com'
+    category: '三国杀'
+  #三星应用汇
+  - regex: 'samsungapps\.com'
+    category: '三星应用汇'
+  #三星电子
+  - regex: 'ospserver\.net'
+    category: '三星电子'
+  #三月天文学网
+  - regex: '3yt\.com'
+    category: '三月天文学网'
+  #上城区政府
+  - regex: 'shangcheng\.gov\.cn'
+    category: '上城区政府'
+  #上海炫亮实业1
+  - regex: 'dshinesh\.com'
+    category: '上海炫亮实业1'
+  #上海炫亮实业2
+  - regex: 'dshine\.com'
+    category: '上海炫亮实业2'
+  #上海蓉胜
+  - regex: 'supermonkeylive\.cn'
+    category: '上海蓉胜'
+  #上班族
+  - regex: 'sbanzu\.com'
+    category: '上班族'
+  #下城区政府
+  - regex: 'hzxc\.gov\.cn'
+    category: '下城区政府'
+  #下沙网
+  - regex: 'xiashanet\.com'
+    category: '下沙网'
+  #下载吧
+  - regex: 'xiazaiba\.com'
+    category: '下载吧'
+  #世纪佳缘
+  - regex: 'jiayuan\.com'
+    category: '世纪佳缘'
+  #世纪佳缘图片
+  - regex: 'jyimg\.com'
+    category: '世纪佳缘图片'
+  #世纪天成
+  - regex: 'tiancity\.com'
+    category: '世纪天成'
+  #东方博雅
+  - regex: '17c\.cn'
+    category: '东方博雅'
+  #东方宽频
+  - regex: 'smgbb\.tv'
+    category: '东方宽频'
+  #东方财富网
+  - regex: 'eastmoney\.com'
+    category: '东方财富网'
+  #个人导航急先锋
+  - regex: '66\.com'
+    category: '个人导航急先锋'
+  #个信互动
+  - regex: 'igexin\.com'
+    category: '个信互动'
+  #个性化谷歌广告
+  - regex: 'gstatic\.com'
+    category: '个性化谷歌广告'
+  #中信建投证劵108网
+  - regex: 'csc108\.com'
+    category: '中信建投证劵108网'
+  #中信金通
+  - regex: 'bigsun\.com\.cn'
+    category: '中信金通'
+  #中关村在线
+  - regex: 'zol\.com\.cn'
+    category: '中关村在线'
+  #中关村在线2
+  - regex: 'zol\.com'
+    category: '中关村在线2'
+  #中兴手机移动商店
+  - regex: 'ztems\.com'
+    category: '中兴手机移动商店'
+  #中华纺织网
+  - regex: 'texindex\.com\.cn'
+    category: '中华纺织网'
+  #中华网
+  - regex: 'china\.com'
+    category: '中华网'
+  #中华英才
+  - regex: 'chinahr\.com'
+    category: '中华英才'
+  #中华邮箱
+  - regex: 'mail\.china\.com'
+    category: '中华邮箱'
+  #中国2010年上海世博会
+  - regex: 'expo2010\.cn'
+    category: '中国2010年上海世博会'
+  #中国OCG工作室
+  - regex: 'ocgsoft\.cn'
+    category: '中国OCG工作室'
+  #中国化妆品网1
+  - regex: 'zghzp\.com'
+    category: '中国化妆品网1'
+  #中国化工网
+  - regex: 'chemnet\.com'
+    category: '中国化工网'
+  #中国医药网
+  - regex: 'pharmnet\.com\.cn'
+    category: '中国医药网'
+  #中国原创音乐基地
+  - regex: '5sing\.com'
+    category: '中国原创音乐基地'
+  #中国台州网
+  - regex: 'taizhou\.com\.cn'
+    category: '中国台州网'
+  #中国天气网
+  - regex: 'weather\.com\.cn'
+    category: '中国天气网'
+  #中国新闻网
+  - regex: 'chinanews\.com\.cn'
+    category: '中国新闻网'
+  #中国新闻网1
+  - regex: 'chinanews\.com'
+    category: '中国新闻网1'
+  #中国新闻网2
+  - regex: 'chinanews\.cn'
+    category: '中国新闻网2'
+  #中国机械网
+  - regex: 'jx\.cn'
+    category: '中国机械网'
+  #中国民生银行
+  - regex: 'cmbc\.com\.cn'
+    category: '中国民生银行'
+  #中国气象视频网
+  - regex: 'mywtv\.cn'
+    category: '中国气象视频网'
+  #中国移动
+  - regex: '10086\.cn'
+    category: '中国移动'
+  #中国移动手机视频
+  - regex: 'cmvideo\.cn'
+    category: '中国移动手机视频'
+  #中国移动手机阅读网
+  - regex: 'cmread\.com'
+    category: '中国移动手机阅读网'
+  #中国移动游戏门户
+  - regex: 'cmgame\.com'
+    category: '中国移动游戏门户'
+  #中国红娘网
+  - regex: 'hongniang\.com'
+    category: '中国红娘网'
+  #中国网络游戏服务网
+  - regex: '5173\.com'
+    category: '中国网络游戏服务网'
+  #中国网络电视台
+  - regex: 'chinacache\.net'
+    category: '中国网络电视台'
+  #中国网络电视台1
+  - regex: 'cntv\.cn'
+    category: '中国网络电视台1'
+  #中国网络电视台2
+  - regex: 'cctv\.com'
+    category: '中国网络电视台2'
+  #中国银行
+  - regex: 'boc\.cn'
+    category: '中国银行'
+  #中国黄金投资网
+  - regex: 'cngold\.org'
+    category: '中国黄金投资网'
+  #中文图片站
+  - regex: '91huo\.cn'
+    category: '中文图片站'
+  #中文在线网
+  - regex: 'chineseall\.com'
+    category: '中文在线网'
+  #中金在线
+  - regex: 'cnfol\.com'
+    category: '中金在线'
+  #临安县政府
+  - regex: 'linan\.gov\.cn'
+    category: '临安县政府'
+  #久久读书人
+  - regex: '99reader\.cn'
+    category: '久久读书人'
+  #劲舞团
+  - regex: 'au\.9you\.com'
+    category: '劲舞团'
+  #久游网
+  - regex: '9you\.com'
+    category: '久游网'
+  #乐乐网
+  - regex: 'llwap\.com'
+    category: '乐乐网'
+  #乐元素游戏公司
+  - regex: 'happyelements\.com'
+    category: '乐元素游戏公司'
+  #乐动舞指网1
+  - regex: 'gpbt\.cn'
+    category: '乐动舞指网1'
+  #乐动舞指网2
+  - regex: 'ledoapp\.com'
+    category: '乐动舞指网2'
+  #乐商店
+  - regex: 'lenovomm\.com'
+    category: '乐商店'
+  #乐天网
+  - regex: 'ltmp3\.cn'
+    category: '乐天网'
+  #乐点互动
+  - regex: 'x2app\.com'
+    category: '乐点互动'
+  #乐畅信息
+  - regex: 'browzone\.com'
+    category: '乐畅信息'
+  #乐蜂网
+  - regex: 'lafaso\.com'
+    category: '乐蜂网'
+  #乐视网
+  - regex: 'letv\.com'
+    category: '乐视网'
+  #乐视网图片服务器
+  - regex: 'letvimg\.com'
+    category: '乐视网图片服务器'
+  #乐讯
+  - regex: 'lexun\.com'
+    category: '乐讯'
+  #乐逗科技
+  - regex: 'cc\.com'
+    category: '乐逗科技'
+  #乐逗科技1
+  - regex: 'idreamsky\.com'
+    category: '乐逗科技1'
+  #乐逗科技2
+  - regex: 'uu\.cc'
+    category: '乐逗科技2'
+  #乐酷网1
+  - regex: 'lecoo\.com'
+    category: '乐酷网1'
+  #九台打折网
+  - regex: 'cheapdomainsite\.com'
+    category: '九台打折网'
+  #九游
+  - regex: '9game\.cn'
+    category: '九游'
+  #九酷音乐网 
+  - regex: '9ku\.com'
+    category: '九酷音乐网 '
+  #书书网
+  - regex: 'smenhu\.cn'
+    category: '书书网'
+  #书书网1
+  - regex: 'shushuw\.cn'
+    category: '书书网1'
+  #书书网2
+  - regex: 'shushuw\.com'
+    category: '书书网2'
+  #书剑联盟
+  - regex: 'moxku\.com'
+    category: '书剑联盟'
+  #书包网
+  - regex: 'bookbao\.com'
+    category: '书包网'
+  #书吧
+  - regex: 'book8\.com'
+    category: '书吧'
+  #书旗网
+  - regex: 'shuqi\.com'
+    category: '书旗网'
+  #书旗网1
+  - regex: '11222\.cn'
+    category: '书旗网1'
+  #书旗网2
+  - regex: 'shuqiread\.com'
+    category: '书旗网2'
+  #书旗网客户端版
+  - regex: 'shuqireader\.com'
+    category: '书旗网客户端版'
+  #书楼
+  - regex: 'txt6\.net'
+    category: '书楼'
+  #书楼小说网
+  - regex: 'myshulou\.com'
+    category: '书楼小说网'
+  #书香云集
+  - regex: 'ireadercity\.com'
+    category: '书香云集'
+  #买卖宝
+  - regex: 'mmb\.cn'
+    category: '买卖宝'
+  #买卖王网
+  - regex: 'mgogo\.com'
+    category: '买卖王网'
+  #云中书吧
+  - regex: 'yzs8\.com'
+    category: '云中书吧'
+  #云中书城
+  - regex: 'sddcp\.com'
+    category: '云中书城'
+  #云引擎应用平台
+  - regex: 'aliapp\.com'
+    category: '云引擎应用平台'
+  #互动通天图
+  - regex: 'icast\.cn'
+    category: '互动通天图'
+  #交通银行1
+  - regex: 'bankcomm\.com'
+    category: '交通银行1'
+  #交通银行2
+  - regex: '95559\.com\.cn'
+    category: '交通银行2'
+  #京东商城
+  - regex: '360buy\.com'
+    category: '京东商城'
+  #京东网上商城
+  - regex: '360buyimg\.com'
+    category: '京东网上商城'
+  #京剧论坛
+  - regex: 'jingju\.com'
+    category: '京剧论坛'
+  #亲亲小说
+  - regex: '77shu\.com'
+    category: '亲亲小说'
+  #人人网
+  - regex: 'renren\.com'
+    category: '人人网'
+  #人人网图片服务器1
+  - regex: 'rrimg\.com'
+    category: '人人网图片服务器1'
+  #人人网图片服务器2
+  - regex: 'xnimg\.cn'
+    category: '人人网图片服务器2'
+  #人人网图片服务器3
+  - regex: 'rrfmn\.com'
+    category: '人人网图片服务器3'
+  #人民微博
+  - regex: '(?<!\w)t\.people\.com\.cn'
+    category: '人民微博'
+  #人民网
+  - regex: 'people\.com\.cn'
+    category: '人民网'
+  #亿邮
+  - regex: 'eyou\.com'
+    category: '亿邮'
+  #亿部漫画
+  - regex: 'icastlewar\.com'
+    category: '亿部漫画'
+  #企业移动信息化服务
+  - regex: 'zune\.net'
+    category: '企业移动信息化服务'
+  #优亿市场
+  - regex: 'eoemarket\.com'
+    category: '优亿市场'
+  #优扬新媒
+  - regex: 'devopenserv\.net'
+    category: '优扬新媒'
+  #优酷网
+  - regex: 'youku\.com'
+    category: '优酷网'
+  #余杭区政府
+  - regex: 'yuhang\.gov\.cn'
+    category: '余杭区政府'
+  #依依小说网
+  - regex: 'thebook111\.com'
+    category: '依依小说网'
+  #侠客中文网
+  - regex: 'xkzw\.org'
+    category: '侠客中文网'
+  #全球五金网
+  - regex: 'wjw\.cn'
+    category: '全球五金网'
+  #全球纺织网
+  - regex: 'tnc\.com\.cn'
+    category: '全球纺织网'
+  #八爪鱼
+  - regex: '28zy\.com'
+    category: '八爪鱼'
+  #八神智能天下
+  - regex: '8zntx\.net'
+    category: '八神智能天下'
+  #六间房1
+  - regex: '6\.com\.cn'
+    category: '六间房1'
+  #六间房2
+  - regex: '6\.cn'
+    category: '六间房2'
+  #兴业银行
+  - regex: 'cib\.com\.cn'
+    category: '兴业银行'
+  #农业银行
+  - regex: 'abchina\.com'
+    category: '农业银行'
+  #冰冰智能手机网
+  - regex: 'aapig\.org'
+    category: '冰冰智能手机网'
+  #冰川网络
+  - regex: 'q1\.com'
+    category: '冰川网络'
+  #冷笑话
+  - regex: 'lengxiaohua\.cn'
+    category: '冷笑话'
+  #凡客诚品
+  - regex: 'vancl\.come'
+    category: '凡客诚品'
+  #凤凰宽频
+  - regex: 'v\.ifeng\.com'
+    category: '凤凰宽频'
+  #凤凰微博
+  - regex: 't\.ifeng\.com'
+    category: '凤凰微博'
+  #凤凰新闻1
+  - regex: 'news\.ifeng\.com'
+    category: '凤凰新闻1'
+  #凤凰新闻2
+  - regex: 'ifeng\.cn'
+    category: '凤凰新闻2'
+  #凤凰网
+  - regex: 'ifengimg\.com'
+    category: '凤凰网'
+  #凤凰网图片服务器
+  - regex: 'img\.ifeng\.com'
+    category: '凤凰网图片服务器'
+  #凤凰资讯
+  - regex: 'ifeng\.com'
+    category: '凤凰资讯'
+  #凤鸣轩小说网
+  - regex: 'fmx\.cn'
+    category: '凤鸣轩小说网'
+  #凤鸣轩言情小说书库
+  - regex: 'fmxxs\.com'
+    category: '凤鸣轩言情小说书库'
+  #凯立德导航
+  - regex: 'careland\.com\.cn'
+    category: '凯立德导航'
+  #切水果
+  - regex: 'fruitninja\.com'
+    category: '切水果'
+  #前程无忧
+  - regex: '51job\.com'
+    category: '前程无忧'
+  #力美手机广告平台
+  - regex: 'lmmob\.com'
+    category: '力美手机广告平台'
+  #加网
+  - regex: 'jiathis\.com'
+    category: '加网'
+  #动漫魔屏
+  - regex: 'mhmp\.cn'
+    category: '动漫魔屏'
+  #劲书网
+  - regex: 'jinshu\.cn'
+    category: '劲书网'
+  #十字猫
+  - regex: 'crossmo\.com'
+    category: '十字猫'
+  #千千音乐在线
+  - regex: 'qianqian\.com'
+    category: '千千音乐在线'
+  #千尺下载
+  - regex: '1000chi\.com'
+    category: '千尺下载'
+  #华军软件
+  - regex: 'onlinedown\.net'
+    category: '华军软件'
+  #华夏原创
+  - regex: 'yuanchuang\.com'
+    category: '华夏原创'
+  #华夏天空
+  - regex: 'hxtk\.com'
+    category: '华夏天空'
+  #卓越亚马逊
+  - regex: 'amazon\.cn'
+    category: '卓越亚马逊'
+  #单游网
+  - regex: 'dywap\.cn'
+    category: '单游网'
+  #南京数龙计算机科技有限公司
+  - regex: 'sdg-china\.com'
+    category: '南京数龙计算机科技有限公司'
+  #南太湖网
+  - regex: 'nantaihu\.com'
+    category: '南太湖网'
+  #南方周末
+  - regex: 'infzm\.com'
+    category: '南方周末'
+  #历趣
+  - regex: 'liqucn\.com'
+    category: '历趣'
+  #去哪儿
+  - regex: 'qunar\.com'
+    category: '去哪儿'
+  #又拍网
+  - regex: 'yupoo\.com'
+    category: '又拍网'
+  #友乐园
+  - regex: 'wodpy\.com'
+    category: '友乐园'
+  #友盟1
+  - regex: 'umeng\.com'
+    category: '友盟1'
+  #友盟2
+  - regex: 'uyunad\.com'
+    category: '友盟2'
+  #口碑网
+  - regex: 'koubei\.com\.cn'
+    category: '口碑网'
+  #口袋购物
+  - regex: 'koudai\.com'
+    category: '口袋购物'
+  #叮咚音乐
+  - regex: 'ddong\.com'
+    category: '叮咚音乐'
+  #可瑞达技术咨询（K歌达人软件）
+  - regex: 'kuro\.cn'
+    category: '可瑞达技术咨询（K歌达人软件）'
+  #台州人才网
+  - regex: 'tzrc\.com'
+    category: '台州人才网'
+  #台州信息港
+  - regex: 'tzinfo\.net'
+    category: '台州信息港'
+  #台州房地产网
+  - regex: 'tzfdc\.com'
+    category: '台州房地产网'
+  #台州赶集网
+  - regex: 'zjtaizhou\.ganji\.com'
+    category: '台州赶集网'
+  #叶子悠悠中文网
+  - regex: 'yzuu\.com'
+    category: '叶子悠悠中文网'
+  #同城游戏
+  - regex: 'uc108\.com'
+    category: '同城游戏'
+  #同心网图片
+  - regex: 'tximg\.cn'
+    category: '同心网图片'
+  #同步助手
+  - regex: 'tongbu\.com'
+    category: '同步助手'
+  #同花顺
+  - regex: '10jqka\.com\.cn'
+    category: '同花顺'
+  #同花顺网络科技网
+  - regex: 'thsi\.cn'
+    category: '同花顺网络科技网'
+  #名书楼1
+  - regex: 'mingshulou\.com'
+    category: '名书楼1'
+  #名书楼2
+  - regex: 'mingshulou\.net'
+    category: '名书楼2'
+  #听中国
+  - regex: 'tingchina\.com'
+    category: '听中国'
+  #周末画报iweekly
+  - regex: 'iweek\.ly'
+    category: '周末画报iweekly'
+  #和讯网
+  - regex: 'hexun\.com'
+    category: '和讯网'
+  #和讯读书
+  - regex: 'book\.hexun\.com'
+    category: '和讯读书'
+  #和讯财经微博
+  - regex: 't\.hexun\.com'
+    category: '和讯财经微博'
+  #和讯邮
+  - regex: 'mail\.hexun\.com'
+    category: '和讯邮'
+  #品书网
+  - regex: 'vodtw\.com'
+    category: '品书网'
+  #哇棒
+  - regex: 'wooboo\.com\.cn'
+    category: '哇棒'
+  #唯乐通讯
+  - regex: 'vollo\.com\.cn'
+    category: '唯乐通讯'
+  #唯思智达无线传媒
+  - regex: 'mobileone\.com\.cn'
+    category: '唯思智达无线传媒'
+  #唱吧
+  - regex: 'changba\.com'
+    category: '唱吧'
+  #善听听书
+  - regex: 'shanting\.mobi'
+    category: '善听听书'
+  #喜彩网
+  - regex: 'xle\.cc'
+    category: '喜彩网'
+  #嘉兴人论坛
+  - regex: '0573ren\.com'
+    category: '嘉兴人论坛'
+  #四月天
+  - regex: '4yt\.net'
+    category: '四月天'
+  #回味书库
+  - regex: 'hweisk\.com'
+    category: '回味书库'
+  #国信证券
+  - regex: 'guosen\.com\.cn'
+    category: '国信证券'
+  #国泰君安
+  - regex: 'gtja\.com'
+    category: '国泰君安'
+  #国美
+  - regex: 'gome\.com\.cn'
+    category: '国美'
+  #国际在线
+  - regex: 'cri\.cn'
+    category: '国际在线'
+  #图吧地图
+  - regex: 'mapbar\.com'
+    category: '图吧地图'
+  #图片网
+  - regex: 'tupian\.com'
+    category: '图片网'
+  #圈子文学网
+  - regex: 'qzwap\.com'
+    category: '圈子文学网'
+  #土豆网
+  - regex: 'x59\.cn'
+    category: '土豆网'
+  #土豆网图片服务器
+  - regex: 'tdimg\.com'
+    category: '土豆网图片服务器'
+  #土豆网视频服务器
+  - regex: 'tudouui\.com'
+    category: '土豆网视频服务器'
+  #地图无限
+  - regex: 'mapabc\.com'
+    category: '地图无限'
+  #地税报税系统
+  - regex: 'zjds-etax\.cn'
+    category: '地税报税系统'
+  #塔度文学网
+  - regex: 'tadu\.com'
+    category: '塔度文学网'
+  #塔读文学网
+  - regex: 'tadu\.com'
+    category: '塔读文学网'
+  #塞班智能手机
+  - regex: 'dospy\.com'
+    category: '塞班智能手机'
+  #塞班火软世界
+  - regex: 'appoole\.com'
+    category: '塞班火软世界'
+  #墨迹下载1
+  - regex: 'moji001\.com'
+    category: '墨迹下载1'
+  #墨迹下载2
+  - regex: 'moji002\.com'
+    category: '墨迹下载2'
+  #墨迹天气
+  - regex: 'mojichina\.com'
+    category: '墨迹天气'
+  #多特软件
+  - regex: 'duote\.com'
+    category: '多特软件'
+  #多玩游戏
+  - regex: 'duowan\.com'
+    category: '多玩游戏'
+  #多玩游戏网
+  - regex: 'dwstatic\.com'
+    category: '多玩游戏网'
+  #多盟智能手机广告专家
+  - regex: 'domob\.cn'
+    category: '多盟智能手机广告专家'
+  #多米音乐
+  - regex: 'duomi\.com'
+    category: '多米音乐'
+  #大众小说网
+  - regex: 'dzxsw\.cn'
+    category: '大众小说网'
+  #大众汽车（中国）
+  - regex: 'vw\.com\.cn'
+    category: '大众汽车（中国）'
+  #大众点评网
+  - regex: 'dianping\.com'
+    category: '大众点评网'
+  #大众点评网图片
+  - regex: 'dpfile\.com'
+    category: '大众点评网图片'
+  #大头网
+  - regex: 'datou\.com'
+    category: '大头网'
+  #大头鸟
+  - regex: 'datouniao\.comn'
+    category: '大头鸟'
+  #大文学
+  - regex: 'dawenxue\.org'
+    category: '大文学'
+  #大智慧
+  - regex: 'gw\.com\.cn'
+    category: '大智慧'
+  #大汉U视界
+  - regex: 'dahanapp\.com'
+    category: '大汉U视界'
+  #大话西游2
+  - regex: 'xy2\.163\.com'
+    category: '大话西游2'
+  #大谷打工网
+  - regex: 'daguu\.com'
+    category: '大谷打工网'
+  #天下电子书
+  - regex: 'txdzs\.net'
+    category: '天下电子书'
+  #天下网
+  - regex: 'ttx\.com\.cn'
+    category: '天下网'
+  #天地网
+  - regex: 'tdwap\.com'
+    category: '天地网'
+  #天天动听
+  - regex: 'ttpod\.com'
+    category: '天天动听'
+  #天天看书网
+  - regex: 'ttkwap\.com'
+    category: '天天看书网'
+  #天拓立方
+  - regex: 'macozone\.com'
+    category: '天拓立方'
+  #天智通达
+  - regex: 'vcread\.com'
+    category: '天智通达'
+  #天极网
+  - regex: 'yesky\.com\.cn'
+    category: '天极网'
+  #天气预报
+  - regex: 'accuweather\.com'
+    category: '天气预报'
+  #天涯
+  - regex: 'tianya\.cn'
+    category: '天涯'
+  #天涯来吧图片服务器
+  - regex: 'laibafile\.cn'
+    category: '天涯来吧图片服务器'
+  #天猫
+  - regex: 'tmall\.com'
+    category: '天猫'
+  #天空软件站
+  - regex: 'skycn\.com'
+    category: '天空软件站'
+  #天网手机软件下载
+  - regex: 'waptw\.com'
+    category: '天网手机软件下载'
+  #天翼文学
+  - regex: 'tianyibook\.com'
+    category: '天翼文学'
+  #太平洋女性
+  - regex: 'pclady\.com\.cn'
+    category: '太平洋女性'
+  #太平洋汽车
+  - regex: 'pcauto\.com\.cn'
+    category: '太平洋汽车'
+  #太平洋游戏网
+  - regex: 'pcgames\.com\.cn'
+    category: '太平洋游戏网'
+  #太平洋电脑网
+  - regex: 'pconline\.com\.cn'
+    category: '太平洋电脑网'
+  #奇艺图片服务器
+  - regex: 'qiyipic\.com'
+    category: '奇艺图片服务器'
+  #奇雅小说网
+  - regex: 'aizhan\.com'
+    category: '奇雅小说网'
+  #奥菲网软件下载服务器
+  - regex: 'outfit7\.com'
+    category: '奥菲网软件下载服务器'
+  #好凤
+  - regex: 'goodphone\.mobi'
+    category: '好凤'
+  #好大夫在线图片服务器
+  - regex: 'hdfimg\.com'
+    category: '好大夫在线图片服务器'
+  #好耶广告
+  - regex: 'allyes\.com\.cn'
+    category: '好耶广告'
+  #好豆网
+  - regex: 'hoto\.cn'
+    category: '好豆网'
+  #好音乐
+  - regex: 'gomumu\.com\.cn'
+    category: '好音乐'
+  #威锋网
+  - regex: 'weiphone\.com\.cn'
+    category: '威锋网'
+  #娱乐上帝
+  - regex: 'playhaven\.com'
+    category: '娱乐上帝'
+  #安丰手机资源网
+  - regex: 'anfone\.com'
+    category: '安丰手机资源网'
+  #安全管家1
+  - regex: 'aqgj\.cn'
+    category: '安全管家1'
+  #安全管家2
+  - regex: 'aqgj\.net'
+    category: '安全管家2'
+  #安全网站证书
+  - regex: 'verisign\.com'
+    category: '安全网站证书'
+  #安卓动态壁纸
+  - regex: 'cnappbox\.com'
+    category: '安卓动态壁纸'
+  #安卓在线
+  - regex: 'androidonline\.net'
+    category: '安卓在线'
+  #安卓壁纸网
+  - regex: 'androidesk\.com'
+    category: '安卓壁纸网'
+  #安卓市场
+  - regex: 'goapk\.com'
+    category: '安卓市场'
+  #安卓必备
+  - regex: 'anydown\.cn'
+    category: '安卓必备'
+  #安卓游戏
+  - regex: 'ggg\.cn'
+    category: '安卓游戏'
+  #安卓游戏分享
+  - regex: 'casualgame-down\.com'
+    category: '安卓游戏分享'
+  #安卓游戏商店
+  - regex: 'androidgame-store\.com'
+    category: '安卓游戏商店'
+  #安卓网1
+  - regex: 'ihiapk\.com'
+    category: '安卓网1'
+  #安卓软件库
+  - regex: 'azrj\.cn'
+    category: '安卓软件库'
+  #安居客
+  - regex: 'anjuke\.com'
+    category: '安居客'
+  #安居客CDN
+  - regex: 'ajkimg\.com'
+    category: '安居客CDN'
+  #安智网
+  - regex: 'anzhi\.com'
+    category: '安智网'
+  #安极网
+  - regex: 'angeeks\.com'
+    category: '安极网'
+  #安沃智能移动广告平台
+  - regex: 'adwo\.com'
+    category: '安沃智能移动广告平台'
+  #完美世界
+  - regex: 'wanmei\.com'
+    category: '完美世界'
+  #宜搜图片搜索1
+  - regex: 'p\.easou\.com'
+    category: '宜搜图片搜索1'
+  #宜搜图片搜索2
+  - regex: 'p1\.easou\.com'
+    category: '宜搜图片搜索2'
+  #宜搜图片搜索3
+  - regex: 'p2\.easou\.com'
+    category: '宜搜图片搜索3'
+  #宜搜小说搜索1
+  - regex: 'book\.easou\.com'
+    category: '宜搜小说搜索1'
+  #宜搜小说搜索2
+  - regex: 'b\.easou\.com'
+    category: '宜搜小说搜索2'
+  #宜搜小说搜索3
+  - regex: 'book1\.easou\.com'
+    category: '宜搜小说搜索3'
+  #宜搜小说搜索4
+  - regex: 'read\.easou\.com'
+    category: '宜搜小说搜索4'
+  #宜搜新闻搜索
+  - regex: 'n\.easou\.com'
+    category: '宜搜新闻搜索'
+  #宜搜游戏搜索
+  - regex: 'g\.easou\.com'
+    category: '宜搜游戏搜索'
+  #宜搜视频搜索
+  - regex: 'v\.easou\.com'
+    category: '宜搜视频搜索'
+  #宜搜购物搜索
+  - regex: 'gouwu\.easou\.com'
+    category: '宜搜购物搜索'
+  #宜搜软件搜索
+  - regex: 's\.easou\.com'
+    category: '宜搜软件搜索'
+  #宜搜音乐搜索
+  - regex: 'mp3\.easou\.com'
+    category: '宜搜音乐搜索'
+  #宜搜网
+  - regex: 'easou\.com'
+    category: '宜搜网'
+  #宜搜网2
+  - regex: 'easou\.cn'
+    category: '宜搜网2'
+  #宝软网
+  - regex: 'baoruan\.com'
+    category: '宝软网'
+  #家庭KTV
+  - regex: '51karapk\.com'
+    category: '家庭KTV'
+  #富媒体
+  - regex: 'imocha\.com'
+    category: '富媒体'
+  #富阳县政府
+  - regex: 'fuyang\.gov\.cn'
+    category: '富阳县政府'
+  #导航
+  - regex: 'hotchanson\.com'
+    category: '导航'
+  #导航犬
+  - regex: 'lbs8\.com'
+    category: '导航犬'
+  #小燕文学
+  - regex: 'xiaoyanwenxue\.com'
+    category: '小燕文学'
+  #小米
+  - regex: 'xiaomi\.com'
+    category: '小米'
+  #小米科技
+  - regex: 'xiaomi\.net'
+    category: '小米科技'
+  #小说原创网
+  - regex: 'readnovel\.com'
+    category: '小说原创网'
+  #小说阅读网
+  - regex: 'xs\.cn'
+    category: '小说阅读网'
+  #尚书中文
+  - regex: 'myebk\.com'
+    category: '尚书中文'
+  #尚凯网
+  - regex: 'shangkaii\.com'
+    category: '尚凯网'
+  #尚邮
+  - regex: 'shangmail\.com'
+    category: '尚邮'
+  #就爱中文网
+  - regex: '92zw\.com'
+    category: '就爱中文网'
+  #就爱读书网
+  - regex: '92to\.com'
+    category: '就爱读书网'
+  #巍巍的学习站
+  - regex: 'jccjd\.com'
+    category: '巍巍的学习站'
+  #工商银行
+  - regex: 'icbc\.com\.cn'
+    category: '工商银行'
+  #巨鲸音乐网
+  - regex: 'top100\.cn'
+    category: '巨鲸音乐网'
+  #巴巴变相册网
+  - regex: 'bababian\.com'
+    category: '巴巴变相册网'
+  #市一医院
+  - regex: 'hz-hospital\.com'
+    category: '市一医院'
+  #布丁团购
+  - regex: '2000tuan\.com'
+    category: '布丁团购'
+  #师范生
+  - regex: 'bb800\.com'
+    category: '师范生'
+  #希网网络
+  - regex: '9966\.org'
+    category: '希网网络'
+  #帝联科技
+  - regex: 'dnion\.com'
+    category: '帝联科技'
+  #幻世中文网
+  - regex: 'hszw\.com'
+    category: '幻世中文网'
+  #广告管理平台
+  - regex: 'adview\.cn'
+    category: '广告管理平台'
+  #广州捷游
+  - regex: 'menghuanfeixian\.com'
+    category: '广州捷游'
+  #应届生求职网
+  - regex: 'yingjiesheng\.com'
+    category: '应届生求职网'
+  #应用汇
+  - regex: 'yingyonghui\.com'
+    category: '应用汇'
+  #建德县政府
+  - regex: 'jiande\.gov\.cn'
+    category: '建德县政府'
+  #建设银行
+  - regex: 'ccb\.com'
+    category: '建设银行'
+  #开卷有益
+  - regex: 'kingreader\.com'
+    category: '开卷有益'
+  #开启商店
+  - regex: 'kaiqi\.com'
+    category: '开启商店'
+  #开心听
+  - regex: 'kxting\.cn'
+    category: '开心听'
+  #开心网
+  - regex: 'kaixin001\.com'
+    category: '开心网'
+  #异界小说网
+  - regex: 'yjxs\.net'
+    category: '异界小说网'
+  #弈动madserving
+  - regex: 'madserving\.com'
+    category: '弈动madserving'
+  #强国社区
+  - regex: 'qglt\.com'
+    category: '强国社区'
+  #当乐网
+  - regex: '(?<!\w)d\.cn'
+    category: '当乐网'
+  #当当网
+  - regex: 'dangdang\.com'
+    category: '当当网'
+  #当麦音乐服务器
+  - regex: 'downmyneed\.com'
+    category: '当麦音乐服务器'
+  #微云
+  - regex: 'wiyun\.com'
+    category: '微云'
+  #微博校园
+  - regex: 'cyol\.com'
+    category: '微博校园'
+  #微录客
+  - regex: 'vlook\.cn'
+    category: '微录客'
+  #微微小说吧
+  - regex: 'vvxs\.net'
+    category: '微微小说吧'
+  #微手机
+  - regex: 'weiphone\.org'
+    category: '微手机'
+  #微软
+  - regex: 'microsoft\.com'
+    category: '微软'
+  #微软update
+  - regex: 'windowsupdate\.com'
+    category: '微软update'
+  #德清人才网
+  - regex: 'zjdqrc\.com'
+    category: '德清人才网'
+  #心动科技
+  - regex: 'xdcdn\.net'
+    category: '心动科技'
+  #心网购物
+  - regex: 'xinw\.net'
+    category: '心网购物'
+  #必应Bing
+  - regex: 'bing\.net'
+    category: '必应Bing'
+  #快吧游戏
+  - regex: 'kuai8\.com'
+    category: '快吧游戏'
+  #快播
+  - regex: 'kuaibo\.com'
+    category: '快播'
+  #快播网
+  - regex: 'qvod\.com'
+    category: '快播网'
+  #快装商店
+  - regex: 'kuaiapp\.cn'
+    category: '快装商店'
+  #快钱
+  - regex: '99bill\.com'
+    category: '快钱'
+  #悠视网
+  - regex: 'uusee\.com'
+    category: '悠视网'
+  #愤怒的小鸟
+  - regex: 'rovio\.com'
+    category: '愤怒的小鸟'
+  #我查查
+  - regex: 'wochacha\.com'
+    category: '我查查'
+  #我爱小游戏
+  - regex: '52xyx\.com'
+    category: '我爱小游戏'
+  #我的纯粹
+  - regex: 'myccbook\.com'
+    category: '我的纯粹'
+  #我看书斋
+  - regex: '5ccc\.net'
+    category: '我看书斋'
+  #手机中国
+  - regex: 'cnmo\.com'
+    category: '手机中国'
+  #手机主题下载
+  - regex: '3g37\.com'
+    category: '手机主题下载'
+  #手机乐园
+  - regex: 'shouji\.com\.cn'
+    category: '手机乐园'
+  #手机安卓
+  - regex: 'myapk\.cn'
+    category: '手机安卓'
+  #手机小游戏
+  - regex: 'sjxyx\.com'
+    category: '手机小游戏'
+  #手机搜索
+  - regex: '10658588\.com'
+    category: '手机搜索'
+  #手机摄影大师
+  - regex: 'camera360\.us'
+    category: '手机摄影大师'
+  #手机看书网
+  - regex: 'ttkwap\.com'
+    category: '手机看书网'
+  #手机网游下载
+  - regex: '7723\.cn'
+    category: '手机网游下载'
+  #手机软件
+  - regex: 'etwap\.cn'
+    category: '手机软件'
+  #手游
+  - regex: 'handygames\.info'
+    category: '手游'
+  #手游天下
+  - regex: '155\.cn'
+    category: '手游天下'
+  #手闲网
+  - regex: 'soxan\.cn'
+    category: '手闲网'
+  #扒饭网
+  - regex: 'm8fans\.com'
+    category: '扒饭网'
+  #投资堂2
+  - regex: 'tzt\.cn'
+    category: '投资堂2'
+  #拇指玩
+  - regex: 'muzhiwan\.com'
+    category: '拇指玩'
+  #拉手网
+  - regex: 'lashou\.com'
+    category: '拉手网'
+  #拉手网图片服务器
+  - regex: 'lashouimg\.com'
+    category: '拉手网图片服务器'
+  #拉阔游戏
+  - regex: 'lakoo\.cn'
+    category: '拉阔游戏'
+  #拍拍网
+  - regex: 'paipai\.com'
+    category: '拍拍网'
+  #招商银行
+  - regex: 'cmbchina\.com'
+    category: '招商银行'
+  #拱墅区政府
+  - regex: 'gongshu\.gov\.cn'
+    category: '拱墅区政府'
+  #掌上乐园
+  - regex: 'freewap2\.com'
+    category: '掌上乐园'
+  #掌上嘉兴
+  - regex: '0573g3\.com'
+    category: '掌上嘉兴'
+  #掌上极浩
+  - regex: 'gall\.me'
+    category: '掌上极浩'
+  #掌上百度
+  - regex: 'baidu\.mobi'
+    category: '掌上百度'
+  #掌学
+  - regex: 'zzenglish\.net'
+    category: '掌学'
+  #掌阅书城
+  - regex: 'zhangyue\.com'
+    category: '掌阅书城'
+  #搜房微博
+  - regex: 'soufun\.com'
+    category: '搜房微博'
+  #搜房网
+  - regex: 'soufun\.com\.cn'
+    category: '搜房网'
+  #搜狐VIP邮箱
+  - regex: 'vip\.sohu\.com'
+    category: '搜狐VIP邮箱'
+  #搜狐企业邮箱
+  - regex: 'mail\.sohu\.net'
+    category: '搜狐企业邮箱'
+  #搜狐公益
+  - regex: 'gongyi\.sohu\.com'
+    category: '搜狐公益'
+  #搜狐博客1
+  - regex: '(?<!\w)i\.sohu\.com'
+    category: '搜狐博客1'
+  #搜狐博客2
+  - regex: 'blog\.sohu\.com'
+    category: '搜狐博客2'
+  #搜狐图片
+  - regex: 'pic\.sohu\.com'
+    category: '搜狐图片'
+  #搜狐图片服务器
+  - regex: 'cdn\.sohu\.com'
+    category: '搜狐图片服务器'
+  # #搜狐女性1'
+  # - regex: 'mfiles\.sohu\.com''
+  #   category: '搜狐女性1'
+  #搜狐女性2
+  - regex: 'women\.sohu\.com'
+    category: '搜狐女性2'
+  #搜狐孕婴
+  - regex: 'baobao\.sohu\.com'
+    category: '搜狐孕婴'
+  #搜狐微博
+  - regex: '(?<!\w)t\.sohu\.com'
+    category: '搜狐微博'
+  #搜狐微博1
+  - regex: '(?<!\w)w\.sohu\.com'
+    category: '搜狐微博1'
+  #搜狐房产
+  - regex: 'focus\.cn'
+    category: '搜狐房产'
+  #搜狐搜索
+  - regex: 'sogou\.com'
+    category: '搜狐搜索'
+  #搜狐教育
+  - regex: 'learning\.sohu\.com'
+    category: '搜狐教育'
+  #搜狐新闻客户端
+  - regex: 'k\.sohu\.com'
+    category: '搜狐新闻客户端'
+  #搜狐汽车1
+  - regex: 'auto\.sohu\.com'
+    category: '搜狐汽车1'
+  # #搜狐新闻'
+  # - regex: 'sh\.focus\.cn''
+  #   category: '搜狐新闻'
+  #搜狐爱丽女性
+  - regex: 'aili\.com'
+    category: '搜狐爱丽女性'
+  #搜狐社区
+  - regex: 'club\.sohu\.com'
+    category: '搜狐社区'
+  #搜狐绿色
+  - regex: 'green\.sohu\.com'
+    category: '搜狐绿色'
+  #搜狐网
+  - regex: 'i\.sohu\.com'
+    category: '搜狐网'
+  #搜狐视频1
+  - regex: 'tv\.sohu\.com'
+    category: '搜狐视频1'
+  #搜狐读书1
+  - regex: 'vip\.book\.sohu\.com'
+    category: '搜狐读书1'
+  #搜狐读书2
+  - regex: 'book\.sohu\.com'
+    category: '搜狐读书2'
+  #搜狐软件
+  - regex: 'download\.sohu\.com'
+    category: '搜狐软件'
+  #搜狐闪电邮箱
+  - regex: 'mail\.sohu\.com'
+    category: '搜狐闪电邮箱'
+  #搜狐新闻1
+  - regex: 'news\.sohu\.com'
+    category: '搜狐新闻1'
+  #搜狐新闻2
+  - regex: 'sohu\.com'
+    category: '搜狐新闻2'
+  #搜狗图片服务器
+  - regex: 'itc\.cn'
+    category: '搜狗图片服务器'
+  #搜狗地图
+  - regex: 'go2map\.comm'
+    category: '搜狗地图'
+  #搜狗闪电邮箱
+  - regex: 'mail\.sogou\.com'
+    category: '搜狗闪电邮箱'
+  #搜狗
+  - regex: 'sogou\.com'
+    category: '搜狗'
+  #携程
+  - regex: 'ctrip\.com'
+    category: '携程'
+  #摩尔电子书
+  - regex: 'mo3\.cn'
+    category: '摩尔电子书'
+  #播视网
+  - regex: 'boosj\.com'
+    category: '播视网'
+  #支付宝
+  - regex: 'alipay\.com'
+    category: '支付宝'
+  #文三街在线
+  - regex: 'wsjol\.com'
+    category: '文三街在线'
+  #文学天地
+  - regex: 'wxsky\.net'
+    category: '文学天地'
+  #文昌书院
+  - regex: 'wenchangshuyuan\.com'
+    category: '文昌书院'
+  #新华全媒
+  - regex: 'xhqm\.mobi'
+    category: '新华全媒'
+  #新华网1
+  - regex: 'xinhuanet\.com'
+    category: '新华网1'
+  #新华网2
+  - regex: 'news\.cn'
+    category: '新华网2'
+  #新小说吧
+  - regex: 'xxs8\.com'
+    category: '新小说吧'
+  #新昌信息港
+  - regex: 'xc\.zj\.cn'
+    category: '新昌信息港'
+  #新歌音乐网
+  - regex: 'wapii\.com'
+    category: '新歌音乐网'
+  #新浪APP
+  - regex: 'sinaapp\.com'
+    category: '新浪APP'
+  #新浪VIP邮箱
+  - regex: 'vip\.sina\.com'
+    category: '新浪VIP邮箱'
+  #新浪iPad版
+  - regex: 'ipad\.sina\.com\.cn'
+    category: '新浪iPad版'
+  #新浪uc
+  - regex: 'uc\.sina\.com\.cn'
+    category: '新浪uc'
+  #新浪专业企业邮箱
+  - regex: 'mail\.sina\.net'
+    category: '新浪专业企业邮箱'
+  #新浪乐库
+  - regex: 'music\.sina\.com\.cn'
+    category: '新浪乐库'
+  #新浪免费邮箱
+  - regex: 'mail\.sina\.com\.cn'
+    category: '新浪免费邮箱'
+  #新浪公益
+  - regex: 'gongyi\.sina\.com\.cn'
+    category: '新浪公益'
+  #新浪军事
+  - regex: 'mil\.sina\.cn'
+    category: '新浪军事'
+  #新浪博客2
+  - regex: 'sina\.cn'
+    category: '新浪博客2'
+  #新浪图片服务器
+  - regex: 'sinajs\.cn'
+    category: '新浪图片服务器'
+  #新浪图片服务器1
+  - regex: 'sinaimg\.cn'
+    category: '新浪图片服务器1'
+  #新浪图片服务器2
+  - regex: 'sinaimg\.com\.cn'
+    category: '新浪图片服务器2'
+  #新浪女性1
+  - regex: 'eladies\.sina\.cn'
+    category: '新浪女性1'
+  #新浪尚品
+  - regex: 'style\.sina\.com\.cn'
+    category: '新浪尚品'
+  #新浪应用
+  - regex: 'tools\.sina\.com\.cn'
+    category: '新浪应用'
+  #新浪微博
+  - regex: 't\.sina\.(com\.)?cn|weibo\.cn'
+    category: '新浪微博'
+  #新浪微博2
+  - regex: 'weibo\.com'
+    category: '新浪微博2'
+  #新浪微博图片服务器
+  - regex: 'sinaimg\.cn'
+    category: '新浪微博图片服务器'
+  #新浪房产1
+  - regex: 'house\.sina\.cn'
+    category: '新浪房产1'
+  #新浪手机
+  - regex: 'sms\.sina\.com\.cn'
+    category: '新浪手机'
+  # #新浪搜索1'
+  # - regex: 'wwwgo8\.com''
+  #   category: '新浪搜索1'
+  #新浪收藏
+  - regex: 'collection\.sina\.com\.cn'
+    category: '新浪收藏'
+  #新浪新闻2
+  - regex: 'news\.sina\.com\.cn'
+    category: '新浪新闻2'
+  #新浪旅游
+  - regex: 'travel\.sina\.com\.cn'
+    category: '新浪旅游'
+  #新浪爱问
+  - regex: 'iask\.com'
+    category: '新浪爱问'
+  #新浪环保
+  - regex: 'green\.sina\.com\.cn'
+    category: '新浪环保'
+  #新浪视频1
+  - regex: 'video\.sina\.cn'
+    category: '新浪视频1'
+  #新浪论坛1
+  - regex: 'baby\.sina\.com\.cn'
+    category: '新浪论坛1'
+  #新浪论坛2
+  - regex: 'bbs\.sina\.com\.cn'
+    category: '新浪论坛2'
+  #新浪读书1
+  - regex: 'book\.sina\.com\.cn'
+    category: '新浪读书1'
+  #新浪读书2
+  - regex: 'book\.sina\.cn'
+    category: '新浪读书2'
+  #新浪读书3
+  - regex: 'book1\.sina\.cn'
+    category: '新浪读书3'
+  #新浪财经1
+  - regex: 'finance\.sina\.cn'
+    category: '新浪财经1'
+  #新浪资源服务器
+  - regex: 'sinastorage\.com'
+    category: '新浪资源服务器'
+  #新浪网1
+  - regex: 'sina\.cn'
+    category: '新浪网1'
+  #新浪网2
+  - regex: 'sina\.com\.cn'
+    category: '新浪网2'
+  #新科技
+  - regex: 'music188\.com'
+    category: '新科技'
+  #新网游专题网
+  - regex: 'qq933\.com'
+    category: '新网游专题网'
+  #新美互通
+  - regex: 'xinmei365\.com'
+    category: '新美互通'
+  #方哲乐园
+  - regex: 'moo8\.com'
+    category: '方哲乐园'
+  #方正证券
+  - regex: 'foundersc\.com'
+    category: '方正证券'
+  #无弹窗小说
+  - regex: 'wtcxs\.com'
+    category: '无弹窗小说'
+  #无敌龙书屋
+  - regex: 'wudilong\.net'
+    category: '无敌龙书屋'
+  #无线业务查询后台
+  - regex: 'gotong2008\.com'
+    category: '无线业务查询后台'
+  #时光网1
+  - regex: 'mtime\.cn'
+    category: '时光网1'
+  #时光网2
+  - regex: 'mtime\.com'
+    category: '时光网2'
+  #易查
+  - regex: 'yicha\.cn'
+    category: '易查'
+  #易车网
+  - regex: 'bitauto\.com'
+    category: '易车网'
+  #星星网
+  - regex: 'uctxt\.com'
+    category: '星星网'
+  #星脉音乐网
+  - regex: 'xingmai\.com'
+    category: '星脉音乐网'
+  #星际争霸2
+  - regex: 'sc2\.163\.com'
+    category: '星际争霸2'
+  #晋江原创网
+  - regex: 'jjwxc\.net'
+    category: '晋江原创网'
+  #晋江原创网2
+  - regex: 'jjwxc\.com'
+    category: '晋江原创网2'
+  #晋江文学城
+  - regex: 'm\.jjwxc\.com'
+    category: '晋江文学城'
+  #晶赞广告有限公司
+  - regex: 'chinauma\.net'
+    category: '晶赞广告有限公司'
+  #智联招聘
+  - regex: 'zhaopin\.com'
+    category: '智联招聘'
+  #智能手机网
+  - regex: 'xda-china\.com'
+    category: '智能手机网'
+  #暗黑破坏神3
+  - regex: '(tw|us)\.battle\.net'
+    category: '暗黑破坏神3'
+  #暴雪战网1
+  - regex: 'battle\.net'
+    category: '暴雪战网1'
+  #暴雪战网2
+  - regex: 'battlenet\.com\.cn'
+    category: '暴雪战网2'
+  #暴风影音
+  - regex: 'baofeng\.com'
+    category: '暴风影音'
+  #最言情
+  - regex: 'zzzyq\.com'
+    category: '最言情'
+  #有乐导航1
+  - regex: '778899\.cn'
+    category: '有乐导航1'
+  #有乐导航2
+  - regex: 'kk570\.com'
+    category: '有乐导航2'
+  #有乐导航6
+  - regex: 'yy820\.com'
+    category: '有乐导航6'
+  #有信免费通话
+  - regex: 'uxin001\.com'
+    category: '有信免费通话'
+  #有米广告
+  - regex: 'youmi\.net'
+    category: '有米广告'
+  #有缘网
+  - regex: 'youyuan\.com'
+    category: '有缘网'
+  #有道
+  - regex: 'youdao\.com'
+    category: '有道'
+  #有道2
+  - regex: 'ydstatic\.com'
+    category: '有道2'
+  #有问必答网图片服务器
+  - regex: '120askimages\.com'
+    category: '有问必答网图片服务器'
+  #朋友网
+  - regex: 'pengyou\.com'
+    category: '朋友网'
+  #木蚂蚁
+  - regex: 'mumayi\.com'
+    category: '木蚂蚁'
+  #未知下载服务器
+  - regex: 'llnwd\.net'
+    category: '未知下载服务器'
+  #未知图片服务器8
+  - regex: 'ykimg\.com'
+    category: '未知图片服务器8'
+  #未知图片网站
+  - regex: 'limgs\.cn'
+    category: '未知图片网站'
+  #机锋网1
+  - regex: '3fan\.com'
+    category: '机锋网1'
+  #杭州商业银行
+  - regex: 'hzbank\.com\.cn'
+    category: '杭州商业银行'
+  #杭州工商局
+  - regex: 'hzaic\.gov\.cn'
+    category: '杭州工商局'
+  #杭州市公交集团
+  - regex: 'hzbus\.com\.cn'
+    category: '杭州市公交集团'
+  #杭州市公安局
+  - regex: 'hzpolice\.gov\.cn'
+    category: '杭州市公安局'
+  #杭州市劳动保障网
+  - regex: 'lss\.gov\.cn'
+    category: '杭州市劳动保障网'
+  #杭州市房管局
+  - regex: 'hzfc\.gov\.cn'
+    category: '杭州市房管局'
+  #杭州市政府
+  - regex: 'hangzhou\.gov\.cn'
+    category: '杭州市政府'
+  #杭州海关
+  - regex: 'hangzhou\.customs\.gov\.cn'
+    category: '杭州海关'
+  #杭州烟草商务网
+  - regex: 'hzyc\.gov\.cn'
+    category: '杭州烟草商务网'
+  #杭州热点科技
+  - regex: 'hithot\.cn'
+    category: '杭州热点科技'
+  #杭州电子科技大学
+  - regex: 'hdu\.edu\.cn'
+    category: '杭州电子科技大学'
+  #杭州网
+  - regex: 'hangzhou\.com\.cn'
+    category: '杭州网'
+  #杭州联合银行
+  - regex: 'urcb\.com'
+    category: '杭州联合银行'
+  #果合移动广告
+  - regex: 'guohead\.com'
+    category: '果合移动广告'
+  #果壳网
+  - regex: 'guokr\.com'
+    category: '果壳网'
+  #查询登录系统
+  - regex: 'nnetonline\.com'
+    category: '查询登录系统'
+  #校内图片网
+  - regex: 'xnpic\.com'
+    category: '校内图片网'
+  #株洲在线
+  - regex: 'zzz4\.com'
+    category: '株洲在线'
+  #株洲在线论坛
+  - regex: 'z4bbs\.com'
+    category: '株洲在线论坛'
+  #株洲民企人才网
+  - regex: 'hnzzjob\.com'
+    category: '株洲民企人才网'
+  #桐庐县政府
+  - regex: 'tonglu\.gov\.cn'
+    category: '桐庐县政府'
+  #梦宝谷
+  - regex: 'mobage\.cn'
+    category: '梦宝谷'
+  #梦网快讯1
+  - regex: 'coms\.k'
+    category: '梦网快讯1'
+  #梦网快讯2
+  - regex: 'monternet\.com'
+    category: '梦网快讯2'
+  #梦网手机游戏1
+  - regex: 'g\.10086\.cn'
+    category: '梦网手机游戏1'
+  #梦网手机游戏10
+  - regex: 'gmubeta\.g188\.net'
+    category: '梦网手机游戏10'
+  #梦网手机游戏12
+  - regex: 'gmu\.g188\.net'
+    category: '梦网手机游戏12'
+  #梦网手机游戏4
+  - regex: 'gamepie\.i139\.cn'
+    category: '梦网手机游戏4'
+  #梦网手机游戏5
+  - regex: 'gamepie\.g188\.net'
+    category: '梦网手机游戏5'
+  #梦网手机游戏6
+  - regex: 'xjoys\.com'
+    category: '梦网手机游戏6'
+  #梦网手机游戏7
+  - regex: 'gmota\.i139\.cn'
+    category: '梦网手机游戏7'
+  #梦网手机游戏8
+  - regex: 'gmp\.i139\.cn'
+    category: '梦网手机游戏8'
+  #梦网搜索
+  - regex: 's\.139\.com'
+    category: '梦网搜索'
+  #梦网移动应用
+  - regex: '10086\.cn'
+    category: '梦网移动应用'
+  #梦网音乐俱乐部
+  - regex: 'm\.10086\.cn'
+    category: '梦网音乐俱乐部'
+  #欧朋手机浏览器
+  - regex: 'oupeng\.com'
+    category: '欧朋手机浏览器'
+  #步入专业加速
+  - regex: 'brcdn\.cn'
+    category: '步入专业加速'
+  #步步高vivo智能手机器
+  - regex: 'bbk\.com'
+    category: '步步高vivo智能手机器'
+  #毒霸
+  - regex: 'duba\.net'
+    category: '毒霸'
+  #比购宝
+  - regex: 'boogle\.cn'
+    category: '比购宝'
+  #汉书小说网
+  - regex: 'hanshu\.net'
+    category: '汉书小说网'
+  #江干区政府
+  - regex: 'jianggan\.gov\.cn'
+    category: '江干区政府'
+  #江民杀毒
+  - regex: 'jiangmin\.com'
+    category: '江民杀毒'
+  #江苏卫视
+  - regex: 'jstv\.com'
+    category: '江苏卫视'
+  #汽车之家
+  - regex: 'autohome\.com'
+    category: '汽车之家'
+  #汽车之家图片
+  - regex: 'autoimg\.com'
+    category: '汽车之家图片'
+  #汽车之家图片2
+  - regex: 'bitautoimg\.com'
+    category: '汽车之家图片2'
+  #汽车图片网
+  - regex: 'autoimg\.cn'
+    category: '汽车图片网'
+  #沃\.3G
+  - regex: 'wo\.com\.cn'
+    category: '沃\.3G'
+  #沃邮箱
+  - regex: 'mail\.wo\.com\.cn'
+    category: '沃邮箱'
+  #沪江文件域
+  - regex: 'hjfile\.cn'
+    category: '沪江文件域'
+  #沪江网
+  - regex: 'hujiang\.com'
+    category: '沪江网'
+  #沸腾文学
+  - regex: 'huaixiu\.net'
+    category: '沸腾文学'
+  #法律微博
+  - regex: 't\.jcrb\.com'
+    category: '法律微博'
+  #泡书吧
+  - regex: 'paoshu8\.com'
+    category: '泡书吧'
+  #泡椒网
+  - regex: 'paojiao\.cn'
+    category: '泡椒网'
+  #泡泡网
+  - regex: 'pcpop\.com'
+    category: '泡泡网'
+  #浙东上虞网
+  - regex: '0575bbs\.com'
+    category: '浙东上虞网'
+  #浙医一院
+  - regex: 'zy91\.com'
+    category: '浙医一院'
+  #浙医二院
+  - regex: 'z2hospital\.com'
+    category: '浙医二院'
+  #浙商证券
+  - regex: 'stocke\.com\.cn'
+    category: '浙商证券'
+  #浙商银行
+  - regex: 'czbank\.com'
+    category: '浙商银行'
+  #浙江人才
+  - regex: 'zjrc\.com\.cn'
+    category: '浙江人才'
+  #浙江传媒学院
+  - regex: 'zjicm\.edu\.cn'
+    category: '浙江传媒学院'
+  #浙江体彩网
+  - regex: 'zjlottery\.com'
+    category: '浙江体彩网'
+  # #浙江农村信用社'
+  # - regex: 'campus\.chinahr\.com''
+  #   category: '浙江农村信用社'
+  #浙江国税报税系统
+  - regex: 'zjtax\.gov\.cn'
+    category: '浙江国税报税系统'
+  #浙江在线
+  - regex: 'zjol\.com\.cn'
+    category: '浙江在线'
+  #浙江在线微博
+  - regex: 'weibo\.zjol\.com\.cn'
+    category: '浙江在线微博'
+  #浙江大学
+  - regex: 'zju\.edu\.cn'
+    category: '浙江大学'
+  #浙江工业大学
+  - regex: 'zjut\.edu\.cn'
+    category: '浙江工业大学'
+  #浙江工商大学
+  - regex: 'hzic\.edu\.cn'
+    category: '浙江工商大学'
+  #浙江无线城市
+  - regex: 'zjicity\.com'
+    category: '浙江无线城市'
+  #浙江理工大学
+  - regex: 'zstu\.edu\.cn'
+    category: '浙江理工大学'
+  #浙江电子口岸
+  - regex: 'zjport\.gov\.cn'
+    category: '浙江电子口岸'
+  #浙江省人力资源和社会保障网
+  - regex: 'zjhrss\.gov\.cn'
+    category: '浙江省人力资源和社会保障网'
+  #浙江省人民政府
+  - regex: 'zhejiang\.gov\.cn'
+    category: '浙江省人民政府'
+  #浙江省公安厅
+  - regex: 'zjsgat\.gov\.cn'
+    category: '浙江省公安厅'
+  #浙江省卫生厅
+  - regex: 'zjwst\.gov\.cn'
+    category: '浙江省卫生厅'
+  #浙江省商务厅
+  - regex: 'zcom\.gov\.cn'
+    category: '浙江省商务厅'
+  #浙江省工商行政管理局
+  - regex: 'zjaic\.gov\.cn'
+    category: '浙江省工商行政管理局'
+  #浙江省旅游局
+  - regex: 'tourzj\.gov\.cn'
+    category: '浙江省旅游局'
+  #浙江省环保
+  - regex: 'zjepb\.gov\.cn'
+    category: '浙江省环保'
+  #浙江省食品药品监督管理局
+  - regex: 'zjfda\.gov\.cn'
+    category: '浙江省食品药品监督管理局'
+  #浙江都市网
+  - regex: 'zj\.com'
+    category: '浙江都市网'
+  #浪漫言情
+  - regex: 'lmyq\.com'
+    category: '浪漫言情'
+  #海沟商城
+  - regex: 'higo365\.com'
+    category: '海沟商城'
+  #海盗电台
+  - regex: '1q84\.fm'
+    category: '海盗电台'
+  #涅破小说网
+  - regex: 'niepo\.net'
+    category: '涅破小说网'
+  #淘宝优惠返利
+  - regex: 'youhui\.cn'
+    category: '淘宝优惠返利'
+  #淘宝图片服务器
+  - regex: 'img\.taobao\.com'
+    category: '淘宝图片服务器'
+  #淘宝图片服务器1
+  - regex: 'taobaocdn\.com'
+    category: '淘宝图片服务器1'
+  #淘宝图片服务器2
+  - regex: 'itbcdn\.cn'
+    category: '淘宝图片服务器2'
+  #淘宝网
+  - regex: 'taobao\.com'
+    category: '淘宝网'
+  #淘宝联盟
+  - regex: 'aalimama\.cn'
+    category: '淘宝联盟'
+  #淘米网
+  - regex: '61\.com'
+    category: '淘米网'
+  #淘花网
+  - regex: 'taohua\.com'
+    category: '淘花网'
+  #深圳市斯美通科技有限公司邮箱后台系统
+  - regex: 'smtmobi\.com'
+    category: '深圳市斯美通科技有限公司邮箱后台系统'
+  #深圳市盟创奇迹科技有限公司
+  - regex: 'mcqj\.cn'
+    category: '深圳市盟创奇迹科技有限公司'
+  #深讯和1
+  - regex: 'sxapp\.cnn'
+    category: '深讯和1'
+  #深讯和2
+  - regex: 'gjm123\.cn'
+    category: '深讯和2'
+  #淳安县政府
+  - regex: 'qdh\.gov\.cn'
+    category: '淳安县政府'
+  #混酱三国
+  - regex: 'jaj\.cn'
+    category: '混酱三国'
+  #温州微博
+  - regex: '66wz\.com'
+    category: '温州微博'
+  #游戏狗手机游戏
+  - regex: 'gamedog\.cn'
+    category: '游戏狗手机游戏'
+  #游戏茶苑
+  - regex: 'gametea\.com'
+    category: '游戏茶苑'
+  #游民星空
+  - regex: 'gamersky\.com'
+    category: '游民星空'
+  #游艺网
+  - regex: 'game798\.com'
+    category: '游艺网'
+  #湖南招生考试信息港
+  - regex: 'hneeb\.cn'
+    category: '湖南招生考试信息港'
+  #湖州8频道
+  - regex: '0572tv\.com'
+    category: '湖州8频道'
+  #湖州人事人才网
+  - regex: 'hzhr\.com'
+    category: '湖州人事人才网'
+  #湖州师范学院
+  - regex: 'hutc\.zj\.cn'
+    category: '湖州师范学院'
+  #滨江区政府
+  - regex: 'hhtz\.gov\.cn'
+    category: '滨江区政府'
+  #潇湘书院网
+  - regex: 'xxsy\.net'
+    category: '潇湘书院网'
+  #激动网
+  - regex: '6joy\.cn'
+    category: '激动网'
+  #瀚宇网1
+  - regex: '57xgame\.com'
+    category: '瀚宇网1'
+  #瀚宇网2
+  - regex: '77xgame\.com'
+    category: '瀚宇网2'
+  #炎黄中文
+  - regex: 'yhzw\.com'
+    category: '炎黄中文'
+  #炫亮实业
+  - regex: 'dshinecn\.com'
+    category: '炫亮实业'
+  #点心
+  - regex: 'dianxinos\.com'
+    category: '点心'
+  #点滴网
+  - regex: 'mwap8\.com'
+    category: '点滴网'
+  #烙印
+  - regex: '9961\.cn'
+    category: '烙印'
+  #烟波小说网
+  - regex: 'ybxsw\.com'
+    category: '烟波小说网'
+  #热点书库
+  - regex: 'hotsk\.com'
+    category: '热点书库'
+  #热血江湖
+  - regex: 'rxjh\.cdcgames\.net'
+    category: '热血江湖'
+  #热讯
+  - regex: 'soft139\.com'
+    category: '热讯'
+  #烽火中文网1
+  - regex: 'fhzw\.cn'
+    category: '烽火中文网1'
+  #烽火中文网2
+  - regex: 'fhzww\.com'
+    category: '烽火中文网2'
+  #烽火中文网4
+  - regex: 'fh315\.com'
+    category: '烽火中文网4'
+  #烽火中文网5
+  - regex: 'cpwt\.net'
+    category: '烽火中文网5'
+  #熊猫影音
+  - regex: 'pxlipaapk\.com'
+    category: '熊猫影音'
+  #燃文小说
+  - regex: 'ranwen\.com'
+    category: '燃文小说'
+  #爆米花网
+  - regex: 'baomihua\.com'
+    category: '爆米花网'
+  #爱乐网
+  - regex: 'irock\.cn'
+    category: '爱乐网'
+  #爱卡
+  - regex: 'excar\.com\.cn'
+    category: '爱卡'
+  #爱卡汽车图片
+  - regex: 'xcarimg\.com'
+    category: '爱卡汽车图片'
+  #爱听MP3
+  - regex: 'aitmp3\.com'
+    category: '爱听MP3'
+  #爱听网
+  - regex: 'itings\.com'
+    category: '爱听网'
+  #爱吾游戏
+  - regex: '25wap\.com'
+    category: '爱吾游戏'
+  #爱壁纸
+  - regex: 'qdcdn\.com'
+    category: '爱壁纸'
+  #爱奇艺
+  - regex: 'iqiyi\.com'
+    category: '爱奇艺'
+  #爱奇艺2
+  - regex: 'qiyi\.com'
+    category: '爱奇艺2'
+  #爱微
+  - regex: 'appdao\.com'
+    category: '爱微'
+  #爱淘实惠
+  - regex: 'itaosh\.com'
+    category: '爱淘实惠'
+  #爱皮下载
+  - regex: 'appdear\.com'
+    category: '爱皮下载'
+  #爱看文学网
+  - regex: '2kwx\.com'
+    category: '爱看文学网'
+  #爱购网
+  - regex: 'igou\.cn'
+    category: '爱购网'
+  #爱酷软件
+  - regex: 'ikwap\.com'
+    category: '爱酷软件'
+  #爱问搜索
+  - regex: 'iask\.cn'
+    category: '爱问搜索'
+  #牛书网
+  - regex: 'nshu\.net'
+    category: '牛书网'
+  #猫扑
+  - regex: 'imop\.com'
+    category: '猫扑'
+  #猫扑图片服务器
+  - regex: 'mopimg\.com'
+    category: '猫扑图片服务器'
+  #玩呀网
+  - regex: '5pop\.com'
+    category: '玩呀网'
+  #环球网
+  - regex: 'huanqiu\.com'
+    category: '环球网'
+  #珠海正点科技
+  - regex: 'zdworks\.com'
+    category: '珠海正点科技'
+  #理想文学
+  - regex: '03wx\.com'
+    category: '理想文学'
+  #瑞丽女性网
+  - regex: 'rayli\.com\.cn'
+    category: '瑞丽女性网'
+  #瑞星
+  - regex: 'rising\.com\.cn'
+    category: '瑞星'
+  #瑞音数码科技
+  - regex: 'rydigital\.com'
+    category: '瑞音数码科技'
+  #生意宝
+  - regex: 'toocle\.com'
+    category: '生意宝'
+  #生意社
+  - regex: 'netsun\.com'
+    category: '生意社'
+  #申银万国
+  - regex: 'sywg\.com'
+    category: '申银万国'
+  #电影网
+  - regex: 'm1905\.com'
+    category: '电影网'
+  #电游网
+  - regex: 'duotegame\.com'
+    category: '电游网'
+  #电脑之家
+  - regex: 'pchome\.net'
+    category: '电脑之家'
+  #百书库
+  - regex: 'baishuku\.com'
+    category: '百书库'
+  #百书斋
+  - regex: 'baishuzhai\.com'
+    category: '百书斋'
+  #百分网
+  - regex: 'byfen\.com'
+    category: '百分网'
+  #百合网
+  - regex: 'baihe\.com'
+    category: '百合网'
+  #百度1
+  - regex: 'baidu\.com'
+    category: '百度1'
+  #百度2
+  - regex: 'baidu\.cn'
+    category: '百度2'
+  #百度ting！
+  - regex: 'ting\.baidu\.com'
+    category: '百度ting！'
+  #百度专利搜索
+  - regex: 'zhuanli\.baidu\.com'
+    category: '百度专利搜索'
+  #百度主题
+  - regex: 'myzhuti\.com'
+    category: '百度主题'
+  #百度公益
+  - regex: 'gongyi\.baidu\.com'
+    category: '百度公益'
+  #百度团购
+  - regex: 'mtuan\.baidu\.com'
+    category: '百度团购'
+  #百度图片
+  - regex: 'image\.baidu\.com'
+    category: '百度图片'
+  #百度图片服务器
+  - regex: 'bdimg\.com'
+    category: '百度图片服务器'
+  #百度地图2
+  - regex: 'map\.baidu\.com'
+    category: '百度地图2'
+  #百度基金会
+  - regex: 'csr\.baidu\.com'
+    category: '百度基金会'
+  #百度天空游戏
+  - regex: 'skygame\.baidu\.com'
+    category: '百度天空游戏'
+  #百度寻人
+  - regex: 'xunren\.baidu\.com'
+    category: '百度寻人'
+  #百度小说'
+  # - regex: 'co\.m''
+  #   category: '百度小说'
+  #百度应用1'
+  # - regex: 'baidu\.com''
+  #   category: '百度应用1'
+  #百度应用2
+  - regex: 'app\.baidu\.com'
+    category: '百度应用2'
+  #百度房产
+  - regex: 'house\.baidu\.com'
+    category: '百度房产'
+  #百度搜藏
+  - regex: 'soucang\.baidu\.com'
+    category: '百度搜藏'
+  #百度新知
+  - regex: 'xinzhi\.baidu\.com'
+    category: '百度新知'
+  #百度新闻
+  - regex: 'news\.baidu\.com\.cn'
+    category: '百度新闻'
+  #百度新闻1
+  - regex: 'wap\.baidu\.com\.cn'
+    category: '百度新闻1'
+  #百度新闻2
+  - regex: 'news\.baidu\.com'
+    category: '百度新闻2'
+  #百度无线
+  - regex: 'shouji\.baidu\.com'
+    category: '百度无线'
+  #百度无线图片服务器1
+  - regex: 'baidu-1img\.cn'
+    category: '百度无线图片服务器1'
+  #百度无线图片服务器2
+  - regex: 'baidu-2img\.cn'
+    category: '百度无线图片服务器2'
+  #百度无线图片服务器3
+  - regex: 'baidu-img\.cn'
+    category: '百度无线图片服务器3'
+  #百度无线图片服务器4
+  - regex: 'baidu-3img\.cn'
+    category: '百度无线图片服务器4'
+  #百度浏览器
+  - regex: 'liulanqi\.baidu\.com'
+    category: '百度浏览器'
+  #百度游戏1
+  - regex: '(duokoo|skygame)\.baidu\.com'
+    category: '百度游戏1'
+  #百度游戏2
+  - regex: 'youxi\.baidu\.com'
+    category: '百度游戏2'
+  #百度游戏资讯
+  - regex: '07073\.baidu\.com'
+    category: '百度游戏资讯'
+  #百度知道1
+  - regex: 'wapiknow\.baidu\.com'
+    category: '百度知道1'
+  #百度知道2
+  - regex: 'zhidao\.baidu\.com'
+    category: '百度知道2'
+  #百度移动应用
+  - regex: 'as\.baidu\.com'
+    category: '百度移动应用'
+  #百度空间
+  - regex: 'duapp\.com'
+    category: '百度空间'
+  #百度空间2
+  - regex: 'hi\.baidu\.com'
+    category: '百度空间2'
+  #百度经验
+  - regex: 'jingyan\.baidu\.com'
+    category: '百度经验'
+  #百度老年搜索
+  - regex: 'wm123\.baidu\.com'
+    category: '百度老年搜索'
+  #百度视频1
+  - regex: 'guotv\.com'
+    category: '百度视频1'
+  #百度视频2
+  - regex: 'video\.baidu\.com'
+    category: '百度视频2'
+  #百度词典
+  - regex: 'dict\.baidu\.com'
+    category: '百度词典'
+  #百度贴吧1
+  - regex: 'wapp\.baidu\.com'
+    category: '百度贴吧1'
+  #百度贴吧2
+  - regex: 'tieba\.baidu\.com'
+    category: '百度贴吧2'
+  #百度身边2
+  - regex: '(?<!\w)s\.baidu\.com'
+    category: '百度身边2'
+  #百度阅读
+  - regex: 'yuedu\.baidu\.com'
+    category: '百度阅读'
+  #百度音乐掌门人
+  - regex: 'zhangmen\.baidu\.com'
+    category: '百度音乐掌门人'
+  #百诺通达
+  - regex: 'bynor\.com'
+    category: '百诺通达'
+  #百阅
+  - regex: 'byread\.cn'
+    category: '百阅'
+  #百阅网
+  - regex: 'byread\.com'
+    category: '百阅网'
+  #皮皮网2
+  - regex: 'pipi\.cn'
+    category: '皮皮网2'
+  #盛名列车时刻表
+  - regex: 'smskb\.com'
+    category: '盛名列车时刻表'
+  #盛大在线
+  - regex: 'sdo\.com'
+    category: '盛大在线'
+  #盛大自助广告平台
+  - regex: 'snyu\.com'
+    category: '盛大自助广告平台'
+  #相片分享
+  - regex: 'flickr\.com'
+    category: '相片分享'
+  #看书网'
+  # - regex: '''
+  #   category: '看书网'
+  #看书网2
+  - regex: 'kanshu\.com'
+    category: '看书网2'
+  #破解游戏
+  - regex: 'kuayx\.com'
+    category: '破解游戏'
+  #硅谷动力
+  - regex: 'menet\.com\.cn'
+    category: '硅谷动力'
+  #神马小说网
+  - regex: 'shenmaxiaoshuo\.com'
+    category: '神马小说网'
+  #秋虎漫画网
+  - regex: 'qiuhu\.com'
+    category: '秋虎漫画网'
+  #移云
+  - regex: '51v5\.cn'
+    category: '移云'
+  #移动冲浪
+  - regex: 'wapjoy\.net'
+    category: '移动冲浪'
+  #移动广告
+  - regex: 'adwhirl\.com'
+    category: '移动广告'
+  #移动应用商场
+  - regex: 'mmarket\.com'
+    category: '移动应用商场'
+  #移动微博
+  - regex: 'weibo\.10086\.cn'
+    category: '移动微博'
+  #移动梦网
+  - regex: 'monternet\.com'
+    category: '移动梦网'
+  #移动梦网2
+  - regex: 'i139\.cn'
+    category: '移动梦网2'
+  #移动梦网新闻'
+  # - regex: 'i\.i139\.cn''
+  #   category: '移动梦网新闻'
+  #移动游戏
+  - regex: 'g188\.net'
+    category: '移动游戏'
+  #移动音乐1
+  - regex: '12530\.com'
+    category: '移动音乐1'
+  #移动音乐2
+  - regex: 'music\.10086\.cn'
+    category: '移动音乐2'
+  #空中网
+  - regex: 'kong\.net'
+    category: '空中网'
+  #空中网2
+  - regex: 'kong\.com'
+    category: '空中网2'
+  #窝窝团cdn
+  - regex: '55tuanimg\.com'
+    category: '窝窝团cdn'
+  #童果网
+  - regex: '61tg\.com'
+    category: '童果网'
+  #笑话大全
+  - regex: 'xh888\.com'
+    category: '笑话大全'
+  #笔下文学1
+  - regex: 'bxwx\.cc'
+    category: '笔下文学1'
+  #笔下文学2
+  - regex: 'bxwx\.org'
+    category: '笔下文学2'
+  #笔趣阁
+  - regex: 'biquge\.com'
+    category: '笔趣阁'
+  #笨狗漫画
+  - regex: 'bengou\.com'
+    category: '笨狗漫画'
+  #第一应用
+  - regex: 'diyiapp\.com'
+    category: '第一应用'
+  #第一文学2
+  - regex: 'dywx\.net'
+    category: '第一文学2'
+  #第一电影网
+  - regex: '(?<!\w)dy\.com\.cn'
+    category: '第一电影网'
+  #第九城市
+  - regex: 'the9\.com'
+    category: '第九城市'
+  #米尔军情网
+  - regex: 'junshijia\.com'
+    category: '米尔军情网'
+  #米斯wap
+  - regex: 'meswap\.cn'
+    category: '米斯wap'
+  #米汤网
+  - regex: 'mitang\.com'
+    category: '米汤网'
+  #米迪手机广告平台
+  - regex: 'miidi\.net'
+    category: '米迪手机广告平台'
+  #精灵在线网络技术（北京）有限公司
+  - regex: 'spriteapp\.cn'
+    category: '精灵在线网络技术（北京）有限公司'
+  #精英教育联盟
+  - regex: 'ljy365\.net'
+    category: '精英教育联盟'
+  #糖蒜广播
+  - regex: 'tangsuanradio\.com'
+    category: '糖蒜广播'
+  #糗事百科
+  - regex: 'qiushibaike\.com'
+    category: '糗事百科'
+  #糯米团
+  - regex: 'nuomi\.com'
+    category: '糯米团'
+  #索尼
+  - regex: 'sony\.com\.cn'
+    category: '索尼'
+  #索尼Xpera
+  - regex: 'sonyericsson\.com'
+    category: '索尼Xpera'
+  #红袖添香小说网
+  - regex: 'hongxiu\.com'
+    category: '红袖添香小说网'
+  #纵横中文网
+  - regex: 'zongheng\.com'
+    category: '纵横中文网'
+  #纵横书海
+  - regex: 'dodbook\.com'
+    category: '纵横书海'
+  #绍兴E网1
+  - regex: 'e0575\.cn'
+    category: '绍兴E网1'
+  #绍兴E网2
+  - regex: 'e0575\.com'
+    category: '绍兴E网2'
+  #维旺明手机杂志平台
+  - regex: 'vivame\.cn'
+    category: '维旺明手机杂志平台'
+  #维阅V漫画
+  - regex: 'vcomic\.cn'
+    category: '维阅V漫画'
+  #绿缘房产网
+  - regex: 'tzinfo\.net'
+    category: '绿缘房产网'
+  #缔顺在线
+  - regex: 'nextsee\.com'
+    category: '缔顺在线'
+  #网址之家
+  - regex: 'hao123\.com'
+    category: '网址之家'
+  #网址导航
+  - regex: '169bb\.com'
+    category: '网址导航'
+  #网易
+  - regex: '163\.com'
+    category: '网易'
+  #网易2
+  - regex: '126\.net'
+    category: '网易2'
+  #网易3
+  - regex: 'netease\.com'
+    category: '网易3'
+  #网易企业邮箱
+  - regex: 'qiye\.163\.com'
+    category: '网易企业邮箱'
+  #网易博客
+  - regex: 'blog\.163\.com'
+    category: '网易博客'
+  #网易图片服务器
+  - regex: 'img\.163\.com'
+    category: '网易图片服务器'
+  #网易女人2
+  - regex: 'lady\.163\.com'
+    category: '网易女人2'
+  #网易娱乐2
+  - regex: 'bn\.163\.com'
+    category: '网易娱乐2'
+  #网易应用
+  - regex: '(?<!\w)m\.163\.com'
+    category: '网易应用'
+  #网易微博
+  - regex: '(?<!\w)t\.163\.com'
+    category: '网易微博'
+  #网易手机邮箱
+  - regex: '123\.163\.com'
+    category: '网易手机邮箱'
+  #网易新闻
+  - regex: 'news\.163\.com'
+    category: '网易新闻'
+  #网易汽车2
+  - regex: 'auto\.163\.com'
+    category: '网易汽车2'
+  #网易游戏1
+  - regex: 'game\.163\.com'
+    category: '网易游戏1'
+  #网易生活百宝箱'
+  # - regex: '3g\.163\.com''
+  #   category: '网易生活百宝箱'
+  #网易论坛2
+  - regex: 'bbs\.163\.com'
+    category: '网易论坛2'
+  #网易邮箱
+  - regex: 'mail\.163\.com'
+    category: '网易邮箱'
+  #网秦
+  - regex: 'netqin\.com'
+    category: '网秦'
+  #网站导航
+  - regex: 'site\.baidu\.com'
+    category: '网站导航'
+  #网络营收优化平台
+  - regex: 'pubsage\.com'
+    category: '网络营收优化平台'
+  #美丽说1
+  - regex: 'meiliworks\.com'
+    category: '美丽说1'
+  #美丽说2
+  - regex: 'meilishuo\.com'
+    category: '美丽说2'
+  #美丽说图片服务器
+  - regex: 'meilishuo\.net'
+    category: '美丽说图片服务器'
+  #美团网
+  - regex: 'meituan\.com'
+    category: '美团网'
+  #美团网2
+  - regex: 'meituan\.net'
+    category: '美团网2'
+  #美图秀秀网
+  - regex: 'meitudata\.com'
+    category: '美图秀秀网'
+  #美图网
+  - regex: 'meitu\.com'
+    category: '美图网'
+  #翠微居
+  - regex: 'cuiweiju\.com'
+    category: '翠微居'
+  #老虎地图
+  - regex: 'tigerknows\.com'
+    category: '老虎地图'
+  #联合早报
+  - regex: 'zaobao\.com'
+    category: '联合早报'
+  #聚划算
+  - regex: 'ju\.taobao\.com'
+    category: '聚划算'
+  #聚美优品
+  - regex: 'jumei\.com'
+    category: '聚美优品'
+  #聚胜万合
+  - regex: 'mediav\.com'
+    category: '聚胜万合'
+  #胡莱游戏
+  - regex: 'hoolai\.com'
+    category: '胡莱游戏'
+  #能助手
+  - regex: 'neng\.com'
+    category: '能助手'
+  #腾讯IM
+  - regex: 'im\.qq\.com'
+    category: '腾讯IM'
+  #腾讯QQ三国
+  - regex: 'sg\.qq\.com'
+    category: '腾讯QQ三国'
+  #腾讯QQ书城1
+  - regex: 'ebook(\d+)?\.3g\.qq\.com'
+    category: '腾讯QQ书城1'
+  #腾讯QQ书城2
+  - regex: 'book\.qq\.com'
+    category: '腾讯QQ书城2'
+  #腾讯QQ书签
+  - regex: 'shuqian\.qq\.com'
+    category: '腾讯QQ书签'
+  #腾讯QQ仙侠传
+  - regex: 'xxz\.qq\.com'
+    category: '腾讯QQ仙侠传'
+  #腾讯QQ商城
+  - regex: 'store\.qq\.com'
+    category: '腾讯QQ商城'
+  #腾讯QQ堂
+  - regex: 'qqtang\.qq\.com'
+    category: '腾讯QQ堂'
+  #腾讯QQ宝贝
+  - regex: 'baobei\.qq\.com'
+    category: '腾讯QQ宝贝'
+  #腾讯QQ游戏
+  - regex: 'qqgame\.qq\.com'
+    category: '腾讯QQ游戏'
+  #腾讯QQ炫舞
+  - regex: 'x5\.qq\.com'
+    category: '腾讯QQ炫舞'
+  #腾讯QQ秀图片服务器
+  - regex: 'qqshow-user\.tencent\.com'
+    category: '腾讯QQ秀图片服务器'
+  #腾讯QQ空间1
+  - regex: '(?<!\w)z\.qq\.com'
+    category: '腾讯QQ空间1'
+  #腾讯QQ空间2
+  - regex: 'qzone\.qq\.com'
+    category: '腾讯QQ空间2'
+  #腾讯QQ群
+  - regex: 'qzoneapp\.com'
+    category: '腾讯QQ群'
+  #腾讯QQ西游
+  - regex: 'qqxy\.qq\.com'
+    category: '腾讯QQ西游'
+  #腾讯QQ音乐1
+  - regex: 'music\.3g\.qq\.com'
+    category: '腾讯QQ音乐1'
+  #腾讯QQ音乐2
+  - regex: '(?<!\w)y\.qq\.com'
+    category: '腾讯QQ音乐2'
+  #腾讯QQ音速
+  - regex: 'r2\.qq\.com'
+    category: '腾讯QQ音速'
+  #腾讯QQ飞车
+  - regex: 'speed\.qq\.com'
+    category: '腾讯QQ飞车'
+  #腾讯七雄争霸
+  - regex: '(?<!\w)7\.qq\.com'
+    category: '腾讯七雄争霸'
+  #腾讯丝路英雄
+  - regex: 'sl\.qq\.com'
+    category: '腾讯丝路英雄'
+  #腾讯云平台
+  - regex: 'twsapp\.com'
+    category: '腾讯云平台'
+  #腾讯企业邮箱
+  - regex: 'exmail\.qq\.com'
+    category: '腾讯企业邮箱'
+  #腾讯体育1
+  - regex: 'sports\.qq\.com'
+    category: '腾讯体育1'
+  #腾讯儿童
+  - regex: 'kid\.qq\.com'
+    category: '腾讯儿童'
+  #腾讯公益
+  - regex: 'gongyi\.qq\.com'
+    category: '腾讯公益'
+  #腾讯动漫频道1
+  - regex: 'comic\.qq\.com'
+    category: '腾讯动漫频道1'
+  #腾讯原创动漫
+  - regex: 'ac\.qq\.com'
+    category: '腾讯原创动漫'
+  #腾讯图片服务器1
+  - regex: 'gtimg\.cn'
+    category: '腾讯图片服务器1'
+  #腾讯图片服务器2
+  - regex: 'gtimg\.com'
+    category: '腾讯图片服务器2'
+  #腾讯图片服务器3
+  - regex: 'qqmail\.com'
+    category: '腾讯图片服务器3'
+  #腾讯地下城与勇士
+  - regex: 'dnf\.qq\.com'
+    category: '腾讯地下城与勇士'
+  #腾讯大明龙权
+  - regex: 'dm\.qq\.com'
+    category: '腾讯大明龙权'
+  #腾讯头像图片服务器
+  - regex: 'qlogo\.cn'
+    category: '腾讯头像图片服务器'
+  #腾讯娱乐1
+  - regex: 'ent\.qq\.com'
+    category: '腾讯娱乐1'
+  #腾讯官网
+  - regex: 'tencent\.com'
+    category: '腾讯官网'
+  #腾讯家园1
+  - regex: 'house(\d+)?\.3g\.qq\.com'
+    category: '腾讯家园1'
+  #腾讯寻仙
+  - regex: 'xx\.qq\.com'
+    category: '腾讯寻仙'
+  #腾讯小熊梦工厂
+  - regex: 'bear\.qq\.com'
+    category: '腾讯小熊梦工厂'
+  #腾讯小白大作战
+  - regex: 'xb\.qq\.com'
+    category: '腾讯小白大作战'
+  #腾讯微信
+  - regex: 'weixin\.qq\.com'
+    category: '腾讯微信'
+  #腾讯微博
+  - regex: '(?<!\w)t\.qq\.com'
+    category: '腾讯微博'
+  #腾讯微博5
+  - regex: 't(\w+)?\.3g\.qq\.com'
+    category: '腾讯微博5'
+  #腾讯战地之王
+  - regex: 'ava\.qq\.com'
+    category: '腾讯战地之王'
+  #腾讯房产
+  - regex: 'house\.qq\.com'
+    category: '腾讯房产'
+  #腾讯手机QQ
+  - regex: 'mobile\.qq\.com'
+    category: '腾讯手机QQ'
+  #腾讯教育1'
+  # - regex: 'o\.ny''
+  #   category: '腾讯教育1'
+  #腾讯教育2
+  - regex: 'edu\.qq\.com'
+    category: '腾讯教育2'
+  #腾讯数码1
+  - regex: 'tech\.qq\.com'
+    category: '腾讯数码1'
+  #腾讯新闻2
+  - regex: 'news\.qq\.com'
+    category: '腾讯新闻2'
+  #腾讯星座
+  - regex: 'astro\.lady\.qq\.com'
+    category: '腾讯星座'
+  #腾讯女性2
+  - regex: 'lady\.qq\.com'
+    category: '腾讯女性2'
+  #腾讯朋友
+  - regex: '(?<!\w)f\.qq\.com'
+    category: '腾讯朋友'
+  #腾讯楚河汉界
+  - regex: 'ch\.qq\.com'
+    category: '腾讯楚河汉界'
+  #腾讯汽车2
+  - regex: 'auto\.qq\.com'
+    category: '腾讯汽车2'
+  #腾讯洛克王国
+  - regex: '17roco\.qq\.com'
+    category: '腾讯洛克王国'
+  #腾讯游戏4
+  - regex: 'games\.qq\.com'
+    category: '腾讯游戏4'
+  #腾讯烽火战国
+  - regex: 'zg\.qq\.com'
+    category: '腾讯烽火战国'
+  #腾讯科技2
+  - regex: 'tech\.qq\.com'
+    category: '腾讯科技2'
+  #腾讯穿越火线
+  - regex: 'cf\.qq\.com'
+    category: '腾讯穿越火线'
+  #腾讯笑话
+  - regex: 'joke\.qq\.com'
+    category: '腾讯笑话'
+  #腾讯网页QQ1
+  - regex: 'web\.qq\.com'
+    category: '腾讯网页QQ1'
+  #腾讯网页QQ2
+  - regex: 'web2\.qq\.com'
+    category: '腾讯网页QQ2'
+  #腾讯育儿
+  - regex: 'baby\.qq\.com'
+    category: '腾讯育儿'
+  #腾讯自由幻想
+  - regex: 'ffo\.qq\.com'
+    category: '腾讯自由幻想'
+  #腾讯英雄联盟
+  - regex: 'lol\.qq\.com'
+    category: '腾讯英雄联盟'
+  #腾讯视频2
+  - regex: 'v\.qq\.com'
+    category: '腾讯视频2'
+  #腾讯财经2
+  - regex: 'finance\.qq\.com'
+    category: '腾讯财经2'
+  #腾讯软件
+  - regex: 'myapp\.com'
+    category: '腾讯软件'
+  #腾讯音乐服务器
+  - regex: 'cnmusics\.com'
+    category: '腾讯音乐服务器'
+  #腾讯魔幻大陆
+  - regex: 'mo\.qq\.com'
+    category: '腾讯魔幻大陆'
+  #腾讯网
+  - regex: 'qq\.com'
+    category: '腾讯网'
+  #至尊宝游戏城
+  - regex: '3gpk\.net'
+    category: '至尊宝游戏城'
+  #艺龙酒店预订
+  - regex: 'elong\.com'
+    category: '艺龙酒店预订'
+  #艾德思奇
+  - regex: 'adsage\.com'
+    category: '艾德思奇'
+  #艾薇给力图片服务器
+  - regex: 'geilicdn\.com'
+    category: '艾薇给力图片服务器'
+  #芒果TV1
+  - regex: 'imgo\.tv'
+    category: '芒果TV1'
+  #芒果广告
+  - regex: 'adsmogo\.com'
+    category: '芒果广告'
+  #芒果网
+  - regex: 'mangocity\.com'
+    category: '芒果网'
+  #芝兰术评
+  - regex: 'zlsy\.netcn'
+    category: '芝兰术评'
+  #苏宁易购
+  - regex: 'suning\.com'
+    category: '苏宁易购'
+  #英杰电子
+  - regex: 'leaderhero\.com'
+    category: '英杰电子'
+  #苹果官网1
+  - regex: 'apple\.com'
+    category: '苹果官网1'
+  #苹果官网2
+  - regex: 'mzstatic\.com'
+    category: '苹果官网2'
+  #获胜手机
+  - regex: 'huosheng\.com'
+    category: '获胜手机'
+  #菲音信息
+  - regex: 'xunwan\.com'
+    category: '菲音信息'
+  #萧山区政府
+  - regex: 'xiaoshan\.gov\.cn'
+    category: '萧山区政府'
+  #萧山财政局
+  - regex: 'xscz\.gov\.cn'
+    category: '萧山财政局'
+  #蓉胜信息
+  - regex: 'goldenhorselake\.com'
+    category: '蓉胜信息'
+  #薇薇小说网
+  - regex: 'vvxs\.net'
+    category: '薇薇小说网'
+  #蘑菇街1
+  - regex: 'mogujie\.com'
+    category: '蘑菇街1'
+  #蘑菇街2
+  - regex: 'mogujie\.cn'
+    category: '蘑菇街2'
+  #虎扑1
+  - regex: 'hupu\.com'
+    category: '虎扑1'
+  #虎扑2
+  - regex: 'hoopchina\.com'
+    category: '虎扑2'
+  #虚拟天空
+  - regex: 'xntk\.net'
+    category: '虚拟天空'
+  #虾米音乐网
+  - regex: 'xiami\.com'
+    category: '虾米音乐网'
+  #虾米音乐网2
+  - regex: 'xiami\.net'
+    category: '虾米音乐网2'
+  #蜜蜂无线
+  - regex: 'mobeehome\.com'
+    category: '蜜蜂无线'
+  #衢州教育网
+  - regex: 'qzedu\.net'
+    category: '衢州教育网'
+  #西湖区政府
+  - regex: 'hzxh\.gov\.cn'
+    category: '西湖区政府'
+  #西祠胡同
+  - regex: 'xici\.net'
+    category: '西祠胡同'
+  #触控科技1
+  - regex: 'chukong-inc\.com'
+    category: '触控科技1'
+  #触控科技2
+  - regex: 'punchbox\.org'
+    category: '触控科技2'
+  #言情小说吧
+  - regex: 'xs8\.cn'
+    category: '言情小说吧'
+  #训读网
+  - regex: 'xunlook\.com'
+    category: '训读网'
+  #证券之星
+  - regex: 'stockstar\.com\.cn'
+    category: '证券之星'
+  #证券微博
+  - regex: 'stcn\.com'
+    category: '证券微博'
+  #评书吧 
+  - regex: 'pingshu8\.com'
+    category: '评书吧 '
+  #话匣子听书
+  - regex: 'huaxiazi\.com'
+    category: '话匣子听书'
+  #语音云
+  - regex: 'voicecloud\.cn'
+    category: '语音云'
+  #说说520
+  - regex: 'shuoshuo520\.com'
+    category: '说说520'
+  #请看小说网
+  - regex: 'qingkan\.net'
+    category: '请看小说网'
+  #诺基亚
+  - regex: 'nokia\.com'
+    category: '诺基亚'
+  #诺基亚ovi
+  - regex: 'ovi\.com'
+    category: '诺基亚ovi'
+  #诺基亚地图导航
+  - regex: 'gate5\.de'
+    category: '诺基亚地图导航'
+  #诺基新软网
+  - regex: 'vgoto\.cn'
+    category: '诺基新软网'
+  #读读看
+  - regex: 'dudukan\.net'
+    category: '读读看'
+  #谷果软件
+  - regex: 'cooguo\.com'
+    category: '谷果软件'
+  #谷歌分析
+  - regex: 'google-analytics\.com'
+    category: '谷歌分析'
+  #谷歌广告1
+  - regex: 'doubleclick\.net'
+    category: '谷歌广告1'
+  #谷歌广告2
+  - regex: 'googleadsserving\.cn'
+    category: '谷歌广告2'
+  #谷歌搜索1
+  - regex: 'google\.cn'
+    category: '谷歌搜索1'
+  #谷歌搜索2
+  - regex: 'google\.com'
+    category: '谷歌搜索2'
+  #谷歌链接
+  - regex: 'googlesyndication\.com'
+    category: '谷歌链接'
+  #豆丁中文网
+  - regex: 'docin\.net'
+    category: '豆丁中文网'
+  #豆丁工作室
+  - regex: 'douding\.mobi'
+    category: '豆丁工作室'
+  #豆奇精品游戏
+  - regex: 'doozii\.com'
+    category: '豆奇精品游戏'
+  #豆果网
+  - regex: 'douguo\.com'
+    category: '豆果网'
+  #豆瓣微博
+  - regex: 'shuo\.douban\.com'
+    category: '豆瓣微博'
+  #豆瓣网
+  - regex: 'douban\.com'
+    category: '豆瓣网'
+  #豌豆夹
+  - regex: 'wandoujia\.com'
+    category: '豌豆夹'
+  #豌豆荚手机精灵
+  - regex: 'wdjcdn\.com'
+    category: '豌豆荚手机精灵'
+  #豌豆荚手机精灵图片服务器
+  - regex: 'wdjimg\.com'
+    category: '豌豆荚手机精灵图片服务器'
+  #贝壳
+  - regex: 'beekee\.cn'
+    category: '贝壳'
+  #财付通
+  - regex: 'tenpay\.com'
+    category: '财付通'
+  #财经网
+  - regex: 'caijing\.com\.cn'
+    category: '财经网'
+  #财迷微博
+  - regex: 't\.eastmoney\.com'
+    category: '财迷微博'
+  #赛尔号
+  - regex: 'seer\.61\.com'
+    category: '赛尔号'
+  #赢告无限
+  - regex: 'winads\.cn'
+    category: '赢告无限'
+  #赶集网
+  - regex: 'ganji\.com'
+    category: '赶集网'
+  #赶集网2
+  - regex: 'ganji\.cn'
+    category: '赶集网2'
+  #赶集网图片服务器
+  - regex: 'ganjistatic1\.com'
+    category: '赶集网图片服务器'
+  # #起点中文网'
+  # - regex: 'm\.b''
+  #   category: '起点中文网'
+  #起点中文网1
+  - regex: 'qidian\.cn'
+    category: '起点中文网1'
+  #起点中文网2
+  - regex: 'qidian\.com'
+    category: '起点中文网2'
+  #起点小说网
+  - regex: 'cmfu\.com'
+    category: '起点小说网'
+  #跑跑卡丁车
+  - regex: 'popkart\.com'
+    category: '跑跑卡丁车'
+  #路路通时刻表
+  - regex: 'lltskb\.com'
+    category: '路路通时刻表'
+  #软吧
+  - regex: 'ruan8\.com'
+    category: '软吧'
+  #迅雷在线
+  - regex: 'sandai\.net'
+    category: '迅雷在线'
+  #迅雷网
+  - regex: 'xunlei\.com'
+    category: '迅雷网'
+  #远征OL
+  - regex: 'yz\.q1\.com'
+    category: '远征OL'
+  #迷你客游戏网
+  - regex: 'miniclip\.com'
+    category: '迷你客游戏网'
+  #追客免费小说阅读网
+  - regex: 'zhuike\.net'
+    category: '追客免费小说阅读网'
+  #逐浪文学网
+  - regex: 'zhulang\.com'
+    category: '逐浪文学网'
+  #遇见社交
+  - regex: 'iaround\.com'
+    category: '遇见社交'
+  #酷6网
+  - regex: 'ku6\.com'
+    category: '酷6网'
+  #酷云
+  - regex: 'coolyun\.com'
+    category: '酷云'
+  #酷吧网站
+  - regex: 'ku888\.com'
+    category: '酷吧网站'
+  #酷宇通讯
+  - regex: 'coeeland\.com'
+    category: '酷宇通讯'
+  #酷我音乐盒
+  - regex: 'kuwo\.cn'
+    category: '酷我音乐盒'
+  #酷狗音乐服务器1
+  - regex: 'cdn\.kugou\.com'
+    category: '酷狗音乐服务器1'
+  #酷狗音乐网
+  - regex: 'kugou\.com'
+    category: '酷狗音乐网'
+  #酷碧计算机
+  - regex: 'cbtgame\.com'
+    category: '酷碧计算机'
+  #酷美社区网站
+  - regex: 'tvbmm\.net'
+    category: '酷美社区网站'
+  #酷讯旅游网
+  - regex: 'kuxun\.cn'
+    category: '酷讯旅游网'
+  #金屋如玉
+  - regex: '18kbook\.com'
+    category: '金屋如玉'
+  #金山
+  - regex: 'kingsoft\.com'
+    category: '金山'
+  #金山T盘
+  - regex: '1tpan\.com'
+    category: '金山T盘'
+  #金立门户1
+  - regex: 'gionee\.com'
+    category: '金立门户1'
+  #金立门户2
+  - regex: 'myaora\.net'
+    category: '金立门户2'
+  #铁血军事网
+  - regex: 'tiexue\.net'
+    category: '铁血军事网'
+  #铁血读书
+  - regex: 'junshishu\.com'
+    category: '铁血读书'
+  #铁路订票
+  - regex: '12306\.cn'
+    category: '铁路订票'
+  #银河证券1
+  - regex: 'chinastock\.com\.cn'
+    category: '银河证券1'
+  #银河证券2
+  - regex: 'yhzq\.cn'
+    category: '银河证券2'
+  #银狐库存管家
+  - regex: 'ikoney\.com'
+    category: '银狐库存管家'
+  #银联支付
+  - regex: 'chinapay\.com'
+    category: '银联支付'
+  #锋潮网
+  - regex: 'talkphone\.cn'
+    category: '锋潮网'
+  #锦衣夜行
+  - regex: 'xunshu\.org'
+    category: '锦衣夜行'
+  #闪动科技
+  - regex: 'doplive\.com\.cn'
+    category: '闪动科技'
+  #闪文书库
+  - regex: 'shanwen\.com'
+    category: '闪文书库'
+  #闲人在线漫画
+  - regex: 'idler-et\.com'
+    category: '闲人在线漫画'
+  #阅读屋
+  - regex: 'yueduwu\.com'
+    category: '阅读屋'
+  #阜阳银河电脑学校
+  - regex: 'fyyh\.net'
+    category: '阜阳银河电脑学校'
+  #阿里云
+  - regex: 'aliyun\.com'
+    category: '阿里云'
+  #阿里妈妈
+  - regex: 'alimama\.com'
+    category: '阿里妈妈'
+  #阿里巴巴1
+  - regex: 'alibaba\.com'
+    category: '阿里巴巴1'
+  #阿里巴巴2
+  - regex: '1688\.com'
+    category: '阿里巴巴2'
+  #阿里软件
+  - regex: 'alisoft\.com'
+    category: '阿里软件'
+  #陌声人
+  - regex: 'moofm\.com'
+    category: '陌声人'
+  #陌陌
+  - regex: 'immomo\.com'
+    category: '陌陌'
+  #随踪科技
+  - regex: 'suizong\.com'
+    category: '随踪科技'
+  #随身听
+  - regex: 'zonexz\.net'
+    category: '随身听'
+  #雅虎
+  - regex: 'yahoo\.com'
+    category: '雅虎'
+  #雅虎APIS
+  - regex: 'yahooapis\.com'
+    category: '雅虎APIS'
+  #雅虎图片服务器
+  - regex: 'yimg\.com'
+    category: '雅虎图片服务器'
+  #零动联盟
+  - regex: '01lm\.com'
+    category: '零动联盟'
+  #零点书屋
+  - regex: '02345\.com'
+    category: '零点书屋'
+  #零点看书网
+  - regex: '00ks\.net'
+    category: '零点看书网'
+  #霏凡软件
+  - regex: 'crsky\.com'
+    category: '霏凡软件'
+  #非凡小说
+  - regex: 'feifantxt\.com'
+    category: '非凡小说'
+  #音乐妈咪
+  - regex: 'yymommy\.com'
+    category: '音乐妈咪'
+  #音悦台
+  - regex: 'yinyuetai\.com'
+    category: '音悦台'
+  #页游网
+  - regex: 'yegame\.com'
+    category: '页游网'
+  #颠簸网
+  - regex: '25pp\.com'
+    category: '颠簸网'
+  #风行网络电影
+  - regex: 'funshion\.com'
+    category: '风行网络电影'
+  #飞库网
+  - regex: 'ifeiku\.com'
+    category: '飞库网'
+  #飞流网
+  - regex: 'feeliu\.com'
+    category: '飞流网'
+  #飞碟网
+  - regex: 'feidee\.com'
+    category: '飞碟网'
+  #驱动之家
+  - regex: 'mydrivers\.com'
+    category: '驱动之家'
+  #驱动精灵
+  - regex: 'drivergenius\.com'
+    category: '驱动精灵'
+  #驴妈妈旅游网
+  - regex: 'lvmama\.com'
+    category: '驴妈妈旅游网'
+  #驾驶员考试网
+  - regex: 'jsyks\.com'
+    category: '驾驶员考试网'
+  #高德地图
+  - regex: 'amap\.com'
+    category: '高德地图'
+  #高德手机导航
+  - regex: 'autonavi\.com'
+    category: '高德手机导航'
+  #高手彩票网
+  - regex: 'cb6\.cc'
+    category: '高手彩票网'
+  #魅族
+  - regex: 'meizu\.com'
+    category: '魅族'
+  #魔兽世界
+  - regex: 'wow\.battlenet\.com\.cn'
+    category: '魔兽世界'
+  #鸿大网站
+  - regex: 'qclx\.cn'
+    category: '鸿大网站'
+  #麦动音乐
+  - regex: 'maidongcn\.com'
+    category: '麦动音乐'
+  #麦包包
+  - regex: 'mbaobao\.com'
+    category: '麦包包'
+  #黄金岛游戏
+  - regex: 'basecity\.com'
+    category: '黄金岛游戏'
+
+
+
+
+category_classes:
+  ## Service category classification, derived from hzmobile data.
+  03书吧:
+    cls1: 1
+    cls2: 100
+  12580:
+    cls1: 5
+    cls2: 147
+  126网易免费邮箱:
+    cls1: 12
+    cls2: 1028
+  139邮箱:
+    cls1: 12
+    cls2: 1035
+  16K小说网1:
+    cls1: 1
+    cls2: 14
+  16K小说网2:
+    cls1: 1
+    cls2: 14
+  1718文学:
+    cls1: 1
+    cls2: 39
+  172491491:
+    cls1: 
+    cls2: 80
+  176mp3服务器:
+    cls1: 13
+    cls2: 418
+  17K小说网:
+    cls1: 1
+    cls2: 8
+  1882896385:
+    cls1: 
+    cls2: 80
+  188财富邮箱:
+    cls1: 12
+    cls2: 1031
+  189邮箱:
+    cls1: 12
+    cls2: 1036
+  19楼论坛:
+    cls1: 25
+    cls2: 448
+  19楼论坛图片:
+    cls1: 25
+    cls2: 449
+  21CN免费邮箱:
+    cls1: 12
+    cls2: 410
+  2980邮箱:
+    cls1: 12
+    cls2: 1043
+  3366小游戏图片服务器:
+    cls1: 11
+    cls2: 451
+  33小说:
+    cls1: 1
+    cls2: 44
+  3G小说网:
+    cls1: 1
+    cls2: 458
+  3G门户新闻:
+    cls1: 4
+    cls2: 145
+  3z中文网:
+    cls1: 1
+    cls2: 22
+  4399游戏图片服务器:
+    cls1: 16
+    cls2: 826
+  51酷吧:
+    cls1: 10
+    cls2: 461
+  58团购:
+    cls1: 5
+    cls2: 137
+  7k7k小游戏:
+    cls1: 11
+    cls2: 462
+  86中文网:
+    cls1: 1
+    cls2: 28
+  89文学网:
+    cls1: 1
+    cls2: 10
+  91单机:
+    cls1: 11
+    cls2: 465
+  91娱乐门户:
+    cls1: 10
+    cls2: 300
+  AIYUN中文网2:
+    cls1: 1
+    cls2: 87
+  AIYUN中文网:
+    cls1: 1
+    cls2: 87
+  ATI:
+    cls1: 3
+    cls2: 471
+  Amazon Web服务:
+    cls1: 14
+    cls2: 828
+  Amazon:
+    cls1: 14
+    cls2: 469
+  Apache Tomcat:
+    cls1: 14
+    cls2: 829
+  Apple Store:
+    cls1: 5
+    cls2: 360
+  Apple应用推荐站:
+    cls1: 20
+    cls2: 831
+  BigBoss:
+    cls1: 14
+    cls2: 832
+  CDC游戏集团:
+    cls1: 11
+    cls2: 1059
+  CDN:
+    cls1: 14
+    cls2: 475
+  Cloud:
+    cls1: 14
+    cls2: 476
+  Droidhen:
+    cls1: 11
+    cls2: 833
+  Engadget:
+    cls1: 14
+    cls2: 834
+  E品中文:
+    cls1: 1
+    cls2: 47
+  Foxmail邮箱:
+    cls1: 12
+    cls2: 1040
+  GPS定位:
+    cls1: 15
+    cls2: 421
+  Gmail邮箱:
+    cls1: 12
+    cls2: 1038
+  GyPSiiR:
+    cls1: 20
+    cls2: 487
+  HTC Sense:
+    cls1: 14
+    cls2: 490
+  HTC网络:
+    cls1: 14
+    cls2: 836
+  HotMail:
+    cls1: 12
+    cls2: 1034
+  IS/iSpeak官方网站:
+    cls1: 29
+    cls2: 1066
+  JJ斗地主官网:
+    cls1: 11
+    cls2: 839
+  LBS移动广告:
+    cls1: 28
+    cls2: 498
+  MIUI:
+    cls1: 20
+    cls2: 440
+  MediaFed:
+    cls1: 15
+    cls2: 500
+  N多网:
+    cls1: 20
+    cls2: 437
+  N维空间:
+    cls1: 1
+    cls2: 50
+  PPS网络电视:
+    cls1: 2
+    cls2: 124
+  PPlive:
+    cls1: 2
+    cls2: 113
+  Phpinfo:
+    cls1: 20
+    cls2: 503
+  Plat96:
+    cls1: 5
+    cls2: 505
+  QQ书城:
+    cls1: 1
+    cls2: 1024
+  QQ空间图片服务器:
+    cls1: 16
+    cls2: 509
+  QQ邮箱:
+    cls1: 12
+    cls2: 924
+  TOM幻剑书盟:
+    cls1: 1
+    cls2: 131
+  Tanx广告管理系统:
+    cls1: 14
+    cls2: 512
+  Tap Sonic音乐:
+    cls1: 13
+    cls2: 841
+  Teamlava:
+    cls1: 11
+    cls2: 842
+  TomVIP邮箱:
+    cls1: 12
+    cls2: 131
+  Tom免费邮箱:
+    cls1: 12
+    cls2: 131
+  U-Play:
+    cls1: 11
+    cls2: 844
+  UC中文网:
+    cls1: 1
+    cls2: 57
+  UU书库:
+    cls1: 1
+    cls2: 56
+  VIP126尊享邮箱:
+    cls1: 12
+    cls2: 1033
+  VIP163尊贵邮箱:
+    cls1: 12
+    cls2: 1032
+  VOA新闻:
+    cls1: 4
+    cls2: 516
+  VeryCD:
+    cls1: 17
+    cls2: 276
+  WindowsPhone应用市场:
+    cls1: 14
+    cls2: 518
+  acs86广告:
+    cls1: 28
+    cls2: 466
+  admob手机广告平台:
+    cls1: 28
+    cls2: 407
+  adsame:
+    cls1: 14
+    cls2: 468
+  cntv微博:
+    cls1: 32
+    cls2: 0
+  enligner.com:
+    cls1: 33
+    cls2: 481
+  geilicdn:
+    cls1: 15
+    cls2: 277
+  hotmusique.com:
+    cls1: 33
+    cls2: 488
+  iHandysoft:
+    cls1: 14
+    cls2: 838
+  kvbar:
+    cls1: 10
+    cls2: 497
+  m-tunes:
+    cls1: 13
+    cls2: 502
+  nearMe:
+    cls1: 20
+    cls2: 398
+  phpwind:
+    cls1: 25
+    cls2: 324
+  phpwind官方网:
+    cls1: 14
+    cls2: 504
+  smartcity体验网站:
+    cls1: 5
+    cls2: 840
+  yandex.net:
+    cls1: 15
+    cls2: 520
+  yeah.net网易免费邮箱:
+    cls1: 12
+    cls2: 1030
+  yoka时尚网:
+    cls1: 3
+    cls2: 521
+  zaker:
+    cls1: 20
+    cls2: 522
+  一步二步多媒体实验网:
+    cls1: 11
+    cls2: 790
+  万书楼:
+    cls1: 1
+    cls2: 82
+  万普广告:
+    cls1: 28
+    cls2: 420
+  三五小说网:
+    cls1: 1
+    cls2: 24
+  三星电子:
+    cls1: 14
+    cls2: 694
+  上城区政府:
+    cls1: 7
+    cls2: 167
+  上海蓉胜:
+    cls1: 14
+    cls2: 698
+  下城区政府:
+    cls1: 7
+    cls2: 169
+  下沙网:
+    cls1: 3
+    cls2: 140
+  下载吧:
+    cls1: 20
+    cls2: 771
+  世纪佳缘图片:
+    cls1: 19
+    cls2: 707
+  世纪天成:
+    cls1: 11
+    cls2: 1063
+  东方博雅:
+    cls1: 5
+    cls2: 582
+  东方宽频:
+    cls1: 2
+    cls2: 583
+  个人导航急先锋:
+    cls1: 15
+    cls2: 598
+  个性化谷歌广告:
+    cls1: 28
+    cls2: 600
+  中华纺织网:
+    cls1: 5
+    cls2: 269
+  中华邮箱:
+    cls1: 12
+    cls2: 1044
+  中国2010年上海世博会:
+    cls1: 3
+    cls2: 292
+  中国OCG工作室:
+    cls1: 14
+    cls2: 906
+  中国化妆品网1:
+    cls1: 22
+    cls2: 314
+  中国化工网:
+    cls1: 5
+    cls2: 274
+  中国医药网:
+    cls1: 5
+    cls2: 268
+  中国台州网:
+    cls1: 4
+    cls2: 1071
+  中国新闻网1:
+    cls1: 4
+    cls2: 244
+  中国新闻网:
+    cls1: 4
+    cls2: 244
+  中国机械网:
+    cls1: 5
+    cls2: 265
+  中国民生银行:
+    cls1: 7
+    cls2: 908
+  中国红娘网:
+    cls1: 19
+    cls2: 341
+  中文图片站:
+    cls1: 16
+    cls2: 822
+  中文在线网:
+    cls1: 1
+    cls2: 141
+  临安县政府:
+    cls1: 7
+    cls2: 178
+  久久读书人:
+    cls1: 1
+    cls2: 37
+  久游网:
+    cls1: 11
+    cls2: 1062
+  乐商店:
+    cls1: 20
+    cls2: 643
+  乐畅信息:
+    cls1: 14
+    cls2: 642
+  乐视网图片服务器:
+    cls1: 16
+    cls2: 644
+  乐逗科技1:
+    cls1: 11
+    cls2: 414
+  乐逗科技2:
+    cls1: 11
+    cls2: 414
+  乐逗科技:
+    cls1: 11
+    cls2: 414
+  九台打折网:
+    cls1: 5
+    cls2: 629
+  书包网:
+    cls1: 1
+    cls2: 719
+  书旗网:
+    cls1: 1
+    cls2: 9
+  书楼:
+    cls1: 1
+    cls2: 720
+  书楼小说网:
+    cls1: 1
+    cls2: 71
+  书香云集:
+    cls1: 1
+    cls2: 723
+  云中书城:
+    cls1: 1
+    cls2: 807
+  云引擎应用平台:
+    cls1: 14
+    cls2: 806
+  互动通天图:
+    cls1: 14
+    cls2: 862
+  交通银行1:
+    cls1: 8
+    cls2: 229
+  京东网上商城:
+    cls1: 5
+    cls2: 626
+  亲亲小说:
+    cls1: 1
+    cls2: 42
+  人民微博:
+    cls1: 32
+    cls2: 134
+  亿邮:
+    cls1: 12
+    cls2: 1039
+  优扬新媒:
+    cls1: 14
+    cls2: 798
+  余杭区政府:
+    cls1: 7
+    cls2: 175
+  全球五金网:
+    cls1: 5
+    cls2: 266
+  八爪鱼:
+    cls1: 11
+    cls2: 1060
+  六间房1:
+    cls1: 2
+    cls2: 119
+  六间房2:
+    cls1: 2
+    cls2: 119
+  冰川网络:
+    cls1: 11
+    cls2: 1061
+  冷笑话:
+    cls1: 10
+    cls2: 647
+  凤凰微博:
+    cls1: 32
+    cls2: 0
+  凤凰新闻1:
+    cls1: 4
+    cls2: 593
+  凤凰网:
+    cls1: 16
+    cls2: 593
+  凤凰网图片服务器:
+    cls1: 16
+    cls2: 593
+  凤凰资讯:
+    cls1: 4
+    cls2: 593
+  凤鸣轩言情小说书库:
+    cls1: 1
+    cls2: 64
+  加网:
+    cls1: 20
+    cls2: 293
+  劲舞团:
+    cls1: 11
+    cls2: 1062
+  华夏原创:
+    cls1: 1
+    cls2: 41
+  华夏天空:
+    cls1: 1
+    cls2: 40
+  南太湖网:
+    cls1: 3
+    cls2: 669
+  南方周末:
+    cls1: 4
+    cls2: 667
+  又拍网:
+    cls1: 16
+    cls2: 267
+  友乐园:
+    cls1: 10
+    cls2: 900
+  友盟2:
+    cls1: 3
+    cls2: 799
+  台州人才网:
+    cls1: 9
+    cls2: 1068
+  台州信息港:
+    cls1: 3
+    cls2: 1064
+  台州房地产网:
+    cls1: 27
+    cls2: 1067
+  台州赶集网:
+    cls1: 3
+    cls2: 136
+  叶子悠悠中文网:
+    cls1: 1
+    cls2: 75
+  同心网图片:
+    cls1: 19
+    cls2: 746
+  同花顺网络科技网:
+    cls1: 8
+    cls2: 745
+  名书楼1:
+    cls1: 1
+    cls2: 86
+  名书楼2:
+    cls1: 1
+    cls2: 86
+  周末画报iweekly:
+    cls1: 16
+    cls2: 825
+  和讯读书:
+    cls1: 1
+    cls2: 254
+  和讯财经微博:
+    cls1: 32
+    cls2: 0
+  和讯邮:
+    cls1: 12
+    cls2: 1047
+  品书网:
+    cls1: 1
+    cls2: 88
+  哇棒:
+    cls1: 11
+    cls2: 750
+  唯思智达无线传媒:
+    cls1: 10
+    cls2: 888
+  四月天:
+    cls1: 1
+    cls2: 52
+  回味书库:
+    cls1: 1
+    cls2: 102
+  国美:
+    cls1: 5
+    cls2: 356
+  图片网:
+    cls1: 16
+    cls2: 279
+  圈子文学网:
+    cls1: 1
+    cls2: 89
+  地税报税系统:
+    cls1: 7
+    cls2: 159
+  多特软件:
+    cls1: 20
+    cls2: 304
+  多玩游戏网:
+    cls1: 11
+    cls2: 588
+  多盟智能手机广告专家:
+    cls1: 28
+    cls2: 380
+  大众点评网图片:
+    cls1: 15
+    cls2: 568
+  大话西游2:
+    cls1: 11
+    cls2: 146
+  天拓立方:
+    cls1: 14
+    cls2: 882
+  天智通达:
+    cls1: 1
+    cls2: 743
+  天翼文学:
+    cls1: 1
+    cls2: 45
+  奇艺图片服务器:
+    cls1: 16
+    cls2: 680
+  奇雅小说网:
+    cls1: 1
+    cls2: 74
+  奥菲网软件下载服务器:
+    cls1: 20
+    cls2: 377
+  好凤:
+    cls1: 14
+    cls2: 609
+  好大夫在线图片服务器:
+    cls1: 15
+    cls2: 607
+  好耶广告:
+    cls1: 28
+    cls2: 441
+  好豆网:
+    cls1: 15
+    cls2: 608
+  好音乐:
+    cls1: 13
+    cls2: 610
+  安卓动态壁纸:
+    cls1: 16
+    cls2: 542
+  安卓壁纸网:
+    cls1: 16
+    cls2: 541
+  安卓游戏:
+    cls1: 11
+    cls2: 544
+  安卓游戏分享:
+    cls1: 25
+    cls2: 545
+  安卓网1:
+    cls1: 20
+    cls2: 372
+  安居客CDN:
+    cls1: 16
+    cls2: 538
+  安智网:
+    cls1: 20
+    cls2: 409
+  安沃智能移动广告平台:
+    cls1: 28
+    cls2: 390
+  完美世界:
+    cls1: 11
+    cls2: 1058
+  家庭KTV:
+    cls1: 10
+    cls2: 618
+  富阳县政府:
+    cls1: 7
+    cls2: 176
+  导航:
+    cls1: 15
+    cls2: 854
+  小燕文学:
+    cls1: 1
+    cls2: 85
+  小米科技:
+    cls1: 14
+    cls2: 774
+  小说原创网:
+    cls1: 1
+    cls2: 6
+  小说天下:
+    cls1: 1
+    cls2: 48
+  尚书中文:
+    cls1: 1
+    cls2: 35
+  尚凯网:
+    cls1: 33
+    cls2: 699
+  尚邮:
+    cls1: 12
+    cls2: 1046
+  就爱中文网:
+    cls1: 1
+    cls2: 67
+  就爱读书网:
+    cls1: 1
+    cls2: 12
+  巍巍的学习站:
+    cls1: 33
+    cls2: 761
+  市一医院:
+    cls1: 26
+    cls2: 338
+  布丁团购:
+    cls1: 5
+    cls2: 558
+  师范生:
+    cls1: 9
+    cls2: 705
+  希网网络:
+    cls1: 14
+    cls2: 770
+  帝联科技:
+    cls1: 14
+    cls2: 575
+  幻世中文网:
+    cls1: 1
+    cls2: 51
+  广告管理平台:
+    cls1: 28
+    cls2: 602
+  广州捷游:
+    cls1: 11
+    cls2: 603
+  开启商店:
+    cls1: 20
+    cls2: 423
+  开心听:
+    cls1: 13
+    cls2: 389
+  异界小说网:
+    cls1: 1
+    cls2: 76
+  弈动madserving:
+    cls1: 28
+    cls2: 795
+  弹弹堂:
+    cls1: 11
+    cls2: 284
+  微博校园:
+    cls1: 32
+    cls2: 0
+  微手机:
+    cls1: 19
+    cls2: 758
+  微软update:
+    cls1: 17
+    cls2: 397
+  德清人才网:
+    cls1: 9
+    cls2: 573
+  心动科技:
+    cls1: 14
+    cls2: 777
+  快吧游戏:
+    cls1: 11
+    cls2: 639
+  快播网:
+    cls1: 2
+    cls2: 129
+  悠视网:
+    cls1: 2
+    cls2: 123
+  愤怒的小鸟:
+    cls1: 11
+    cls2: 404
+  我的纯粹:
+    cls1: 33
+    cls2: 768
+  我看书斋:
+    cls1: 1
+    cls2: 78
+  扒饭网:
+    cls1: 20
+    cls2: 654
+  掌上极浩:
+    cls1: 11
+    cls2: 903
+  搜房微博:
+    cls1: 32
+    cls2: 0
+  搜狐VIP邮箱:
+    cls1: 12
+    cls2: 922
+  搜狐企业邮箱:
+    cls1: 12
+    cls2: 922
+  搜狐体育2:
+    cls1: 18
+    cls2: 922
+  搜狐健康:
+    cls1: 26
+    cls2: 922
+  搜狐公益:
+    cls1: 34
+    cls2: 922
+  搜狐博客2:
+    cls1: 33
+    cls2: 922
+  搜狐图片服务器:
+    cls1: 16
+    cls2: 922
+  搜狐女性2:
+    cls1: 22
+    cls2: 922
+  搜狐娱乐2:
+    cls1: 10
+    cls2: 922
+  搜狐孕婴:
+    cls1: 23
+    cls2: 922
+  搜狐微博:
+    cls1: 32
+    cls2: 922
+  搜狐搜索:
+    cls1: 6
+    cls2: 922
+  搜狐教育:
+    cls1: 23
+    cls2: 922
+  搜狐文化:
+    cls1: 1
+    cls2: 922
+  搜狐新闻2:
+    cls1: 4
+    cls2: 922
+  搜狐新闻:
+    cls1: 4
+    cls2: 922
+  搜狐新闻客户端:
+    cls1: 4
+    cls2: 922
+  搜狐旅游:
+    cls1: 24
+    cls2: 922
+  搜狐爱丽女性:
+    cls1: 22
+    cls2: 922
+  搜狐社区:
+    cls1: 25
+    cls2: 922
+  搜狐绿色:
+    cls1: 38
+    cls2: 922
+  搜狐视频1:
+    cls1: 2
+    cls2: 922
+  搜狐读书2:
+    cls1: 1
+    cls2: 922
+  搜狐财经2:
+    cls1: 8
+    cls2: 922
+  搜狐邮箱:
+    cls1: 12
+    cls2: 922
+  搜狐闪电邮箱:
+    cls1: 12
+    cls2: 922
+  搜狗闪电邮箱:
+    cls1: 12
+    cls2: 144
+  摩尔电子书:
+    cls1: 1
+    cls2: 662
+  播视网:
+    cls1: 2
+    cls2: 557
+  文三街在线:
+    cls1: 14
+    cls2: 252
+  文学天地:
+    cls1: 1
+    cls2: 43
+  文昌书院:
+    cls1: 1
+    cls2: 93
+  新华全媒:
+    cls1: 14
+    cls2: 781
+  新华微博:
+    cls1: 32
+    cls2: 0
+  新华网1:
+    cls1: 3
+    cls2: 133
+  新昌信息港:
+    cls1: 14
+    cls2: 779
+  新浪VIP邮箱:
+    cls1: 12
+    cls2: 923
+  新浪uc:
+    cls1: 20
+    cls2: 923
+  新浪专业企业邮箱:
+    cls1: 12
+    cls2: 923
+  新浪乐库:
+    cls1: 13
+    cls2: 923
+  新浪体育2:
+    cls1: 18
+    cls2: 923
+  新浪健康:
+    cls1: 26
+    cls2: 923
+  新浪免费邮箱:
+    cls1: 12
+    cls2: 923
+  新浪公益:
+    cls1: 34
+    cls2: 923
+  新浪博客1:
+    cls1: 33
+    cls2: 923
+  新浪图片服务器:
+    cls1: 16
+    cls2: 370
+  新浪女性2:
+    cls1: 22
+    cls2: 923
+  新浪尚品:
+    cls1: 39
+    cls2: 923
+  新浪应用:
+    cls1: 15
+    cls2: 923
+  新浪微博2:
+    cls1: 32
+    cls2: 923
+  新浪微博:
+    cls1: 32
+    cls2: 923
+  新浪微博图片服务器:
+    cls1: 32
+    cls2: 923
+  新浪房产2:
+    cls1: 27
+    cls2: 923
+  新浪手机:
+    cls1: 20
+    cls2: 923
+  新浪搜索2:
+    cls1: 6
+    cls2: 923
+  新浪收藏:
+    cls1: 40
+    cls2: 923
+  新浪教育1:
+    cls1: 23
+    cls2: 923
+  新浪新闻2:
+    cls1: 4
+    cls2: 923
+  新浪旅游:
+    cls1: 24
+    cls2: 923
+  新浪星座2:
+    cls1: 35
+    cls2: 923
+  新浪汽车2:
+    cls1: 21
+    cls2: 923
+  新浪游戏1:
+    cls1: 11
+    cls2: 923
+  新浪环保:
+    cls1: 38
+    cls2: 923
+  新浪科技2:
+    cls1: 14
+    cls2: 923
+  新浪育儿:
+    cls1: 23
+    cls2: 923
+  新浪视频2:
+    cls1: 2
+    cls2: 923
+  新浪论坛2:
+    cls1: 25
+    cls2: 923
+  新浪读书1:
+    cls1: 1
+    cls2: 923
+  新浪读书:
+    cls1: 1
+    cls2: 5
+  新浪财经2:
+    cls1: 8
+    cls2: 923
+  新科技:
+    cls1: 20
+    cls2: 782
+  新网游专题网:
+    cls1: 11
+    cls2: 785
+  方哲乐园:
+    cls1: 10
+    cls2: 589
+  无弹窗小说:
+    cls1: 1
+    cls2: 73
+  无敌龙书屋:
+    cls1: 1
+    cls2: 34
+  无线业务查询后台:
+    cls1: 15
+    cls2: 929
+  时光网1:
+    cls1: 2
+    cls2: 432
+  时光网2:
+    cls1: 2
+    cls2: 433
+  星星网:
+    cls1: 33
+    cls2: 786
+  星脉音乐网:
+    cls1: 13
+    cls2: 892
+  星际争霸2:
+    cls1: 11
+    cls2: 146
+  晋江文学城:
+    cls1: 1
+    cls2: 5
+  晶赞广告有限公司:
+    cls1: 28
+    cls2: 627
+  智能手机网:
+    cls1: 14
+    cls2: 905
+  暗黑破坏神3:
+    cls1: 11
+    cls2: 1056
+  暴雪战网1:
+    cls1: 11
+    cls2: 1056
+  暴雪战网2:
+    cls1: 11
+    cls2: 1056
+  暴风影音:
+    cls1: 2
+    cls2: 125
+  最言情:
+    cls1: 1
+    cls2: 79
+  有乐导航1:
+    cls1: 6
+    cls2: 800
+  有乐导航2:
+    cls1: 6
+    cls2: 800
+  有乐导航4:
+    cls1: 6
+    cls2: 800
+  有乐导航5:
+    cls1: 6
+    cls2: 800
+  有乐导航6:
+    cls1: 6
+    cls2: 800
+  有问必答网图片服务器:
+    cls1: 16
+    cls2: 802
+  未知下载服务器:
+    cls1: 17
+    cls2: 765
+  机锋网1:
+    cls1: 20
+    cls2: 303
+  杭州工商局:
+    cls1: 7
+    cls2: 165
+  杭州市公安局:
+    cls1: 7
+    cls2: 163
+  杭州市劳动保障网:
+    cls1: 7
+    cls2: 162
+  杭州市房管局:
+    cls1: 7
+    cls2: 161
+  杭州市政府:
+    cls1: 7
+    cls2: 160
+  杭州海关:
+    cls1: 7
+    cls2: 148
+  杭州烟草商务网:
+    cls1: 7
+    cls2: 164
+  杭州电子科技大学:
+    cls1: 23
+    cls2: 331
+  果合移动广告:
+    cls1: 28
+    cls2: 604
+  株洲在线论坛:
+    cls1: 25
+    cls2: 913
+  梦幻西游:
+    cls1: 11
+    cls2: 146
+  步入专业加速:
+    cls1: 14
+    cls2: 560
+  武林外传:
+    cls1: 11
+    cls2: 1058
+  比购宝:
+    cls1: 5
+    cls2: 357
+  汉书小说网:
+    cls1: 1
+    cls2: 66
+  江干区政府:
+    cls1: 7
+    cls2: 168
+  江民杀毒:
+    cls1: 20
+    cls2: 620
+  江苏卫视:
+    cls1: 2
+    cls2: 127
+  汽车之家图片2:
+    cls1: 16
+    cls2: 872
+  汽车图片网:
+    cls1: 16
+    cls2: 683
+  沃邮箱:
+    cls1: 12
+    cls2: 1037
+  沪江文件域:
+    cls1: 14
+    cls2: 614
+  沸腾文学:
+    cls1: 1
+    cls2: 63
+  法律微博:
+    cls1: 32
+    cls2: 0
+  泡书吧:
+    cls1: 1
+    cls2: 20
+  浙医一院:
+    cls1: 26
+    cls2: 336
+  浙医二院:
+    cls1: 26
+    cls2: 337
+  浙江传媒学院:
+    cls1: 23
+    cls2: 333
+  浙江农村信用社:
+    cls1: 7
+    cls2: 156
+  浙江国税报税系统:
+    cls1: 7
+    cls2: 151
+  浙江在线:
+    cls1: 4
+    cls2: 245
+  浙江在线微博:
+    cls1: 32
+    cls2: 0
+  浙江大学:
+    cls1: 23
+    cls2: 327
+  浙江工业大学:
+    cls1: 23
+    cls2: 328
+  浙江工商大学:
+    cls1: 23
+    cls2: 329
+  浙江理工大学:
+    cls1: 23
+    cls2: 330
+  浙江省人力资源和社会保障网:
+    cls1: 7
+    cls2: 153
+  浙江省人民政府:
+    cls1: 7
+    cls2: 158
+  浙江省公安厅:
+    cls1: 7
+    cls2: 154
+  浙江省商务厅:
+    cls1: 7
+    cls2: 150
+  浙江省工商行政管理局:
+    cls1: 7
+    cls2: 155
+  浙江省旅游局:
+    cls1: 24
+    cls2: 322
+  浙江省食品药品监督管理局:
+    cls1: 7
+    cls2: 157
+  海盗电台:
+    cls1: 13
+    cls2: 857
+  涅破小说网:
+    cls1: 1
+    cls2: 18
+  淘宝联盟:
+    cls1: 5
+    cls2: 733
+  淘米网:
+    cls1: 11
+    cls2: 364
+  淘花网:
+    cls1: 5
+    cls2: 353
+  深圳市斯美通科技有限公司邮箱后台系统:
+    cls1: 12
+    cls2: 877
+  深圳市盟创奇迹科技有限公司:
+    cls1: 14
+    cls2: 702
+  深讯和1:
+    cls1: 20
+    cls2: 416
+  深讯和2:
+    cls1: 20
+    cls2: 416
+  混酱三国:
+    cls1: 11
+    cls2: 863
+  温州微博:
+    cls1: 32
+    cls2: 0
+  湖州8频道:
+    cls1: 25
+    cls2: 611
+  滨江区政府:
+    cls1: 7
+    cls2: 172
+  瀚宇网1:
+    cls1: 11
+    cls2: 605
+  瀚宇网2:
+    cls1: 11
+    cls2: 605
+  炫亮实业:
+    cls1: 14
+    cls2: 894
+  点滴网:
+    cls1: 14
+    cls2: 578
+  烟波小说网:
+    cls1: 1
+    cls2: 1
+  热点书库:
+    cls1: 1
+    cls2: 46
+  热血江湖:
+    cls1: 11
+    cls2: 1059
+  热讯:
+    cls1: 17
+    cls2: 690
+  烽火中文网2:
+    cls1: 1
+    cls2: 84
+  燃文小说:
+    cls1: 1
+    cls2: 27
+  爆米花网:
+    cls1: 2
+    cls2: 128
+  爱卡汽车图片:
+    cls1: 21
+    cls2: 528
+  爱听网:
+    cls1: 10
+    cls2: 533
+  爱微:
+    cls1: 20
+    cls2: 534
+  爱淘实惠:
+    cls1: 5
+    cls2: 849
+  爱看文学网:
+    cls1: 1
+    cls2: 58
+  牛书网:
+    cls1: 1
+    cls2: 672
+  玩呀网:
+    cls1: 11
+    cls2: 753
+  理想文学:
+    cls1: 1
+    cls2: 69
+  瑞音数码科技:
+    cls1: 14
+    cls2: 875
+  生意宝:
+    cls1: 5
+    cls2: 270
+  生意社:
+    cls1: 5
+    cls2: 271
+  百书库:
+    cls1: 1
+    cls2: 59
+  百书斋:
+    cls1: 1
+    cls2: 97
+  百度MP3:
+    cls1: 13
+    cls2: 284
+  百度ting！:
+    cls1: 13
+    cls2: 284
+  百度专利搜索:
+    cls1: 15
+    cls2: 284
+  百度公益:
+    cls1: 34
+    cls2: 284
+  百度团购:
+    cls1: 5
+    cls2: 284
+  百度图片:
+    cls1: 16
+    cls2: 284
+  百度图片服务器:
+    cls1: 16
+    cls2: 550
+  百度地图2:
+    cls1: 15
+    cls2: 284
+  百度基金会:
+    cls1: 8
+    cls2: 284
+  百度天空游戏:
+    cls1: 11
+    cls2: 284
+  百度寻人:
+    cls1: 15
+    cls2: 284
+  百度应用2:
+    cls1: 20
+    cls2: 284
+  百度房产:
+    cls1: 27
+    cls2: 284
+  百度搜藏:
+    cls1: 15
+    cls2: 284
+  百度文库:
+    cls1: 1
+    cls2: 284
+  百度新知:
+    cls1: 6
+    cls2: 284
+  百度新闻2:
+    cls1: 4
+    cls2: 284
+  百度新闻:
+    cls1: 4
+    cls2: 284
+  百度旅游:
+    cls1: 24
+    cls2: 284
+  百度无线:
+    cls1: 20
+    cls2: 284
+  百度浏览器:
+    cls1: 20
+    cls2: 284
+  百度游戏2:
+    cls1: 11
+    cls2: 284
+  百度游戏资讯:
+    cls1: 11
+    cls2: 284
+  百度百科2:
+    cls1: 15
+    cls2: 284
+  百度知道2:
+    cls1: 6
+    cls2: 284
+  百度移动应用:
+    cls1: 20
+    cls2: 284
+  百度空间2:
+    cls1: 33
+    cls2: 284
+  百度经验:
+    cls1: 15
+    cls2: 284
+  百度翻译:
+    cls1: 15
+    cls2: 284
+  百度老年搜索:
+    cls1: 6
+    cls2: 284
+  百度视频2:
+    cls1: 2
+    cls2: 284
+  百度词典:
+    cls1: 15
+    cls2: 284
+  百度贴吧2:
+    cls1: 25
+    cls2: 284
+  百度身边2:
+    cls1: 15
+    cls2: 284
+  百度阅读:
+    cls1: 1
+    cls2: 284
+  百度音乐掌门人:
+    cls1: 13
+    cls2: 284
+  百诺通达:
+    cls1: 14
+    cls2: 852
+  百阅:
+    cls1: 14
+    cls2: 552
+  皮皮网2:
+    cls1: 2
+    cls2: 116
+  盛大自助广告平台:
+    cls1: 28
+    cls2: 704
+  相片分享:
+    cls1: 10
+    cls2: 772
+  看书网:
+    cls1: 1
+    cls2: 25
+  硅谷动力:
+    cls1: 14
+    cls2: 251
+  神马小说网:
+    cls1: 1
+    cls2: 95
+  秋虎漫画网:
+    cls1: 1
+    cls2: 29
+  移云:
+    cls1: 14
+    cls2: 793
+  移动冲浪:
+    cls1: 3
+    cls2: 896
+  移动微博:
+    cls1: 32
+    cls2: 0
+  移动游戏:
+    cls1: 11
+    cls2: 792
+  移动音乐1:
+    cls1: 13
+    cls2: 374
+  移动音乐2:
+    cls1: 13
+    cls2: 374
+  窝窝团cdn:
+    cls1: 5
+    cls2: 889
+  笑话大全:
+    cls1: 10
+    cls2: 776
+  笔下文学1:
+    cls1: 1
+    cls2: 91
+  笔下文学2:
+    cls1: 1
+    cls2: 91
+  笨狗漫画:
+    cls1: 1
+    cls2: 30
+  第一应用:
+    cls1: 11
+    cls2: 855
+  第一文学2:
+    cls1: 1
+    cls2: 60
+  第一电影网:
+    cls1: 2
+    cls2: 576
+  米斯wap:
+    cls1: 11
+    cls2: 659
+  米迪手机广告平台:
+    cls1: 14
+    cls2: 658
+  精灵在线网络技术（北京）有限公司:
+    cls1: 14
+    cls2: 628
+  精英教育联盟:
+    cls1: 23
+    cls2: 334
+  糖蒜广播:
+    cls1: 13
+    cls2: 881
+  糗事百科:
+    cls1: 25
+    cls2: 687
+  纵横书海:
+    cls1: 1
+    cls2: 53
+  绍兴E网1:
+    cls1: 3
+    cls2: 700
+  维阅V漫画:
+    cls1: 1
+    cls2: 763
+  绿缘房产网:
+    cls1: 27
+    cls2: 1064
+  网址导航:
+    cls1: 15
+    cls2: 887
+  网易企业邮箱:
+    cls1: 12
+    cls2: 146
+  网易体育1:
+    cls1: 18
+    cls2: 146
+  网易女人1:
+    cls1: 22
+    cls2: 146
+  网易应用:
+    cls1: 20
+    cls2: 146
+  网易微博:
+    cls1: 32
+    cls2: 146
+  网易房产1:
+    cls1: 27
+    cls2: 146
+  网易新闻1:
+    cls1: 4
+    cls2: 146
+  网易新闻:
+    cls1: 4
+    cls2: 146
+  网易旅游1:
+    cls1: 24
+    cls2: 146
+  网易汽车1:
+    cls1: 21
+    cls2: 146
+  网易游戏1:
+    cls1: 11
+    cls2: 146
+  网易科技1:
+    cls1: 14
+    cls2: 146
+  网易视频:
+    cls1: 2
+    cls2: 146
+  网易论坛1:
+    cls1: 25
+    cls2: 146
+  网站导航:
+    cls1: 15
+    cls2: 284
+  网络营收优化平台:
+    cls1: 28
+    cls2: 379
+  美丽说1:
+    cls1: 22
+    cls2: 400
+  美丽说2:
+    cls1: 22
+    cls2: 401
+  美丽说图片服务器:
+    cls1: 16
+    cls2: 402
+  美团网2:
+    cls1: 5
+    cls2: 349
+  美图秀秀网:
+    cls1: 16
+    cls2: 653
+  聚胜万合:
+    cls1: 28
+    cls2: 442
+  腾讯IM:
+    cls1: 20
+    cls2: 924
+  腾讯QQ三国:
+    cls1: 11
+    cls2: 924
+  腾讯QQ书城2:
+    cls1: 1
+    cls2: 924
+  腾讯QQ书签:
+    cls1: 15
+    cls2: 924
+  腾讯QQ仙侠传:
+    cls1: 11
+    cls2: 924
+  腾讯QQ商城:
+    cls1: 5
+    cls2: 924
+  腾讯QQ堂:
+    cls1: 11
+    cls2: 924
+  腾讯QQ宝贝:
+    cls1: 11
+    cls2: 924
+  腾讯QQ游戏:
+    cls1: 11
+    cls2: 924
+  腾讯QQ炫舞:
+    cls1: 11
+    cls2: 924
+  腾讯QQ秀图片服务器:
+    cls1: 16
+    cls2: 924
+  腾讯QQ空间2:
+    cls1: 33
+    cls2: 924
+  腾讯QQ花园:
+    cls1: 11
+    cls2: 924
+  腾讯QQ西游:
+    cls1: 11
+    cls2: 924
+  腾讯QQ音乐2:
+    cls1: 13
+    cls2: 924
+  腾讯QQ音速:
+    cls1: 11
+    cls2: 924
+  腾讯QQ飞车:
+    cls1: 11
+    cls2: 924
+  腾讯七雄争霸:
+    cls1: 11
+    cls2: 924
+  腾讯丝路英雄:
+    cls1: 11
+    cls2: 924
+  腾讯企业邮箱:
+    cls1: 12
+    cls2: 924
+  腾讯体育2:
+    cls1: 18
+    cls2: 924
+  腾讯公益:
+    cls1: 34
+    cls2: 924
+  腾讯动漫频道1:
+    cls1: 1
+    cls2: 924
+  腾讯原创动漫:
+    cls1: 1
+    cls2: 924
+  腾讯图片服务器1:
+    cls1: 16
+    cls2: 924
+  腾讯图片服务器2:
+    cls1: 16
+    cls2: 924
+  腾讯地下城与勇士:
+    cls1: 11
+    cls2: 924
+  腾讯大明龙权:
+    cls1: 11
+    cls2: 924
+  腾讯女性2:
+    cls1: 22
+    cls2: 924
+  腾讯官网:
+    cls1: 14
+    cls2: 735
+  腾讯寻仙:
+    cls1: 11
+    cls2: 924
+  腾讯小熊梦工厂:
+    cls1: 11
+    cls2: 924
+  腾讯小白大作战:
+    cls1: 11
+    cls2: 924
+  腾讯微信:
+    cls1: 29
+    cls2: 924
+  腾讯微博:
+    cls1: 32
+    cls2: 924
+  腾讯战地之王:
+    cls1: 11
+    cls2: 924
+  腾讯房产:
+    cls1: 27
+    cls2: 924
+  腾讯手机QQ:
+    cls1: 20
+    cls2: 924
+  腾讯教育2:
+    cls1: 23
+    cls2: 924
+  腾讯新闻2:
+    cls1: 4
+    cls2: 924
+  腾讯新闻:
+    cls1: 4
+    cls2: 924
+  腾讯楚河汉界:
+    cls1: 11
+    cls2: 924
+  腾讯汽车2:
+    cls1: 21
+    cls2: 924
+  腾讯洛克王国:
+    cls1: 11
+    cls2: 924
+  腾讯游戏4:
+    cls1: 11
+    cls2: 924
+  腾讯烽火战国:
+    cls1: 11
+    cls2: 924
+  腾讯科技2:
+    cls1: 14
+    cls2: 924
+  腾讯穿越火线:
+    cls1: 11
+    cls2: 924
+  腾讯网页QQ1:
+    cls1: 29
+    cls2: 924
+  腾讯网页QQ2:
+    cls1: 29
+    cls2: 924
+  腾讯育儿:
+    cls1: 23
+    cls2: 924
+  腾讯自由幻想:
+    cls1: 11
+    cls2: 924
+  腾讯英雄联盟:
+    cls1: 11
+    cls2: 924
+  腾讯视频2:
+    cls1: 2
+    cls2: 924
+  腾讯财经2:
+    cls1: 8
+    cls2: 924
+  腾讯音乐服务器:
+    cls1: 13
+    cls2: 736
+  腾讯魔幻大陆:
+    cls1: 11
+    cls2: 924
+  艾德思奇:
+    cls1: 14
+    cls2: 525
+  芒果TV1:
+    cls1: 2
+    cls2: 126
+  芒果广告:
+    cls1: 28
+    cls2: 651
+  芒果网:
+    cls1: 24
+    cls2: 320
+  芝兰术评:
+    cls1: 33
+    cls2: 813
+  英杰电子:
+    cls1: 14
+    cls2: 796
+  苹果官网1:
+    cls1: 5
+    cls2: 360
+  苹果官网2:
+    cls1: 5
+    cls2: 360
+  菲音信息:
+    cls1: 14
+    cls2: 591
+  萧山区政府:
+    cls1: 7
+    cls2: 173
+  萧山财政局:
+    cls1: 7
+    cls2: 174
+  蘑菇街1:
+    cls1: 5
+    cls2: 413
+  蘑菇街2:
+    cls1: 5
+    cls2: 413
+  虚拟天空:
+    cls1: 1
+    cls2: 19
+  衢州教育网:
+    cls1: 23
+    cls2: 332
+  西湖区政府:
+    cls1: 7
+    cls2: 170
+  触控科技1:
+    cls1: 20
+    cls2: 412
+  触控科技2:
+    cls1: 20
+    cls2: 412
+  训读网:
+    cls1: 1
+    cls2: 90
+  证券微博:
+    cls1: 32
+    cls2: 0
+  说说520:
+    cls1: 1
+    cls2: 77
+  诺基亚ovi:
+    cls1: 20
+    cls2: 415
+  诺基亚地图导航:
+    cls1: 20
+    cls2: 675
+  读读看:
+    cls1: 1
+    cls2: 101
+  谷果软件:
+    cls1: 20
+    cls2: 399
+  谷歌广告1:
+    cls1: 28
+    cls2: 365
+  谷歌广告2:
+    cls1: 28
+    cls2: 365
+  豆丁中文网:
+    cls1: 1
+    cls2: 4
+  豆瓣微博:
+    cls1: 32
+    cls2: 0
+  豌豆荚手机精灵图片服务器:
+    cls1: 16
+    cls2: 884
+  财迷微博:
+    cls1: 32
+    cls2: 0
+  起点中文网2:
+    cls1: 1
+    cls2: 3
+  跑跑卡丁车:
+    cls1: 11
+    cls2: 1063
+  迅雷网:
+    cls1: 2
+    cls2: 106
+  远征OL:
+    cls1: 11
+    cls2: 1061
+  迷你客游戏网:
+    cls1: 11
+    cls2: 657
+  遇见社交:
+    cls1: 20
+    cls2: 804
+  酷云:
+    cls1: 14
+    cls2: 638
+  酷吧网站:
+    cls1: 14
+    cls2: 634
+  酷宇通讯:
+    cls1: 14
+    cls2: 637
+  酷碧计算机:
+    cls1: 11
+    cls2: 635
+  酷美社区网站:
+    cls1: 25
+    cls2: 636
+  金山:
+    cls1: 20
+    cls2: 298
+  铁血读书:
+    cls1: 1
+    cls2: 83
+  铁路订票:
+    cls1: 5
+    cls2: 351
+  银河证券1:
+    cls1: 8
+    cls2: 185
+  银联支付:
+    cls1: 5
+    cls2: 264
+  闪动科技:
+    cls1: 2
+    cls2: 419
+  闪文书库:
+    cls1: 1
+    cls2: 81
+  闲人在线漫画:
+    cls1: 1
+    cls2: 32
+  阅读屋:
+    cls1: 1
+    cls2: 92
+  阜阳银河电脑学校:
+    cls1: 37
+    cls2: 595
+  阿里妈妈:
+    cls1: 5
+    cls2: 273
+  阿里巴巴1:
+    cls1: 5
+    cls2: 355
+  阿里软件:
+    cls1: 20
+    cls2: 305
+  陌声人:
+    cls1: 10
+    cls2: 663
+  雅虎APIS:
+    cls1: 15
+    cls2: 408
+  雅虎图片服务器:
+    cls1: 16
+    cls2: 895
+  雅虎邮箱:
+    cls1: 12
+    cls2: 788
+  零动联盟:
+    cls1: 2
+    cls2: 648
+  零点看书网:
+    cls1: 1
+    cls2: 16
+  霏凡软件:
+    cls1: 20
+    cls2: 297
+  非凡小说:
+    cls1: 1
+    cls2: 62
+  音乐妈咪:
+    cls1: 13
+    cls2: 899
+  风行网络电影:
+    cls1: 2
+    cls2: 121
+  驾驶员考试网:
+    cls1: 21
+    cls2: 309
+  高德地图:
+    cls1: 15
+    cls2: 596
+  高德手机导航:
+    cls1: 15
+    cls2: 597
+  魔兽世界:
+    cls1: 11
+    cls2: 1056
+  魔域:
+    cls1: 11
+    cls2: 300
+  鸿大网站:
+    cls1: 14
+    cls2: 859
+  麦动音乐:
+    cls1: 13
+    cls2: 650
+  172490996:
+    cls1: 
+    cls2: 80
+  1882894585:
+    cls1: 
+    cls2: 80
+  1882894853:
+    cls1: 
+    cls2: 80
+  1882896393:
+    cls1: 
+    cls2: 80
+  1882896469:
+    cls1: 
+    cls2: 80
+  172490999:
+    cls1: 
+    cls2: 80
+  1882894337:
+    cls1: 
+    cls2: 80
+  1882894849:
+    cls1: 
+    cls2: 80
+  1882894857:
+    cls1: 
+    cls2: 80
+  1882894873:
+    cls1: 
+    cls2: 80
+  172491001:
+    cls1: 
+    cls2: 80
+  1882894849:
+    cls1: 
+    cls2: 80
+  1882894937:
+    cls1: 
+    cls2: 80
+  172491497:
+    cls1: 
+    cls2: 80
+  172495082:
+    cls1: 
+    cls2: 80
+  1882894337:
+    cls1: 
+    cls2: 80
+  1882894341:
+    cls1: 
+    cls2: 80
+  1882894353:
+    cls1: 
+    cls2: 80
+  1882894857:
+    cls1: 
+    cls2: 80
+  1882894861:
+    cls1: 
+    cls2: 80
+  1882894869:
+    cls1: 
+    cls2: 80
+  1882894897:
+    cls1: 
+    cls2: 80
+  1882896393:
+    cls1: 
+    cls2: 80
+  1882896445:
+    cls1: 
+    cls2: 80
+  172491002:
+    cls1: 
+    cls2: 80
+  172491498:
+    cls1: 
+    cls2: 80
+  1882894857:
+    cls1: 
+    cls2: 80
+  1882894861:
+    cls1: 
+    cls2: 80
+  1882894865:
+    cls1: 
+    cls2: 80
+  1882894873:
+    cls1: 
+    cls2: 80
+  1882896437:
+    cls1: 
+    cls2: 80
+  172493043:
+    cls1: 
+    cls2: 80
+  1882894337:
+    cls1: 
+    cls2: 80
+  1882894357:
+    cls1: 
+    cls2: 80
+  1882894849:
+    cls1: 
+    cls2: 80
+  1882894857:
+    cls1: 
+    cls2: 80
+  1882894869:
+    cls1: 
+    cls2: 80
+  1882894873:
+    cls1: 
+    cls2: 80
+  1882894897:
+    cls1: 
+    cls2: 80
+  1882894905:
+    cls1: 
+    cls2: 80
+  1882896437:
+    cls1: 
+    cls2: 80
+  172493042:
+    cls1: 
+    cls2: 80
+  1882894353:
+    cls1: 
+    cls2: 80
+  1882894361:
+    cls1: 
+    cls2: 80
+  1882894581:
+    cls1: 
+    cls2: 80
+  1882894589:
+    cls1: 
+    cls2: 80
+  1882894849:
+    cls1: 
+    cls2: 80
+  1882894857:
+    cls1: 
+    cls2: 80
+  1882894869:
+    cls1: 
+    cls2: 80
+  1882894873:
+    cls1: 
+    cls2: 80
+  172495083:
+    cls1: 
+    cls2: 80
+  172495084:
+    cls1: 
+    cls2: 80
+  172495085:
+    cls1: 
+    cls2: 26652
+  172495085:
+    cls1: 
+    cls2: 80
+  1882894341:
+    cls1: 
+    cls2: 80
+  1882894369:
+    cls1: 
+    cls2: 80
+  1882894589:
+    cls1: 
+    cls2: 80
+  126网易免费邮箱:
+    cls1: 12
+    cls2: 1028
+  139邮箱:
+    cls1: 12
+    cls2: 1035
+  163网易免费邮箱:
+    cls1: 12
+    cls2: 1029
+  16K小说网4:
+    cls1: 1
+    cls2: 14
+  17K小说网:
+    cls1: 1
+    cls2: 8
+  17K手机图书网2:
+    cls1: 1
+    cls2: 447
+  1882896389:
+    cls1: 
+    cls2: 80
+  188财富邮箱:
+    cls1: 12
+    cls2: 1031
+  3G书城:
+    cls1: 1
+    cls2: 145
+  3G体育直播:
+    cls1: 18
+    cls2: 145
+  3G图片服务器:
+    cls1: 16
+    cls2: 145
+  3G娃娃:
+    cls1: 20
+    cls2: 457
+  3G娃娃网:
+    cls1: 20
+    cls2: 986
+  3G小说网:
+    cls1: 1
+    cls2: 458
+  3G新闻:
+    cls1: 4
+    cls2: 145
+  3G泡泡:
+    cls1: 14
+    cls2: 455
+  3G游戏:
+    cls1: 11
+    cls2: 145
+  3G门户新闻:
+    cls1: 4
+    cls2: 145
+  3g小说网:
+    cls1: 1
+    cls2: 458
+  3g泡泡网:
+    cls1: 14
+    cls2: 456
+  91软件下载服务器:
+    cls1: 17
+    cls2: 376
+  QQ书城:
+    cls1: 1
+    cls2: 1024
+  QQ邮箱:
+    cls1: 12
+    cls2: 924
+  VIP126尊享邮箱:
+    cls1: 12
+    cls2: 1033
+  VIP163尊贵邮箱:
+    cls1: 12
+    cls2: 1032
+  accu天气:
+    cls1: 15
+    cls2: 396
+  yeah.net网易免费邮箱:
+    cls1: 12
+    cls2: 1030
+  三味书屋:
+    cls1: 1
+    cls2: 96
+  上海彩信中心1:
+    cls1: 42
+    cls2: 1009
+  上海彩信中心2:
+    cls1: 42
+    cls2: 1009
+  中国新闻网2:
+    cls1: 4
+    cls2: 244
+  中国新闻网:
+    cls1: 4
+    cls2: 244
+  中国移动:
+    cls1: 3
+    cls2: 374
+  中国移动手机阅读网:
+    cls1: 1
+    cls2: 2
+  乌鲁木齐彩信中心:
+    cls1: 42
+    cls2: 1013
+  书书网:
+    cls1: 1
+    cls2: 94
+  书剑联盟:
+    cls1: 1
+    cls2: 103
+  书吧:
+    cls1: 1
+    cls2: 99
+  书旗网:
+    cls1: 1
+    cls2: 9
+  书旗网客户端版:
+    cls1: 1
+    cls2: 393
+  买卖宝:
+    cls1: 5
+    cls2: 405
+  云中书吧:
+    cls1: 1
+    cls2: 434
+  交通银行2:
+    cls1: 8
+    cls2: 229
+  企业移动信息化服务:
+    cls1: 14
+    cls2: 681
+  八神智能天下:
+    cls1: 20
+    cls2: 548
+  兰州彩信中心:
+    cls1: 42
+    cls2: 1003
+  冰冰智能手机网:
+    cls1: 20
+    cls2: 556
+  凤凰新闻2:
+    cls1: 4
+    cls2: 593
+  凤凰资讯:
+    cls1: 4
+    cls2: 593
+  凤鸣轩小说网:
+    cls1: 1
+    cls2: 65
+  刀锋平台:
+    cls1: 11
+    cls2: 431
+  劲书网:
+    cls1: 1
+    cls2: 625
+  北京彩信中心1:
+    cls1: 42
+    cls2: 989
+  北京彩信中心2:
+    cls1: 42
+    cls2: 989
+  单游网:
+    cls1: 11
+    cls2: 570
+  南京彩信中心1:
+    cls1: 42
+    cls2: 1005
+  南京彩信中心2:
+    cls1: 42
+    cls2: 1005
+  南京彩信中心3:
+    cls1: 42
+    cls2: 1005
+  南京彩信中心4:
+    cls1: 42
+    cls2: 1005
+  南宁彩信中心:
+    cls1: 42
+    cls2: 1006
+  南昌彩信中心:
+    cls1: 42
+    cls2: 1004
+  厦门彩信中心:
+    cls1: 42
+    cls2: 1007
+  台州无线城市:
+    cls1: 3
+    cls2: 812
+  合肥彩信中心1:
+    cls1: 42
+    cls2: 997
+  合肥彩信中心2:
+    cls1: 42
+    cls2: 997
+  吉林彩信中心:
+    cls1: 42
+    cls2: 1000
+  呼和浩特彩信中心:
+    cls1: 42
+    cls2: 999
+  哈尔滨彩信中心1:
+    cls1: 42
+    cls2: 994
+  塔读文学:
+    cls1: 1
+    cls2: 731
+  墨迹下载1:
+    cls1: 20
+    cls2: 664
+  大众小说网:
+    cls1: 1
+    cls2: 80
+  天地网:
+    cls1: 1
+    cls2: 737
+  天天看书网:
+    cls1: 1
+    cls2: 436
+  天津彩信中心1:
+    cls1: 42
+    cls2: 1012
+  天津彩信中心2:
+    cls1: 42
+    cls2: 1012
+  安卓游戏商店:
+    cls1: 11
+    cls2: 546
+  宜搜图片搜索1:
+    cls1: 16
+    cls2: 411
+  宜搜图片搜索2:
+    cls1: 16
+    cls2: 411
+  宜搜图片搜索3:
+    cls1: 16
+    cls2: 411
+  宜搜小说搜索1:
+    cls1: 1
+    cls2: 411
+  宜搜小说搜索2:
+    cls1: 1
+    cls2: 411
+  宜搜小说搜索3:
+    cls1: 1
+    cls2: 411
+  宜搜小说搜索4:
+    cls1: 1
+    cls2: 411
+  宜搜新闻搜索:
+    cls1: 4
+    cls2: 411
+  宜搜游戏搜索:
+    cls1: 11
+    cls2: 411
+  宜搜视频搜索:
+    cls1: 2
+    cls2: 411
+  宜搜购物搜索:
+    cls1: 5
+    cls2: 411
+  宜搜软件搜索:
+    cls1: 20
+    cls2: 411
+  宜搜音乐搜索:
+    cls1: 13
+    cls2: 411
+  山东彩信中心:
+    cls1: 42
+    cls2: 1079
+  山西彩信中心:
+    cls1: 42
+    cls2: 1008
+  广州彩信中心10:
+    cls1: 42
+    cls2: 992
+  广州彩信中心12:
+    cls1: 42
+    cls2: 992
+  广州彩信中心14:
+    cls1: 42
+    cls2: 992
+  广州彩信中心1:
+    cls1: 42
+    cls2: 992
+  广州彩信中心2:
+    cls1: 42
+    cls2: 992
+  广州彩信中心4:
+    cls1: 42
+    cls2: 992
+  广州彩信中心5:
+    cls1: 42
+    cls2: 992
+  广州彩信中心6:
+    cls1: 42
+    cls2: 992
+  广州彩信中心7:
+    cls1: 42
+    cls2: 992
+  广州彩信中心8:
+    cls1: 42
+    cls2: 992
+  广州彩信中心9:
+    cls1: 42
+    cls2: 992
+  当麦音乐服务器:
+    cls1: 13
+    cls2: 930
+  微录客:
+    cls1: 20
+    cls2: 756
+  微微小说吧:
+    cls1: 1
+    cls2: 759
+  成都彩信中心2:
+    cls1: 42
+    cls2: 990
+  成都彩信中心3:
+    cls1: 42
+    cls2: 990
+  成都彩信中心4:
+    cls1: 42
+    cls2: 990
+  手机搜索:
+    cls1: 6
+    cls2: 378
+  手机看书网:
+    cls1: 1
+    cls2: 1022
+  手机网游下载:
+    cls1: 11
+    cls2: 713
+  手游天下:
+    cls1: 11
+    cls2: 718
+  手闲网:
+    cls1: 20
+    cls2: 716
+  投资堂2:
+    cls1: 8
+    cls2: 192
+  掌上乐园:
+    cls1: 10
+    cls2: 904
+  搜狐IT2:
+    cls1: 14
+    cls2: 922
+  搜狐VIP邮箱:
+    cls1: 12
+    cls2: 922
+  搜狐体育1:
+    cls1: 18
+    cls2: 922
+  搜狐军事:
+    cls1: 4
+    cls2: 922
+  搜狐博客1:
+    cls1: 33
+    cls2: 922
+  搜狐图片:
+    cls1: 16
+    cls2: 922
+  搜狐女性1:
+    cls1: 22
+    cls2: 922
+  搜狐娱乐1:
+    cls1: 10
+    cls2: 922
+  搜狐微博1:
+    cls1: 32
+    cls2: 922
+  搜狐新闻1:
+    cls1: 4
+    cls2: 922
+  搜狐新闻:
+    cls1: 4
+    cls2: 922
+  搜狐星座:
+    cls1: 35
+    cls2: 922
+  搜狐汽车1:
+    cls1: 21
+    cls2: 922
+  搜狐笑话:
+    cls1: 36
+    cls2: 922
+  搜狐视频2:
+    cls1: 2
+    cls2: 922
+  搜狐论坛:
+    cls1: 25
+    cls2: 922
+  搜狐读书1:
+    cls1: 1
+    cls2: 922
+  搜狐财经1:
+    cls1: 8
+    cls2: 922
+  搜狐软件:
+    cls1: 20
+    cls2: 922
+  搜狐闪电邮箱:
+    cls1: 12
+    cls2: 922
+  新华网2:
+    cls1: 3
+    cls2: 133
+  新歌音乐网:
+    cls1: 13
+    cls2: 780
+  新浪体育1:
+    cls1: 18
+    cls2: 923
+  新浪免费邮箱:
+    cls1: 12
+    cls2: 923
+  新浪军事:
+    cls1: 4
+    cls2: 923
+  新浪博客2:
+    cls1: 33
+    cls2: 923
+  新浪女性1:
+    cls1: 22
+    cls2: 923
+  新浪房产1:
+    cls1: 27
+    cls2: 923
+  新浪搜索1:
+    cls1: 6
+    cls2: 923
+  新浪教育2:
+    cls1: 23
+    cls2: 923
+  新浪新闻1:
+    cls1: 4
+    cls2: 923
+  新浪汽车1:
+    cls1: 21
+    cls2: 923
+  新浪直播:
+    cls1: 18
+    cls2: 923
+  新浪科技1:
+    cls1: 14
+    cls2: 923
+  新浪笑话:
+    cls1: 36
+    cls2: 923
+  新浪视频1:
+    cls1: 2
+    cls2: 923
+  新浪论坛1:
+    cls1: 25
+    cls2: 923
+  新浪读书2:
+    cls1: 1
+    cls2: 923
+  新浪读书3:
+    cls1: 1
+    cls2: 923
+  新浪读书:
+    cls1: 1
+    cls2: 5
+  新浪财经1:
+    cls1: 8
+    cls2: 923
+  新浪邮箱2:
+    cls1: 12
+    cls2: 923
+  昆明彩信中心:
+    cls1: 42
+    cls2: 1002
+  晋江文学城:
+    cls1: 1
+    cls2: 5
+  有缘网:
+    cls1: 19
+    cls2: 435
+  杭州彩信中心1:
+    cls1: 42
+    cls2: 996
+  杭州彩信中心2:
+    cls1: 42
+    cls2: 996
+  杭州彩信中心3:
+    cls1: 42
+    cls2: 996
+  杭州彩信中心4:
+    cls1: 42
+    cls2: 996
+  梦网天气:
+    cls1: 15
+    cls2: 147
+  梦网快讯1:
+    cls1: 4
+    cls2: 147
+  梦网快讯2:
+    cls1: 4
+    cls2: 147
+  梦网手机游戏10:
+    cls1: 11
+    cls2: 147
+  梦网手机游戏12:
+    cls1: 11
+    cls2: 147
+  梦网手机游戏1:
+    cls1: 11
+    cls2: 147
+  梦网手机游戏4:
+    cls1: 11
+    cls2: 147
+  梦网手机游戏5:
+    cls1: 11
+    cls2: 147
+  梦网手机游戏6:
+    cls1: 11
+    cls2: 147
+  梦网手机游戏7:
+    cls1: 11
+    cls2: 147
+  梦网手机游戏8:
+    cls1: 11
+    cls2: 147
+  梦网搜索:
+    cls1: 6
+    cls2: 147
+  梦网杂谈:
+    cls1: 25
+    cls2: 147
+  梦网移动应用:
+    cls1: 20
+    cls2: 147
+  梦网财经:
+    cls1: 8
+    cls2: 147
+  梦网音乐俱乐部:
+    cls1: 13
+    cls2: 147
+  武汉彩信中心1:
+    cls1: 42
+    cls2: 1014
+  武汉彩信中心2:
+    cls1: 42
+    cls2: 1014
+  沈阳彩信中心1:
+    cls1: 42
+    cls2: 1010
+  沈阳彩信中心2:
+    cls1: 42
+    cls2: 1010
+  济南彩信中心1:
+    cls1: 42
+    cls2: 1001
+  济南彩信中心2:
+    cls1: 42
+    cls2: 1001
+  济南彩信中心3:
+    cls1: 42
+    cls2: 1001
+  济南彩信中心4:
+    cls1: 42
+    cls2: 1001
+  浙江在线:
+    cls1: 4
+    cls2: 245
+  浙江无线城市:
+    cls1: 14
+    cls2: 812
+  浙江无线城市:
+    cls1: 3
+    cls2: 812
+  浙江移动WAP网关10:
+    cls1: 30
+    cls2: 384
+  浙江移动WAP网关11:
+    cls1: 30
+    cls2: 384
+  浙江移动WAP网关12:
+    cls1: 30
+    cls2: 384
+  浙江移动WAP网关13:
+    cls1: 30
+    cls2: 384
+  浙江移动WAP网关14:
+    cls1: 30
+    cls2: 384
+  浙江移动WAP网关15:
+    cls1: 30
+    cls2: 384
+  浙江移动WAP网关3:
+    cls1: 30
+    cls2: 384
+  浙江移动WAP网关7:
+    cls1: 30
+    cls2: 384
+  浙江移动WAP网关9:
+    cls1: 30
+    cls2: 384
+  海口彩信中心:
+    cls1: 42
+    cls2: 995
+  炎黄中文:
+    cls1: 1
+    cls2: 38
+  热书吧:
+    cls1: 1
+    cls2: 1021
+  烽火中文网1:
+    cls1: 1
+    cls2: 84
+  烽火中文网4:
+    cls1: 1
+    cls2: 84
+  烽火中文网5:
+    cls1: 1
+    cls2: 84
+  烽火中文网:
+    cls1: 1
+    cls2: 84
+  爱听MP3:
+    cls1: 13
+    cls2: 532
+  爱吾游戏:
+    cls1: 11
+    cls2: 536
+  百度下载:
+    cls1: 17
+    cls2: 284
+  百度主题:
+    cls1: 15
+    cls2: 284
+  百度地图1:
+    cls1: 15
+    cls2: 284
+  百度天气:
+    cls1: 15
+    cls2: 284
+  百度娱乐:
+    cls1: 10
+    cls2: 284
+  百度小说:
+    cls1: 1
+    cls2: 284
+  百度应用1:
+    cls1: 20
+    cls2: 284
+  百度文库:
+    cls1: 1
+    cls2: 284
+  百度新闻1:
+    cls1: 4
+    cls2: 284
+  百度新闻:
+    cls1: 4
+    cls2: 284
+  百度游戏1:
+    cls1: 11
+    cls2: 284
+  百度百科1:
+    cls1: 15
+    cls2: 284
+  百度知道1:
+    cls1: 6
+    cls2: 284
+  百度空间1:
+    cls1: 33
+    cls2: 284
+  百度视频1:
+    cls1: 2
+    cls2: 284
+  百度贴吧1:
+    cls1: 25
+    cls2: 284
+  百度身边1:
+    cls1: 15
+    cls2: 284
+  百度酷站:
+    cls1: 15
+    cls2: 284
+  百度风云榜:
+    cls1: 15
+    cls2: 284
+  看书网:
+    cls1: 1
+    cls2: 25
+  石家庄彩信中心1:
+    cls1: 42
+    cls2: 1011
+  石家庄彩信中心2:
+    cls1: 42
+    cls2: 1011
+  福州彩信中心1:
+    cls1: 42
+    cls2: 991
+  福州彩信中心2:
+    cls1: 42
+    cls2: 991
+  移动梦网2:
+    cls1: 3
+    cls2: 147
+  移动梦网新闻:
+    cls1: 4
+    cls2: 147
+  移动网关:
+    cls1: 30
+    cls2: 928
+  空中网2:
+    cls1: 3
+    cls2: 429
+  空中网:
+    cls1: 3
+    cls2: 429
+  网易体育2:
+    cls1: 18
+    cls2: 146
+  网易女人2:
+    cls1: 22
+    cls2: 146
+  网易娱乐2:
+    cls1: 10
+    cls2: 146
+  网易房产2:
+    cls1: 27
+    cls2: 146
+  网易新闻2:
+    cls1: 4
+    cls2: 146
+  网易新闻:
+    cls1: 4
+    cls2: 146
+  网易旅游2:
+    cls1: 24
+    cls2: 146
+  网易汽车2:
+    cls1: 21
+    cls2: 146
+  网易游戏2:
+    cls1: 11
+    cls2: 146
+  网易生活百宝箱:
+    cls1: 15
+    cls2: 146
+  网易科技2:
+    cls1: 14
+    cls2: 146
+  网易论坛2:
+    cls1: 25
+    cls2: 146
+  腾讯QQ书城1:
+    cls1: 1
+    cls2: 924
+  腾讯QQ秀:
+    cls1: 5
+    cls2: 924
+  腾讯QQ空间1:
+    cls1: 33
+    cls2: 924
+  腾讯QQ音乐1:
+    cls1: 13
+    cls2: 924
+  腾讯下载1:
+    cls1: 17
+    cls2: 924
+  腾讯下载2:
+    cls1: 17
+    cls2: 924
+  腾讯体育1:
+    cls1: 18
+    cls2: 924
+  腾讯儿童:
+    cls1: 1
+    cls2: 924
+  腾讯头像图片服务器:
+    cls1: 29
+    cls2: 924
+  腾讯女性1:
+    cls1: 22
+    cls2: 924
+  腾讯娱乐1:
+    cls1: 10
+    cls2: 924
+  腾讯宠物:
+    cls1: 11
+    cls2: 924
+  腾讯家园1:
+    cls1: 11
+    cls2: 924
+  腾讯家园2:
+    cls1: 11
+    cls2: 924
+  腾讯家园3:
+    cls1: 11
+    cls2: 924
+  腾讯彩票:
+    cls1: 15
+    cls2: 924
+  腾讯微博1:
+    cls1: 32
+    cls2: 924
+  腾讯微博2:
+    cls1: 32
+    cls2: 924
+  腾讯微博5:
+    cls1: 32
+    cls2: 924
+  腾讯教育1:
+    cls1: 23
+    cls2: 924
+  腾讯数码1:
+    cls1: 14
+    cls2: 924
+  腾讯新闻1:
+    cls1: 4
+    cls2: 924
+  腾讯新闻:
+    cls1: 4
+    cls2: 924
+  腾讯星座:
+    cls1: 35
+    cls2: 924
+  腾讯朋友:
+    cls1: 33
+    cls2: 924
+  腾讯汽车1:
+    cls1: 21
+    cls2: 924
+  腾讯游乐场:
+    cls1: 11
+    cls2: 924
+  腾讯游戏1:
+    cls1: 11
+    cls2: 924
+  腾讯游戏2:
+    cls1: 11
+    cls2: 924
+  腾讯游戏3:
+    cls1: 11
+    cls2: 924
+  腾讯直播1:
+    cls1: 18
+    cls2: 924
+  腾讯直播3:
+    cls1: 18
+    cls2: 924
+  腾讯直播4:
+    cls1: 18
+    cls2: 924
+  腾讯直播5:
+    cls1: 18
+    cls2: 924
+  腾讯直播6:
+    cls1: 18
+    cls2: 924
+  腾讯科技1:
+    cls1: 14
+    cls2: 924
+  腾讯笑话:
+    cls1: 36
+    cls2: 924
+  腾讯视频1:
+    cls1: 2
+    cls2: 924
+  腾讯论坛1:
+    cls1: 25
+    cls2: 924
+  腾讯论坛2:
+    cls1: 25
+    cls2: 924
+  腾讯财经1:
+    cls1: 8
+    cls2: 924
+  腾讯超级QQ:
+    cls1: 10
+    cls2: 924
+  腾讯软件:
+    cls1: 20
+    cls2: 924
+  获胜手机:
+    cls1: 20
+    cls2: 616
+  薇薇小说网:
+    cls1: 1
+    cls2: 1023
+  虎扑2:
+    cls1: 18
+    cls2: 280
+  西宁彩信中心:
+    cls1: 42
+    cls2: 1016
+  西安彩信中心1:
+    cls1: 42
+    cls2: 1015
+  西安彩信中心2:
+    cls1: 42
+    cls2: 1015
+  视信世纪:
+    cls1: 2
+    cls2: 708
+  诺基新软网:
+    cls1: 20
+    cls2: 673
+  贵阳彩信中心:
+    cls1: 42
+    cls2: 993
+  起点中文网1:
+    cls1: 1
+    cls2: 3
+  起点中文网:
+    cls1: 1
+    cls2: 3
+  郑州彩信中心2:
+    cls1: 42
+    cls2: 1019
+  郑州彩信中心3:
+    cls1: 42
+    cls2: 1019
+  郑州彩信中心:
+    cls1: 42
+    cls2: 1019
+  重庆彩信中心:
+    cls1: 42
+    cls2: 1020
+  金屋如玉:
+    cls1: 1
+    cls2: 624
+  银川彩信中心:
+    cls1: 42
+    cls2: 1017
+  银河证券2:
+    cls1: 8
+    cls2: 185
+  长沙彩信中心1:
+    cls1: 42
+    cls2: 1018
+  长沙彩信中心2:
+    cls1: 42
+    cls2: 1018
+  阿里巴巴2:
+    cls1: 5
+    cls2: 355
+  飞库网:
+    cls1: 1
+    cls2: 98
+  黑龙江彩信中心:
+    cls1: 42
+    cls2: 998
+  172490987:
+    cls1: 
+    cls2: 80
+  172495086:
+    cls1: 
+    cls2: 80
+  1882894877:
+    cls1: 
+    cls2: 80
+  1882894929:
+    cls1: 
+    cls2: 80
+  172493041:
+    cls1: 
+    cls2: 80
+  1882894881:
+    cls1: 
+    cls2: 80
+  5:
+    cls1: 1
+    cls2: 
+  5:
+    cls1: 1
+    cls2: 
+  5:
+    cls1: 3
+    cls2: 
+  5:
+    cls1: 1
+    cls2: 
+  5:
+    cls1: 3
+    cls2: 
+  5:
+    cls1: 1
+    cls2: 
+  5:
+    cls1: 1
+    cls2: 
+  5:
+    cls1: 1
+    cls2: 
+  5:
+    cls1: 3
+    cls2: 
+  5:
+    cls1: 1
+    cls2: 
+  172492924:
+    cls1: 
+    cls2: 80
+  172493040:
+    cls1: 
+    cls2: 80
+  1882894885:
+    cls1: 
+    cls2: 80
+  1882894893:
+    cls1: 
+    cls2: 80
+  172491003:
+    cls1: 
+    cls2: 80
+  172495091:
+    cls1: 
+    cls2: 80
+  1882894361:
+    cls1: 
+    cls2: 80
+  1882894869:
+    cls1: 
+    cls2: 80
+  1882894889:
+    cls1: 
+    cls2: 80
+  172491004:
+    cls1: 
+    cls2: 80
+  1882894345:
+    cls1: 
+    cls2: 80
+  1882894349:
+    cls1: 
+    cls2: 80
+  1882894853:
+    cls1: 
+    cls2: 80
+  1882894861:
+    cls1: 
+    cls2: 80
+  1882894893:
+    cls1: 
+    cls2: 80
+  1882894929:
+    cls1: 
+    cls2: 80
+  172492900:
+    cls1: 
+    cls2: 80
+  172493037:
+    cls1: 
+    cls2: 80
+  1882894849:
+    cls1: 
+    cls2: 80
+  1882894857:
+    cls1: 
+    cls2: 80
+  1882894869:
+    cls1: 
+    cls2: 80
+  1882894897:
+    cls1: 
+    cls2: 80
+  1882896389:
+    cls1: 
+    cls2: 80
+  172493038:
+    cls1: 
+    cls2: 80
+  172493282:
+    cls1: 
+    cls2: 80
+  1882894361:
+    cls1: 
+    cls2: 80
+  1882894857:
+    cls1: 
+    cls2: 80
+  1882894869:
+    cls1: 
+    cls2: 80
+  1882894877:
+    cls1: 
+    cls2: 80
+  1882894901:
+    cls1: 
+    cls2: 80
+  172490988:
+    cls1: 
+    cls2: 80
+  172493039:
+    cls1: 
+    cls2: 80
+  1882894337:
+    cls1: 
+    cls2: 80
+  1882894357:
+    cls1: 
+    cls2: 80
+  1882894897:
+    cls1: 
+    cls2: 80
+  1882894905:
+    cls1: 
+    cls2: 80
+  1882894929:
+    cls1: 
+    cls2: 80
+  172492892:
+    cls1: 
+    cls2: 80
+  172493036:
+    cls1: 
+    cls2: 80
+  1882894341:
+    cls1: 
+    cls2: 80
+  1882894909:
+    cls1: 
+    cls2: 80
+  172493035:
+    cls1: 
+    cls2: 80
+  1882894337:
+    cls1: 
+    cls2: 80
+  1882894357:
+    cls1: 
+    cls2: 80
+  1882894861:
+    cls1: 
+    cls2: 80
+  1882894913:
+    cls1: 
+    cls2: 80
+  115网盘:
+    cls1: 15
+    cls2: 444
+  126邮箱:
+    cls1: 12
+    cls2: 222
+  1314舞曲:
+    cls1: 13
+    cls2: 445
+  139游戏中心:
+    cls1: 11
+    cls2: 988
+  16K小说网3:
+    cls1: 1
+    cls2: 14
+  17173:
+    cls1: 11
+    cls2: 204
+  172493033:
+    cls1: 
+    cls2: 80
+  178游戏网:
+    cls1: 11
+    cls2: 446
+  17K原创小说文学网:
+    cls1: 1
+    cls2: 8
+  17k手机图书网1:
+    cls1: 1
+    cls2: 447
+  17vee(亿旗体感):
+    cls1: 3
+    cls2: 947
+  1882896393:
+    cls1: 
+    cls2: 80
+  19楼社区:
+    cls1: 25
+    cls2: 427
+  19楼社区图片服务器:
+    cls1: 16
+    cls2: 428
+  1号店:
+    cls1: 5
+    cls2: 963
+  21cn:
+    cls1: 3
+    cls2: 410
+  2345软件大全:
+    cls1: 20
+    cls2: 450
+  263手机邮箱:
+    cls1: 12
+    cls2: 1042
+  263邮箱:
+    cls1: 12
+    cls2: 925
+  3366小游戏:
+    cls1: 11
+    cls2: 221
+  360图片服务器:
+    cls1: 16
+    cls2: 425
+  360安全卫士1:
+    cls1: 20
+    cls2: 294
+  360安全卫士2:
+    cls1: 20
+    cls2: 294
+  365日历:
+    cls1: 15
+    cls2: 452
+  3GSOU首页:
+    cls1: 6
+    cls2: 453
+  3G华夏网:
+    cls1: 1
+    cls2: 54
+  3G娱乐网:
+    cls1: 20
+    cls2: 460
+  3G移动宝典:
+    cls1: 3
+    cls2: 459
+  3G门户 原创软件:
+    cls1: 20
+    cls2: 454
+  3G门户2:
+    cls1: 3
+    cls2: 145
+  3G门户:
+    cls1: 3
+    cls2: 145
+  3g智腾图片服务器:
+    cls1: 16
+    cls2: 424
+  4399游戏1:
+    cls1: 11
+    cls2: 206
+  4399游戏2:
+    cls1: 11
+    cls2: 206
+  4399游戏:
+    cls1: 11
+    cls2: 206
+  51米泰克网:
+    cls1: 41
+    cls2: 932
+  51网:
+    cls1: 11
+    cls2: 210
+  56网:
+    cls1: 2
+    cls2: 117
+  57网:
+    cls1: 20
+    cls2: 968
+  58同城:
+    cls1: 3
+    cls2: 137
+  662安卓软件网:
+    cls1: 20
+    cls2: 954
+  7游戏:
+    cls1: 11
+    cls2: 983
+  8684公交网:
+    cls1: 15
+    cls2: 463
+  90123游戏:
+    cls1: 11
+    cls2: 464
+  91娱乐门户:
+    cls1: 11
+    cls2: 300
+  91娱乐门户:
+    cls1: 20
+    cls2: 300
+  9天音乐:
+    cls1: 13
+    cls2: 242
+  APK小游戏:
+    cls1: 11
+    cls2: 830
+  Adobe1:
+    cls1: 14
+    cls2: 467
+  Adobe2:
+    cls1: 14
+    cls2: 467
+  Apple:
+    cls1: 14
+    cls2: 
+  Big Fish:
+    cls1: 11
+    cls2: 472
+  CC视频:
+    cls1: 2
+    cls2: 474
+  Com2uS:
+    cls1: 11
+    cls2: 477
+  Coolmart超市:
+    cls1: 20
+    cls2: 931
+  Dbank网盘:
+    cls1: 14
+    cls2: 478
+  DreamHost:
+    cls1: 20
+    cls2: 479
+  EA Mobile Games:
+    cls1: 11
+    cls2: 480
+  ELLE世界时装之苑:
+    cls1: 22
+    cls2: 818
+  ET软件:
+    cls1: 20
+    cls2: 482
+  Flipboard:
+    cls1: 20
+    cls2: 483
+  GO浏览器官网:
+    cls1: 6
+    cls2: 486
+  HTC:
+    cls1: 3
+    cls2: 489
+  IIS:
+    cls1: 14
+    cls2: 491
+  Icool:
+    cls1: 14
+    cls2: 837
+  Iphone网址导航:
+    cls1: 6
+    cls2: 283
+  Kk聊天:
+    cls1: 20
+    cls2: 494
+  KooWo酷我:
+    cls1: 13
+    cls2: 495
+  Oppo官方网站2:
+    cls1: 14
+    cls2: 285
+  Oppo官方网站:
+    cls1: 14
+    cls2: 285
+  POCO图片网:
+    cls1: 33
+    cls2: 506
+  PPS导航:
+    cls1: 3
+    cls2: 507
+  PPS影音:
+    cls1: 2
+    cls2: 508
+  PPS服务器:
+    cls1: 2
+    cls2: 388
+  PPTV:
+    cls1: 2
+    cls2: 112
+  PPlive2:
+    cls1: 2
+    cls2: 113
+  QQ音乐服务器:
+    cls1: 13
+    cls2: 383
+  Redatoms:
+    cls1: 11
+    cls2: 510
+  Rekoo:
+    cls1: 11
+    cls2: 511
+  TOM:
+    cls1: 3
+    cls2: 131
+  TinyCo游戏:
+    cls1: 11
+    cls2: 843
+  Tomcat:
+    cls1: 14
+    cls2: 513
+  UC优视:
+    cls1: 14
+    cls2: 514
+  VANCL图片服务器:
+    cls1: 5
+    cls2: 845
+  VS对战平台移动专区:
+    cls1: 11
+    cls2: 216
+  WhatsApp:
+    cls1: 20
+    cls2: 961
+  Wikimedia :
+    cls1: 15
+    cls2: 517
+  Xlab:
+    cls1: 11
+    cls2: 846
+  YY:
+    cls1: 29
+    cls2: 381
+  YY小说:
+    cls1: 1
+    cls2: 847
+  Yahoo广告:
+    cls1: 6
+    cls2: 519
+  Zcom电子杂志:
+    cls1: 1
+    cls2: 848
+  ZodTTD:
+    cls1: 20
+    cls2: 523
+  alawar游戏网:
+    cls1: 11
+    cls2: 827
+  casee架势:
+    cls1: 28
+    cls2: 473
+  doumob.com:
+    cls1: 28
+    cls2: 937
+  e书网:
+    cls1: 1
+    cls2: 835
+  e都市:
+    cls1: 15
+    cls2: 260
+  gameloft:
+    cls1: 11
+    cls2: 220
+  google图片服务器:
+    cls1: 16
+    cls2: 485
+  google搜索链接:
+    cls1: 6
+    cls2: 484
+  iPhone游戏下载:
+    cls1: 11
+    cls2: 493
+  ip138查询网:
+    cls1: 15
+    cls2: 492
+  kuailedushu玄幻:
+    cls1: 1
+    cls2: 496
+  libsyn:
+    cls1: 14
+    cls2: 499
+  momark智能移动广告平台:
+    cls1: 28
+    cls2: 501
+  nearMe2:
+    cls1: 20
+    cls2: 398
+  rockstargames:
+    cls1: 11
+    cls2: 967
+  soso:
+    cls1: 6
+    cls2: 143
+  uc浏览器1:
+    cls1: 20
+    cls2: 375
+  uc浏览器2:
+    cls1: 20
+    cls2: 375
+  uc浏览器3:
+    cls1: 20
+    cls2: 375
+  vivo智能手机:
+    cls1: 6
+    cls2: 515
+  voa听力网:
+    cls1: 23
+    cls2: 978
+  一听音乐:
+    cls1: 13
+    cls2: 234
+  丁点:
+    cls1: 14
+    cls2: 580
+  万卷书屋:
+    cls1: 1
+    cls2: 36
+  万维家电网:
+    cls1: 5
+    cls2: 754
+  万达电影:
+    cls1: 2
+    cls2: 885
+  三九健康网:
+    cls1: 26
+    cls2: 335
+  三国杀:
+    cls1: 11
+    cls2: 208
+  三星应用汇:
+    cls1: 20
+    cls2: 876
+  三月天文学网:
+    cls1: 1
+    cls2: 976
+  上海炫亮实业1:
+    cls1: 14
+    cls2: 934
+  上海炫亮实业2:
+    cls1: 14
+    cls2: 934
+  上海移动服务器100:
+    cls1: 31
+    cls2: 395
+  上海移动服务器102:
+    cls1: 31
+    cls2: 395
+  上海移动服务器103:
+    cls1: 31
+    cls2: 395
+  上海移动服务器104:
+    cls1: 31
+    cls2: 395
+  上海移动服务器105:
+    cls1: 31
+    cls2: 395
+  上海移动服务器106:
+    cls1: 31
+    cls2: 395
+  上海移动服务器107:
+    cls1: 31
+    cls2: 395
+  上海移动服务器108:
+    cls1: 31
+    cls2: 395
+  上海移动服务器109:
+    cls1: 31
+    cls2: 395
+  上海移动服务器10:
+    cls1: 31
+    cls2: 395
+  上海移动服务器110:
+    cls1: 31
+    cls2: 395
+  上海移动服务器111:
+    cls1: 31
+    cls2: 395
+  上海移动服务器112:
+    cls1: 31
+    cls2: 395
+  上海移动服务器113:
+    cls1: 31
+    cls2: 395
+  上海移动服务器114:
+    cls1: 31
+    cls2: 395
+  上海移动服务器115:
+    cls1: 31
+    cls2: 395
+  上海移动服务器116:
+    cls1: 31
+    cls2: 395
+  上海移动服务器117:
+    cls1: 31
+    cls2: 395
+  上海移动服务器118:
+    cls1: 31
+    cls2: 395
+  上海移动服务器119:
+    cls1: 31
+    cls2: 395
+  上海移动服务器11:
+    cls1: 31
+    cls2: 395
+  上海移动服务器120:
+    cls1: 31
+    cls2: 395
+  上海移动服务器121:
+    cls1: 31
+    cls2: 395
+  上海移动服务器122:
+    cls1: 31
+    cls2: 395
+  上海移动服务器123:
+    cls1: 31
+    cls2: 395
+  上海移动服务器124:
+    cls1: 31
+    cls2: 695
+  上海移动服务器125:
+    cls1: 31
+    cls2: 395
+  上海移动服务器126:
+    cls1: 31
+    cls2: 395
+  上海移动服务器127:
+    cls1: 31
+    cls2: 395
+  上海移动服务器128:
+    cls1: 31
+    cls2: 395
+  上海移动服务器129:
+    cls1: 31
+    cls2: 395
+  上海移动服务器12:
+    cls1: 31
+    cls2: 395
+  上海移动服务器130:
+    cls1: 31
+    cls2: 395
+  上海移动服务器131:
+    cls1: 31
+    cls2: 395
+  上海移动服务器132:
+    cls1: 31
+    cls2: 395
+  上海移动服务器133:
+    cls1: 31
+    cls2: 395
+  上海移动服务器134:
+    cls1: 31
+    cls2: 395
+  上海移动服务器13:
+    cls1: 31
+    cls2: 395
+  上海移动服务器14:
+    cls1: 31
+    cls2: 395
+  上海移动服务器15:
+    cls1: 31
+    cls2: 395
+  上海移动服务器16:
+    cls1: 31
+    cls2: 395
+  上海移动服务器17:
+    cls1: 31
+    cls2: 395
+  上海移动服务器18:
+    cls1: 31
+    cls2: 395
+  上海移动服务器19:
+    cls1: 31
+    cls2: 395
+  上海移动服务器1:
+    cls1: 31
+    cls2: 395
+  上海移动服务器20:
+    cls1: 31
+    cls2: 395
+  上海移动服务器21:
+    cls1: 31
+    cls2: 395
+  上海移动服务器22:
+    cls1: 31
+    cls2: 395
+  上海移动服务器23:
+    cls1: 31
+    cls2: 395
+  上海移动服务器24:
+    cls1: 31
+    cls2: 395
+  上海移动服务器25:
+    cls1: 31
+    cls2: 395
+  上海移动服务器26:
+    cls1: 31
+    cls2: 395
+  上海移动服务器27:
+    cls1: 31
+    cls2: 395
+  上海移动服务器28:
+    cls1: 31
+    cls2: 395
+  上海移动服务器29:
+    cls1: 31
+    cls2: 395
+  上海移动服务器2:
+    cls1: 31
+    cls2: 395
+  上海移动服务器30:
+    cls1: 31
+    cls2: 395
+  上海移动服务器31:
+    cls1: 31
+    cls2: 395
+  上海移动服务器33:
+    cls1: 31
+    cls2: 395
+  上海移动服务器35:
+    cls1: 31
+    cls2: 395
+  上海移动服务器37:
+    cls1: 31
+    cls2: 395
+  上海移动服务器38:
+    cls1: 31
+    cls2: 395
+  上海移动服务器39:
+    cls1: 31
+    cls2: 395
+  上海移动服务器3:
+    cls1: 31
+    cls2: 395
+  上海移动服务器40:
+    cls1: 31
+    cls2: 395
+  上海移动服务器41:
+    cls1: 31
+    cls2: 395
+  上海移动服务器42:
+    cls1: 31
+    cls2: 395
+  上海移动服务器43:
+    cls1: 31
+    cls2: 395
+  上海移动服务器44:
+    cls1: 31
+    cls2: 395
+  上海移动服务器45:
+    cls1: 31
+    cls2: 395
+  上海移动服务器46:
+    cls1: 31
+    cls2: 395
+  上海移动服务器47:
+    cls1: 31
+    cls2: 395
+  上海移动服务器48:
+    cls1: 31
+    cls2: 395
+  上海移动服务器49:
+    cls1: 31
+    cls2: 395
+  上海移动服务器4:
+    cls1: 31
+    cls2: 395
+  上海移动服务器50:
+    cls1: 31
+    cls2: 395
+  上海移动服务器51:
+    cls1: 31
+    cls2: 395
+  上海移动服务器52:
+    cls1: 31
+    cls2: 395
+  上海移动服务器53:
+    cls1: 31
+    cls2: 395
+  上海移动服务器54:
+    cls1: 31
+    cls2: 395
+  上海移动服务器55:
+    cls1: 31
+    cls2: 395
+  上海移动服务器56:
+    cls1: 31
+    cls2: 395
+  上海移动服务器57:
+    cls1: 31
+    cls2: 395
+  上海移动服务器58:
+    cls1: 31
+    cls2: 395
+  上海移动服务器59:
+    cls1: 31
+    cls2: 395
+  上海移动服务器5:
+    cls1: 31
+    cls2: 395
+  上海移动服务器60:
+    cls1: 31
+    cls2: 395
+  上海移动服务器61:
+    cls1: 31
+    cls2: 395
+  上海移动服务器62:
+    cls1: 31
+    cls2: 395
+  上海移动服务器63:
+    cls1: 31
+    cls2: 395
+  上海移动服务器64:
+    cls1: 31
+    cls2: 395
+  上海移动服务器65:
+    cls1: 31
+    cls2: 395
+  上海移动服务器66:
+    cls1: 31
+    cls2: 395
+  上海移动服务器67:
+    cls1: 31
+    cls2: 395
+  上海移动服务器68:
+    cls1: 31
+    cls2: 395
+  上海移动服务器69:
+    cls1: 31
+    cls2: 395
+  上海移动服务器6:
+    cls1: 31
+    cls2: 395
+  上海移动服务器70:
+    cls1: 31
+    cls2: 395
+  上海移动服务器71:
+    cls1: 31
+    cls2: 395
+  上海移动服务器72:
+    cls1: 31
+    cls2: 395
+  上海移动服务器73:
+    cls1: 31
+    cls2: 395
+  上海移动服务器74:
+    cls1: 31
+    cls2: 395
+  上海移动服务器75:
+    cls1: 31
+    cls2: 395
+  上海移动服务器76:
+    cls1: 31
+    cls2: 395
+  上海移动服务器77:
+    cls1: 31
+    cls2: 395
+  上海移动服务器78:
+    cls1: 31
+    cls2: 395
+  上海移动服务器79:
+    cls1: 31
+    cls2: 395
+  上海移动服务器7:
+    cls1: 31
+    cls2: 395
+  上海移动服务器80:
+    cls1: 31
+    cls2: 395
+  上海移动服务器81:
+    cls1: 31
+    cls2: 395
+  上海移动服务器82:
+    cls1: 31
+    cls2: 395
+  上海移动服务器83:
+    cls1: 31
+    cls2: 395
+  上海移动服务器84:
+    cls1: 31
+    cls2: 395
+  上海移动服务器85:
+    cls1: 31
+    cls2: 395
+  上海移动服务器86:
+    cls1: 31
+    cls2: 395
+  上海移动服务器87:
+    cls1: 31
+    cls2: 395
+  上海移动服务器88:
+    cls1: 31
+    cls2: 395
+  上海移动服务器89:
+    cls1: 31
+    cls2: 395
+  上海移动服务器8:
+    cls1: 31
+    cls2: 395
+  上海移动服务器90:
+    cls1: 31
+    cls2: 395
+  上海移动服务器91:
+    cls1: 31
+    cls2: 395
+  上海移动服务器92:
+    cls1: 31
+    cls2: 395
+  上海移动服务器93:
+    cls1: 31
+    cls2: 395
+  上海移动服务器94:
+    cls1: 31
+    cls2: 395
+  上海移动服务器95:
+    cls1: 31
+    cls2: 395
+  上海移动服务器96:
+    cls1: 31
+    cls2: 395
+  上海移动服务器97:
+    cls1: 31
+    cls2: 395
+  上海移动服务器98:
+    cls1: 31
+    cls2: 395
+  上海移动服务器99:
+    cls1: 31
+    cls2: 395
+  上海移动服务器9:
+    cls1: 31
+    cls2: 395
+  上班族:
+    cls1: 19
+    cls2: 697
+  世纪佳缘:
+    cls1: 19
+    cls2: 339
+  东方财富网:
+    cls1: 8
+    cls2: 253
+  个信互动:
+    cls1: 20
+    cls2: 599
+  中信建投证劵108网:
+    cls1: 8
+    cls2: 911
+  中信金通:
+    cls1: 8
+    cls2: 189
+  中关村在线2:
+    cls1: 14
+    cls2: 814
+  中关村在线:
+    cls1: 14
+    cls2: 247
+  中兴手机移动商店:
+    cls1: 14
+    cls2: 823
+  中华网:
+    cls1: 3
+    cls2: 130
+  中华英才:
+    cls1: 9
+    cls2: 195
+  中国原创音乐基地:
+    cls1: 13
+    cls2: 238
+  中国天气网:
+    cls1: 15
+    cls2: 278
+  中国气象视频网:
+    cls1: 15
+    cls2: 909
+  中国移动手机视频:
+    cls1: 2
+    cls2: 816
+  中国移动手机阅读网:
+    cls1: 1
+    cls2: 2
+  中国移动服务器3:
+    cls1: 31
+    cls2: 815
+  中国移动服务器4:
+    cls1: 31
+    cls2: 815
+  中国移动服务器5:
+    cls1: 31
+    cls2: 815
+  中国移动服务器6:
+    cls1: 31
+    cls2: 815
+  中国移动服务器7:
+    cls1: 31
+    cls2: 815
+  中国移动游戏门户:
+    cls1: 11
+    cls2: 817
+  中国网络游戏服务网:
+    cls1: 11
+    cls2: 211
+  中国网络电视台1:
+    cls1: 2
+    cls2: 107
+  中国网络电视台2:
+    cls1: 2
+    cls2: 107
+  中国网络电视台:
+    cls1: 3
+    cls2: 107
+  中国银行:
+    cls1: 8
+    cls2: 226
+  中国黄金投资网:
+    cls1: 8
+    cls2: 257
+  中金在线:
+    cls1: 8
+    cls2: 256
+  乐乐网:
+    cls1: 22
+    cls2: 980
+  乐元素游戏公司:
+    cls1: 11
+    cls2: 972
+  乐动舞指网1:
+    cls1: 11
+    cls2: 935
+  乐动舞指网2:
+    cls1: 11
+    cls2: 935
+  乐天网:
+    cls1: 13
+    cls2: 645
+  乐点互动:
+    cls1: 20
+    cls2: 962
+  乐蜂网:
+    cls1: 5
+    cls2: 359
+  乐视网:
+    cls1: 2
+    cls2: 115
+  乐讯:
+    cls1: 3
+    cls2: 646
+  乐酷网1:
+    cls1: 20
+    cls2: 943
+  乐酷网2:
+    cls1: 20
+    cls2: 944
+  九游:
+    cls1: 11
+    cls2: 630
+  九酷音乐网 :
+    cls1: 13
+    cls2: 236
+  书书网1:
+    cls1: 1
+    cls2: 94
+  书书网2:
+    cls1: 1
+    cls2: 94
+  书旗网1:
+    cls1: 1
+    cls2: 721
+  书旗网2:
+    cls1: 1
+    cls2: 722
+  书旗网:
+    cls1: 1
+    cls2: 9
+  买卖王网:
+    cls1: 28
+    cls2: 938
+  京东商城:
+    cls1: 5
+    cls2: 346
+  京剧论坛:
+    cls1: 25
+    cls2: 865
+  人人网:
+    cls1: 19
+    cls2: 286
+  人人网图片服务器1:
+    cls1: 16
+    cls2: 369
+  人人网图片服务器2:
+    cls1: 16
+    cls2: 369
+  人人网图片服务器3:
+    cls1: 16
+    cls2: 369
+  人民网:
+    cls1: 3
+    cls2: 134
+  亿部漫画:
+    cls1: 1
+    cls2: 965
+  优亿市场:
+    cls1: 20
+    cls2: 443
+  优酷网:
+    cls1: 2
+    cls2: 104
+  传奇世界:
+    cls1: 11
+    cls2: 214
+  依依小说网:
+    cls1: 1
+    cls2: 979
+  侠客中文网:
+    cls1: 1
+    cls2: 959
+  全球纺织网:
+    cls1: 5
+    cls2: 139
+  兴业银行:
+    cls1: 8
+    cls2: 232
+  农业银行:
+    cls1: 8
+    cls2: 225
+  凡客诚品:
+    cls1: 5
+    cls2: 345
+  凤凰宽频:
+    cls1: 2
+    cls2: 114
+  凯立德导航:
+    cls1: 15
+    cls2: 632
+  切水果:
+    cls1: 11
+    cls2: 874
+  前程无忧:
+    cls1: 9
+    cls2: 193
+  力美手机广告平台:
+    cls1: 28
+    cls2: 973
+  动漫魔屏:
+    cls1: 10
+    cls2: 584
+  北京移动服务器10:
+    cls1: 31
+    cls2: 553
+  北京移动服务器11:
+    cls1: 31
+    cls2: 553
+  北京移动服务器12:
+    cls1: 31
+    cls2: 553
+  北京移动服务器13:
+    cls1: 31
+    cls2: 553
+  北京移动服务器14:
+    cls1: 31
+    cls2: 553
+  北京移动服务器15:
+    cls1: 31
+    cls2: 553
+  北京移动服务器1:
+    cls1: 31
+    cls2: 553
+  北京移动服务器2:
+    cls1: 31
+    cls2: 553
+  北京移动服务器9:
+    cls1: 31
+    cls2: 553
+  十字猫:
+    cls1: 17
+    cls2: 706
+  千千音乐在线:
+    cls1: 13
+    cls2: 240
+  千尺下载:
+    cls1: 17
+    cls2: 685
+  华军软件:
+    cls1: 20
+    cls2: 299
+  卓越亚马逊:
+    cls1: 5
+    cls2: 347
+  南京数龙计算机科技有限公司:
+    cls1: 14
+    cls2: 820
+  南京移动服务器10:
+    cls1: 31
+    cls2: 668
+  南京移动服务器11:
+    cls1: 31
+    cls2: 668
+  南京移动服务器12:
+    cls1: 31
+    cls2: 668
+  南京移动服务器13:
+    cls1: 31
+    cls2: 668
+  南京移动服务器14:
+    cls1: 31
+    cls2: 668
+  南京移动服务器15:
+    cls1: 31
+    cls2: 668
+  南京移动服务器16:
+    cls1: 31
+    cls2: 668
+  南京移动服务器17:
+    cls1: 31
+    cls2: 668
+  南京移动服务器18:
+    cls1: 31
+    cls2: 668
+  南京移动服务器19:
+    cls1: 31
+    cls2: 668
+  南京移动服务器1:
+    cls1: 31
+    cls2: 668
+  南京移动服务器20:
+    cls1: 31
+    cls2: 668
+  南京移动服务器21:
+    cls1: 31
+    cls2: 668
+  南京移动服务器22:
+    cls1: 31
+    cls2: 668
+  南京移动服务器23:
+    cls1: 31
+    cls2: 668
+  南京移动服务器24:
+    cls1: 31
+    cls2: 668
+  南京移动服务器25:
+    cls1: 31
+    cls2: 668
+  南京移动服务器26:
+    cls1: 31
+    cls2: 668
+  南京移动服务器27:
+    cls1: 31
+    cls2: 668
+  南京移动服务器28:
+    cls1: 31
+    cls2: 668
+  南京移动服务器29:
+    cls1: 31
+    cls2: 668
+  南京移动服务器2:
+    cls1: 31
+    cls2: 668
+  南京移动服务器30:
+    cls1: 31
+    cls2: 668
+  南京移动服务器31:
+    cls1: 31
+    cls2: 668
+  南京移动服务器32:
+    cls1: 31
+    cls2: 668
+  南京移动服务器33:
+    cls1: 31
+    cls2: 668
+  南京移动服务器34:
+    cls1: 31
+    cls2: 668
+  南京移动服务器35:
+    cls1: 31
+    cls2: 668
+  南京移动服务器36:
+    cls1: 31
+    cls2: 668
+  南京移动服务器37:
+    cls1: 31
+    cls2: 668
+  南京移动服务器38:
+    cls1: 31
+    cls2: 668
+  南京移动服务器39:
+    cls1: 31
+    cls2: 668
+  南京移动服务器3:
+    cls1: 31
+    cls2: 668
+  南京移动服务器40:
+    cls1: 31
+    cls2: 668
+  南京移动服务器41:
+    cls1: 31
+    cls2: 668
+  南京移动服务器42:
+    cls1: 31
+    cls2: 668
+  南京移动服务器43:
+    cls1: 31
+    cls2: 668
+  南京移动服务器44:
+    cls1: 31
+    cls2: 668
+  南京移动服务器45:
+    cls1: 31
+    cls2: 668
+  南京移动服务器46:
+    cls1: 31
+    cls2: 668
+  南京移动服务器47:
+    cls1: 31
+    cls2: 668
+  南京移动服务器48:
+    cls1: 31
+    cls2: 668
+  南京移动服务器49:
+    cls1: 31
+    cls2: 668
+  南京移动服务器50:
+    cls1: 31
+    cls2: 668
+  南京移动服务器51:
+    cls1: 31
+    cls2: 668
+  南京移动服务器52:
+    cls1: 31
+    cls2: 668
+  南京移动服务器53:
+    cls1: 31
+    cls2: 668
+  南京移动服务器54:
+    cls1: 31
+    cls2: 668
+  南京移动服务器55:
+    cls1: 31
+    cls2: 668
+  南京移动服务器56:
+    cls1: 31
+    cls2: 668
+  南京移动服务器57:
+    cls1: 31
+    cls2: 668
+  南京移动服务器59:
+    cls1: 31
+    cls2: 668
+  南京移动服务器5:
+    cls1: 31
+    cls2: 668
+  南京移动服务器60:
+    cls1: 31
+    cls2: 668
+  南京移动服务器6:
+    cls1: 31
+    cls2: 668
+  南京移动服务器9:
+    cls1: 31
+    cls2: 668
+  历趣:
+    cls1: 20
+    cls2: 948
+  去哪儿:
+    cls1: 24
+    cls2: 316
+  友盟1:
+    cls1: 14
+    cls2: 799
+  口碑网:
+    cls1: 19
+    cls2: 289
+  口袋购物:
+    cls1: 5
+    cls2: 361
+  叮咚音乐:
+    cls1: 13
+    cls2: 581
+  可瑞达技术咨询（K歌达人软件）:
+    cls1: 20
+    cls2: 633
+  同城游戏:
+    cls1: 11
+    cls2: 213
+  同步助手:
+    cls1: 20
+    cls2: 744
+  同花顺:
+    cls1: 8
+    cls2: 183
+  听中国:
+    cls1: 1
+    cls2: 821
+  和讯网:
+    cls1: 8
+    cls2: 254
+  哇棒:
+    cls1: 10
+    cls2: 750
+  唯乐通讯:
+    cls1: 14
+    cls2: 762
+  唱吧:
+    cls1: 10
+    cls2: 562
+  善听听书:
+    cls1: 1
+    cls2: 696
+  喜彩网:
+    cls1: 15
+    cls2: 984
+  嘉兴人论坛:
+    cls1: 25
+    cls2: 619
+  四川移动服务器1:
+    cls1: 31
+    cls2: 392
+  国信证券:
+    cls1: 8
+    cls2: 188
+  国泰君安:
+    cls1: 8
+    cls2: 187
+  国际在线:
+    cls1: 4
+    cls2: 964
+  图吧地图:
+    cls1: 15
+    cls2: 747
+  土豆网:
+    cls1: 2
+    cls2: 105
+  土豆网图片服务器:
+    cls1: 16
+    cls2: 748
+  土豆网视频服务器:
+    cls1: 2
+    cls2: 749
+  地图无限:
+    cls1: 15
+    cls2: 574
+  塔度文学网:
+    cls1: 1
+    cls2: 731
+  塔读文学网:
+    cls1: 1
+    cls2: 731
+  塞班智能手机:
+    cls1: 14
+    cls2: 693
+  塞班火软世界:
+    cls1: 20
+    cls2: 692
+  墨迹下载2:
+    cls1: 20
+    cls2: 664
+  墨迹天气:
+    cls1: 15
+    cls2: 819
+  多玩游戏:
+    cls1: 11
+    cls2: 203
+  多米音乐:
+    cls1: 13
+    cls2: 422
+  大众汽车（中国）:
+    cls1: 21
+    cls2: 949
+  大众点评网:
+    cls1: 25
+    cls2: 323
+  大头网:
+    cls1: 20
+    cls2: 566
+  大头鸟:
+    cls1: 28
+    cls2: 565
+  大文学:
+    cls1: 1
+    cls2: 567
+  大智慧:
+    cls1: 8
+    cls2: 184
+  大汉U视界:
+    cls1: 11
+    cls2: 564
+  大谷打工网:
+    cls1: 9
+    cls2: 563
+  天下电子书:
+    cls1: 1
+    cls2: 741
+  天下网:
+    cls1: 11
+    cls2: 742
+  天天动听:
+    cls1: 13
+    cls2: 739
+  天极网:
+    cls1: 14
+    cls2: 249
+  天气预报:
+    cls1: 15
+    cls2: 738
+  天涯:
+    cls1: 10
+    cls2: 199
+  天涯来吧图片服务器:
+    cls1: 16
+    cls2: 430
+  天猫:
+    cls1: 5
+    cls2: 343
+  天空软件站:
+    cls1: 20
+    cls2: 295
+  天网手机软件下载:
+    cls1: 20
+    cls2: 740
+  太原移动服务器1:
+    cls1: 31
+    cls2: 732
+  太原移动服务器2:
+    cls1: 31
+    cls2: 732
+  太原移动服务器3:
+    cls1: 31
+    cls2: 732
+  太平洋女性:
+    cls1: 22
+    cls2: 311
+  太平洋汽车:
+    cls1: 21
+    cls2: 312
+  太平洋游戏网:
+    cls1: 11
+    cls2: 313
+  太平洋电脑网:
+    cls1: 14
+    cls2: 246
+  威锋网:
+    cls1: 20
+    cls2: 302
+  娱乐上帝:
+    cls1: 11
+    cls2: 901
+  宁波移动服务器1:
+    cls1: 31
+    cls2: 671
+  宁波移动服务器2:
+    cls1: 31
+    cls2: 671
+  宁波移动服务器3:
+    cls1: 31
+    cls2: 671
+  宁波移动服务器4:
+    cls1: 31
+    cls2: 671
+  宁波移动服务器5:
+    cls1: 31
+    cls2: 671
+  宁波移动服务器6:
+    cls1: 31
+    cls2: 671
+  宁波移动服务器7:
+    cls1: 31
+    cls2: 671
+  宁波移动服务器8:
+    cls1: 31
+    cls2: 671
+  宁波移动服务器9:
+    cls1: 31
+    cls2: 671
+  安丰手机资源网:
+    cls1: 20
+    cls2: 939
+  安全管家1:
+    cls1: 20
+    cls2: 539
+  安全管家2:
+    cls1: 20
+    cls2: 539
+  安全网站证书:
+    cls1: 20
+    cls2: 540
+  安卓在线:
+    cls1: 20
+    cls2: 547
+  安卓市场:
+    cls1: 20
+    cls2: 851
+  安卓必备:
+    cls1: 20
+    cls2: 850
+  安卓软件库:
+    cls1: 20
+    cls2: 543
+  安居客:
+    cls1: 27
+    cls2: 362
+  安徽移动服务器10:
+    cls1: 31
+    cls2: 537
+  安徽移动服务器11:
+    cls1: 31
+    cls2: 537
+  安徽移动服务器12:
+    cls1: 31
+    cls2: 537
+  安徽移动服务器13:
+    cls1: 31
+    cls2: 537
+  安徽移动服务器14:
+    cls1: 31
+    cls2: 537
+  安徽移动服务器2:
+    cls1: 31
+    cls2: 537
+  安徽移动服务器3:
+    cls1: 31
+    cls2: 537
+  安徽移动服务器4:
+    cls1: 31
+    cls2: 537
+  安徽移动服务器5:
+    cls1: 31
+    cls2: 537
+  安徽移动服务器6:
+    cls1: 31
+    cls2: 537
+  安徽移动服务器7:
+    cls1: 31
+    cls2: 537
+  安徽移动服务器8:
+    cls1: 31
+    cls2: 537
+  安徽移动服务器9:
+    cls1: 31
+    cls2: 537
+  安极网:
+    cls1: 20
+    cls2: 974
+  宜搜网2:
+    cls1: 6
+    cls2: 411
+  宜搜网:
+    cls1: 6
+    cls2: 411
+  宝软网:
+    cls1: 20
+    cls2: 439
+  富媒体:
+    cls1: 28
+    cls2: 955
+  导航犬:
+    cls1: 15
+    cls2: 572
+  小米:
+    cls1: 14
+    cls2: 773
+  小说阅读网:
+    cls1: 1
+    cls2: 775
+  工商银行:
+    cls1: 8
+    cls2: 228
+  巨鲸音乐网:
+    cls1: 13
+    cls2: 241
+  巴巴变相册网:
+    cls1: 16
+    cls2: 982
+  广东移动服务器13:
+    cls1: 31
+    cls2: 927
+  广东移动服务器1:
+    cls1: 31
+    cls2: 387
+  广东移动服务器2:
+    cls1: 31
+    cls2: 387
+  广东移动服务器3:
+    cls1: 31
+    cls2: 387
+  广东移动服务器4:
+    cls1: 31
+    cls2: 387
+  广东移动服务器5:
+    cls1: 31
+    cls2: 387
+  广东移动服务器6:
+    cls1: 31
+    cls2: 387
+  广东移动服务器8:
+    cls1: 31
+    cls2: 387
+  广东移动服务器9:
+    cls1: 31
+    cls2: 387
+  广州移动服务器2:
+    cls1: 31
+    cls2: 927
+  广州移动服务器4:
+    cls1: 31
+    cls2: 927
+  应届生求职网:
+    cls1: 9
+    cls2: 197
+  应用汇:
+    cls1: 20
+    cls2: 391
+  建德县政府:
+    cls1: 7
+    cls2: 179
+  建设银行:
+    cls1: 8
+    cls2: 224
+  开卷有益:
+    cls1: 1
+    cls2: 866
+  开心网:
+    cls1: 19
+    cls2: 288
+  强国社区:
+    cls1: 25
+    cls2: 873
+  当乐网:
+    cls1: 11
+    cls2: 571
+  当当网:
+    cls1: 5
+    cls2: 350
+  微云:
+    cls1: 14
+    cls2: 760
+  微软:
+    cls1: 14
+    cls2: 757
+  心网购物:
+    cls1: 5
+    cls2: 778
+  必应Bing:
+    cls1: 6
+    cls2: 853
+  快播:
+    cls1: 2
+    cls2: 640
+  快装商店:
+    cls1: 20
+    cls2: 641
+  快钱:
+    cls1: 5
+    cls2: 263
+  我查查:
+    cls1: 16
+    cls2: 767
+  我爱小游戏:
+    cls1: 11
+    cls2: 766
+  手机中国:
+    cls1: 14
+    cls2: 715
+  手机主题下载:
+    cls1: 20
+    cls2: 880
+  手机乐园:
+    cls1: 14
+    cls2: 710
+  手机安卓:
+    cls1: 20
+    cls2: 709
+  手机小游戏:
+    cls1: 11
+    cls2: 714
+  手机摄影大师:
+    cls1: 20
+    cls2: 879
+  手机软件:
+    cls1: 20
+    cls2: 711
+  手游:
+    cls1: 11
+    cls2: 717
+  拇指玩:
+    cls1: 20
+    cls2: 665
+  拉手网:
+    cls1: 5
+    cls2: 348
+  拉手网图片服务器:
+    cls1: 5
+    cls2: 1055
+  拉阔游戏:
+    cls1: 11
+    cls2: 867
+  拍拍网:
+    cls1: 5
+    cls2: 344
+  招商银行:
+    cls1: 8
+    cls2: 223
+  拱墅区政府:
+    cls1: 7
+    cls2: 171
+  掌上嘉兴:
+    cls1: 15
+    cls2: 809
+  掌上百度:
+    cls1: 6
+    cls2: 808
+  掌学:
+    cls1: 20
+    cls2: 987
+  掌阅书城:
+    cls1: 1
+    cls2: 810
+  搜房网:
+    cls1: 27
+    cls2: 363
+  搜狐房产:
+    cls1: 27
+    cls2: 922
+  搜狐网:
+    cls1: 3
+    cls2: 108
+  搜狗:
+    cls1: 6
+    cls2: 144
+  搜狗图片服务器:
+    cls1: 16
+    cls2: 726
+  搜狗地图:
+    cls1: 15
+    cls2: 725
+  携程:
+    cls1: 24
+    cls2: 317
+  支付宝:
+    cls1: 5
+    cls2: 261
+  新小说吧:
+    cls1: 1
+    cls2: 26
+  新浪APP:
+    cls1: 14
+    cls2: 784
+  新浪iPad版:
+    cls1: 15
+    cls2: 923
+  新浪图片服务器1:
+    cls1: 16
+    cls2: 370
+  新浪图片服务器2:
+    cls1: 16
+    cls2: 370
+  新浪爱问:
+    cls1: 6
+    cls2: 923
+  新浪网1:
+    cls1: 3
+    cls2: 110
+  新浪网2:
+    cls1: 3
+    cls2: 110
+  新浪资源服务器:
+    cls1: 41
+    cls2: 783
+  新美互通:
+    cls1: 20
+    cls2: 950
+  方正证券:
+    cls1: 8
+    cls2: 186
+  易查:
+    cls1: 6
+    cls2: 794
+  易车网:
+    cls1: 21
+    cls2: 306
+  晋江原创网2:
+    cls1: 1
+    cls2: 5
+  晋江原创网:
+    cls1: 1
+    cls2: 5
+  智联招聘:
+    cls1: 9
+    cls2: 194
+  有信免费通话:
+    cls1: 20
+    cls2: 971
+  有米广告:
+    cls1: 28
+    cls2: 801
+  有道2:
+    cls1: 6
+    cls2: 282
+  有道:
+    cls1: 6
+    cls2: 282
+  朋友网:
+    cls1: 19
+    cls2: 287
+  木蚂蚁:
+    cls1: 20
+    cls2: 666
+  未知图片服务器1:
+    cls1: 16
+    cls2: 403
+  未知图片服务器2:
+    cls1: 16
+    cls2: 403
+  未知图片服务器3:
+    cls1: 16
+    cls2: 403
+  未知图片服务器4:
+    cls1: 16
+    cls2: 403
+  未知图片服务器5:
+    cls1: 16
+    cls2: 403
+  未知图片服务器6:
+    cls1: 16
+    cls2: 403
+  未知图片服务器7:
+    cls1: 16
+    cls2: 403
+  未知图片服务器8:
+    cls1: 16
+    cls2: 403
+  未知图片网站:
+    cls1: 16
+    cls2: 764
+  杭州商业银行:
+    cls1: 8
+    cls2: 231
+  杭州市公交集团:
+    cls1: 7
+    cls2: 166
+  杭州热点科技:
+    cls1: 20
+    cls2: 712
+  杭州移动服务器11:
+    cls1: 31
+    cls2: 606
+  杭州移动服务器12:
+    cls1: 31
+    cls2: 606
+  杭州移动服务器13:
+    cls1: 31
+    cls2: 606
+  杭州移动服务器14:
+    cls1: 31
+    cls2: 606
+  杭州移动服务器20:
+    cls1: 31
+    cls2: 606
+  杭州移动服务器21:
+    cls1: 31
+    cls2: 606
+  杭州移动服务器22:
+    cls1: 31
+    cls2: 606
+  杭州移动服务器24:
+    cls1: 31
+    cls2: 606
+  杭州移动服务器25:
+    cls1: 31
+    cls2: 606
+  杭州移动服务器26:
+    cls1: 31
+    cls2: 606
+  杭州移动服务器27:
+    cls1: 31
+    cls2: 606
+  杭州移动服务器28:
+    cls1: 31
+    cls2: 606
+  杭州移动服务器29:
+    cls1: 31
+    cls2: 606
+  杭州移动服务器30:
+    cls1: 31
+    cls2: 606
+  杭州移动服务器31:
+    cls1: 31
+    cls2: 606
+  杭州移动服务器32:
+    cls1: 31
+    cls2: 606
+  杭州移动服务器33:
+    cls1: 31
+    cls2: 606
+  杭州移动服务器34:
+    cls1: 31
+    cls2: 606
+  杭州移动服务器35:
+    cls1: 31
+    cls2: 606
+  杭州移动服务器36:
+    cls1: 31
+    cls2: 606
+  杭州网:
+    cls1: 4
+    cls2: 138
+  杭州联合银行:
+    cls1: 8
+    cls2: 230
+  果壳网:
+    cls1: 14
+    cls2: 975
+  查询登录系统:
+    cls1: 15
+    cls2: 561
+  校内图片网:
+    cls1: 16
+    cls2: 891
+  株洲在线:
+    cls1: 7
+    cls2: 912
+  株洲民企人才网:
+    cls1: 9
+    cls2: 970
+  桐庐县政府:
+    cls1: 7
+    cls2: 177
+  梦宝谷:
+    cls1: 11
+    cls2: 656
+  欧朋手机浏览器:
+    cls1: 20
+    cls2: 871
+  步步高vivo智能手机器:
+    cls1: 14
+    cls2: 559
+  毒霸:
+    cls1: 20
+    cls2: 587
+  汕头移动服务器10:
+    cls1: 31
+    cls2: 695
+  汕头移动服务器11:
+    cls1: 31
+    cls2: 695
+  汕头移动服务器12:
+    cls1: 31
+    cls2: 695
+  汕头移动服务器13:
+    cls1: 31
+    cls2: 695
+  汕头移动服务器1:
+    cls1: 31
+    cls2: 695
+  汕头移动服务器2:
+    cls1: 31
+    cls2: 695
+  汕头移动服务器3:
+    cls1: 31
+    cls2: 695
+  汕头移动服务器4:
+    cls1: 31
+    cls2: 695
+  汕头移动服务器5:
+    cls1: 31
+    cls2: 695
+  汕头移动服务器6:
+    cls1: 31
+    cls2: 695
+  汕头移动服务器7:
+    cls1: 31
+    cls2: 695
+  汕头移动服务器8:
+    cls1: 31
+    cls2: 695
+  汕头移动服务器9:
+    cls1: 31
+    cls2: 695
+  江西移动服务器4:
+    cls1: 31
+    cls2: 621
+  江西移动服务器5:
+    cls1: 31
+    cls2: 621
+  江西移动服务器6:
+    cls1: 31
+    cls2: 621
+  江西移动服务器7:
+    cls1: 31
+    cls2: 621
+  江西移动服务器8:
+    cls1: 31
+    cls2: 621
+  江西移动服务器9:
+    cls1: 31
+    cls2: 621
+  汽车之家:
+    cls1: 21
+    cls2: 307
+  汽车之家图片:
+    cls1: 21
+    cls2: 684
+  沃.3G:
+    cls1: 14
+    cls2: 769
+  沪江网:
+    cls1: 23
+    cls2: 953
+  泡椒网:
+    cls1: 20
+    cls2: 677
+  泡泡网:
+    cls1: 14
+    cls2: 248
+  洛阳移动服务器1:
+    cls1: 31
+    cls2: 649
+  洛阳移动服务器8:
+    cls1: 31
+    cls2: 649
+  济宁移动服务器1:
+    cls1: 31
+    cls2: 617
+  济宁移动服务器2:
+    cls1: 31
+    cls2: 617
+  济宁移动服务器5:
+    cls1: 31
+    cls2: 617
+  济宁移动服务器7:
+    cls1: 31
+    cls2: 617
+  济宁移动服务器8:
+    cls1: 31
+    cls2: 617
+  浙东上虞网:
+    cls1: 25
+    cls2: 811
+  浙商证券:
+    cls1: 8
+    cls2: 190
+  浙商银行:
+    cls1: 8
+    cls2: 227
+  浙江人才:
+    cls1: 9
+    cls2: 196
+  浙江体彩网:
+    cls1: 15
+    cls2: 259
+  浙江在线:
+    cls1: 4
+    cls2: 245
+  浙江电子口岸:
+    cls1: 7
+    cls2: 152
+  浙江省卫生厅:
+    cls1: 7
+    cls2: 149
+  浙江省环保:
+    cls1: 7
+    cls2: 181
+  浙江移动服务器100:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器101:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器102:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器103:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器104:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器105:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器106:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器107:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器108:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器109:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器10:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器110:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器111:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器112:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器113:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器114:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器115:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器118:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器119:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器11:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器120:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器121:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器122:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器123:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器124:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器125:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器12:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器13:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器14:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器15:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器16:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器17:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器18:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器19:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器1:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器20:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器21:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器22:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器23:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器24:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器25:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器26:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器27:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器28:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器29:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器2:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器30:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器31:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器32:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器33:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器34:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器35:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器36:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器37:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器38:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器39:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器3:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器40:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器41:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器42:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器43:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器44:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器45:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器46:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器47:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器48:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器49:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器4:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器50:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器51:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器52:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器53:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器54:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器55:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器58:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器59:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器5:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器60:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器61:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器62:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器63:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器64:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器65:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器66:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器67:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器68:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器69:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器6:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器70:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器71:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器72:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器73:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器74:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器75:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器76:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器77:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器78:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器79:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器7:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器80:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器81:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器82:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器83:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器84:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器85:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器86:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器87:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器88:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器89:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器8:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器90:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器91:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器92:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器93:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器94:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器95:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器96:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器97:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器98:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器99:
+    cls1: 31
+    cls2: 385
+  浙江移动服务器9:
+    cls1: 31
+    cls2: 385
+  浙江都市网:
+    cls1: 3
+    cls2: 135
+  浪漫言情:
+    cls1: 1
+    cls2: 68
+  海沟商城:
+    cls1: 3
+    cls2: 858
+  淘宝优惠返利:
+    cls1: 5
+    cls2: 734
+  淘宝图片服务器1:
+    cls1: 16
+    cls2: 371
+  淘宝图片服务器2:
+    cls1: 16
+    cls2: 371
+  淘宝图片服务器:
+    cls1: 16
+    cls2: 342
+  淘宝网:
+    cls1: 5
+    cls2: 342
+  深圳移动服务器1:
+    cls1: 31
+    cls2: 703
+  深圳移动服务器2:
+    cls1: 31
+    cls2: 703
+  深圳移动服务器3:
+    cls1: 31
+    cls2: 703
+  淳安县政府:
+    cls1: 7
+    cls2: 180
+  游戏狗手机游戏:
+    cls1: 11
+    cls2: 981
+  游戏茶苑:
+    cls1: 11
+    cls2: 209
+  游民星空:
+    cls1: 11
+    cls2: 205
+  游艺网:
+    cls1: 11
+    cls2: 218
+  湖南招生考试信息港:
+    cls1: 23
+    cls2: 956
+  湖南移动服务器12:
+    cls1: 31
+    cls2: 861
+  湖南移动服务器14:
+    cls1: 31
+    cls2: 861
+  湖南移动服务器16:
+    cls1: 31
+    cls2: 861
+  湖南移动服务器17:
+    cls1: 31
+    cls2: 861
+  湖南移动服务器19:
+    cls1: 31
+    cls2: 861
+  湖南移动服务器1:
+    cls1: 31
+    cls2: 861
+  湖南移动服务器20:
+    cls1: 31
+    cls2: 861
+  湖南移动服务器21:
+    cls1: 31
+    cls2: 861
+  湖南移动服务器22:
+    cls1: 31
+    cls2: 861
+  湖南移动服务器23:
+    cls1: 31
+    cls2: 861
+  湖南移动服务器24:
+    cls1: 31
+    cls2: 861
+  湖南移动服务器25:
+    cls1: 31
+    cls2: 861
+  湖南移动服务器26:
+    cls1: 31
+    cls2: 861
+  湖南移动服务器28:
+    cls1: 31
+    cls2: 861
+  湖南移动服务器29:
+    cls1: 31
+    cls2: 861
+  湖南移动服务器2:
+    cls1: 31
+    cls2: 861
+  湖南移动服务器30:
+    cls1: 31
+    cls2: 861
+  湖南移动服务器31:
+    cls1: 31
+    cls2: 861
+  湖南移动服务器32:
+    cls1: 31
+    cls2: 861
+  湖南移动服务器33:
+    cls1: 31
+    cls2: 861
+  湖南移动服务器37:
+    cls1: 31
+    cls2: 861
+  湖南移动服务器4:
+    cls1: 31
+    cls2: 861
+  湖南移动服务器6:
+    cls1: 31
+    cls2: 861
+  湖南移动服务器7:
+    cls1: 31
+    cls2: 861
+  湖南移动服务器8:
+    cls1: 31
+    cls2: 861
+  湖南移动服务器9:
+    cls1: 31
+    cls2: 861
+  湖州人事人才网:
+    cls1: 9
+    cls2: 612
+  湖州师范学院:
+    cls1: 37
+    cls2: 613
+  潇湘书院网:
+    cls1: 1
+    cls2: 7
+  激动网:
+    cls1: 2
+    cls2: 120
+  点心:
+    cls1: 20
+    cls2: 579
+  烙印:
+    cls1: 11
+    cls2: 868
+  熊猫影音:
+    cls1: 2
+    cls2: 893
+  爱乐网:
+    cls1: 13
+    cls2: 530
+  爱卡:
+    cls1: 21
+    cls2: 308
+  爱壁纸:
+    cls1: 16
+    cls2: 526
+  爱奇艺2:
+    cls1: 2
+    cls2: 118
+  爱奇艺:
+    cls1: 2
+    cls2: 118
+  爱皮下载:
+    cls1: 20
+    cls2: 531
+  爱购网:
+    cls1: 5
+    cls2: 527
+  爱酷软件:
+    cls1: 20
+    cls2: 529
+  爱问搜索:
+    cls1: 6
+    cls2: 535
+  猫扑:
+    cls1: 10
+    cls2: 200
+  猫扑图片服务器:
+    cls1: 16
+    cls2: 394
+  环球网:
+    cls1: 3
+    cls2: 132
+  珠海正点科技:
+    cls1: 20
+    cls2: 952
+  瑞丽女性网:
+    cls1: 22
+    cls2: 310
+  瑞星:
+    cls1: 20
+    cls2: 296
+  申银万国:
+    cls1: 8
+    cls2: 191
+  电影网:
+    cls1: 2
+    cls2: 122
+  电游网:
+    cls1: 11
+    cls2: 212
+  电脑之家:
+    cls1: 14
+    cls2: 250
+  百分网:
+    cls1: 11
+    cls2: 551
+  百合网:
+    cls1: 19
+    cls2: 340
+  百度1:
+    cls1: 6
+    cls2: 284
+  百度2:
+    cls1: 6
+    cls2: 284
+  百度无线图片服务器1:
+    cls1: 16
+    cls2: 366
+  百度无线图片服务器2:
+    cls1: 16
+    cls2: 366
+  百度无线图片服务器3:
+    cls1: 16
+    cls2: 366
+  百度无线图片服务器4:
+    cls1: 16
+    cls2: 366
+  百度空间:
+    cls1: 33
+    cls2: 549
+  百阅网:
+    cls1: 1
+    cls2: 942
+  盛名列车时刻表:
+    cls1: 15
+    cls2: 878
+  盛大在线:
+    cls1: 11
+    cls2: 214
+  看书网2:
+    cls1: 1
+    cls2: 25
+  看书网:
+    cls1: 1
+    cls2: 25
+  破解游戏:
+    cls1: 11
+    cls2: 679
+  福建移动服务器1:
+    cls1: 31
+    cls2: 594
+  福建移动服务器2:
+    cls1: 31
+    cls2: 594
+  福建移动服务器3:
+    cls1: 31
+    cls2: 594
+  福建移动服务器4:
+    cls1: 31
+    cls2: 594
+  福建移动服务器5:
+    cls1: 31
+    cls2: 594
+  秦皇岛移动服务器1:
+    cls1: 31
+    cls2: 686
+  移动广告:
+    cls1: 28
+    cls2: 897
+  移动应用商场:
+    cls1: 14
+    cls2: 791
+  移动梦网:
+    cls1: 3
+    cls2: 147
+  童果网:
+    cls1: 13
+    cls2: 883
+  笔趣阁:
+    cls1: 1
+    cls2: 555
+  第九城市:
+    cls1: 11
+    cls2: 426
+  米尔军情网:
+    cls1: 4
+    cls2: 325
+  米汤网:
+    cls1: 20
+    cls2: 985
+  糯米团:
+    cls1: 5
+    cls2: 1073
+  索尼:
+    cls1: 14
+    cls2: 729
+  索尼Xpera:
+    cls1: 14
+    cls2: 730
+  红袖添香小说网:
+    cls1: 1
+    cls2: 21
+  纵横中文网:
+    cls1: 1
+    cls2: 23
+  绍兴E网2:
+    cls1: 20
+    cls2: 701
+  维旺明手机杂志平台:
+    cls1: 1
+    cls2: 438
+  绵阳移动服务器1:
+    cls1: 31
+    cls2: 661
+  绵阳移动服务器2:
+    cls1: 31
+    cls2: 661
+  缔顺在线:
+    cls1: 11
+    cls2: 217
+  网址之家:
+    cls1: 15
+    cls2: 755
+  网易2:
+    cls1: 3
+    cls2: 146
+  网易3:
+    cls1: 3
+    cls2: 146
+  网易:
+    cls1: 3
+    cls2: 146
+  网易博客:
+    cls1: 33
+    cls2: 146
+  网易图片服务器:
+    cls1: 16
+    cls2: 146
+  网易手机邮箱:
+    cls1: 12
+    cls2: 146
+  网易邮箱:
+    cls1: 12
+    cls2: 146
+  网秦:
+    cls1: 20
+    cls2: 886
+  美团网:
+    cls1: 5
+    cls2: 349
+  美图网:
+    cls1: 16
+    cls2: 652
+  翠微居:
+    cls1: 1
+    cls2: 15
+  老虎地图:
+    cls1: 15
+    cls2: 940
+  联合早报:
+    cls1: 4
+    cls2: 243
+  聚划算:
+    cls1: 5
+    cls2: 342
+  聚美优品:
+    cls1: 5
+    cls2: 631
+  胡莱游戏:
+    cls1: 11
+    cls2: 860
+  能助手:
+    cls1: 11
+    cls2: 670
+  腾讯QQ群:
+    cls1: 29
+    cls2: 924
+  腾讯云平台:
+    cls1: 14
+    cls2: 933
+  腾讯图片服务器1:
+    cls1: 16
+    cls2: 368
+  腾讯图片服务器2:
+    cls1: 16
+    cls2: 368
+  腾讯图片服务器3:
+    cls1: 16
+    cls2: 368
+  腾讯网:
+    cls1: 3
+    cls2: 109
+  至尊宝游戏城:
+    cls1: 11
+    cls2: 945
+  艺龙酒店预订:
+    cls1: 24
+    cls2: 318
+  艾薇给力图片服务器:
+    cls1: 16
+    cls2: 417
+  苏宁易购:
+    cls1: 5
+    cls2: 352
+  苏州移动服务器10:
+    cls1: 31
+    cls2: 727
+  苏州移动服务器11:
+    cls1: 31
+    cls2: 727
+  苏州移动服务器12:
+    cls1: 31
+    cls2: 727
+  苏州移动服务器13:
+    cls1: 31
+    cls2: 727
+  苏州移动服务器14:
+    cls1: 31
+    cls2: 727
+  苏州移动服务器15:
+    cls1: 31
+    cls2: 727
+  苏州移动服务器16:
+    cls1: 31
+    cls2: 727
+  苏州移动服务器17:
+    cls1: 31
+    cls2: 727
+  苏州移动服务器18:
+    cls1: 31
+    cls2: 727
+  苏州移动服务器19:
+    cls1: 31
+    cls2: 727
+  苏州移动服务器1:
+    cls1: 31
+    cls2: 727
+  苏州移动服务器20:
+    cls1: 31
+    cls2: 727
+  苏州移动服务器21:
+    cls1: 31
+    cls2: 727
+  苏州移动服务器22:
+    cls1: 31
+    cls2: 727
+  苏州移动服务器23:
+    cls1: 31
+    cls2: 727
+  苏州移动服务器24:
+    cls1: 31
+    cls2: 727
+  苏州移动服务器25:
+    cls1: 31
+    cls2: 727
+  苏州移动服务器26:
+    cls1: 31
+    cls2: 727
+  苏州移动服务器27:
+    cls1: 31
+    cls2: 727
+  苏州移动服务器28:
+    cls1: 31
+    cls2: 727
+  苏州移动服务器29:
+    cls1: 31
+    cls2: 727
+  苏州移动服务器2:
+    cls1: 31
+    cls2: 727
+  苏州移动服务器30:
+    cls1: 31
+    cls2: 727
+  苏州移动服务器31:
+    cls1: 31
+    cls2: 727
+  苏州移动服务器32:
+    cls1: 31
+    cls2: 727
+  苏州移动服务器33:
+    cls1: 31
+    cls2: 727
+  苏州移动服务器34:
+    cls1: 31
+    cls2: 727
+  苏州移动服务器35:
+    cls1: 31
+    cls2: 727
+  苏州移动服务器36:
+    cls1: 31
+    cls2: 727
+  苏州移动服务器37:
+    cls1: 31
+    cls2: 727
+  苏州移动服务器38:
+    cls1: 31
+    cls2: 727
+  苏州移动服务器39:
+    cls1: 31
+    cls2: 727
+  苏州移动服务器3:
+    cls1: 31
+    cls2: 727
+  苏州移动服务器40:
+    cls1: 31
+    cls2: 727
+  苏州移动服务器41:
+    cls1: 31
+    cls2: 727
+  苏州移动服务器42:
+    cls1: 31
+    cls2: 727
+  苏州移动服务器43:
+    cls1: 31
+    cls2: 727
+  苏州移动服务器44:
+    cls1: 31
+    cls2: 727
+  苏州移动服务器45:
+    cls1: 31
+    cls2: 727
+  苏州移动服务器46:
+    cls1: 31
+    cls2: 727
+  苏州移动服务器47:
+    cls1: 31
+    cls2: 727
+  苏州移动服务器48:
+    cls1: 31
+    cls2: 727
+  苏州移动服务器49:
+    cls1: 31
+    cls2: 727
+  苏州移动服务器4:
+    cls1: 31
+    cls2: 727
+  苏州移动服务器50:
+    cls1: 31
+    cls2: 727
+  苏州移动服务器51:
+    cls1: 31
+    cls2: 727
+  苏州移动服务器52:
+    cls1: 31
+    cls2: 727
+  苏州移动服务器54:
+    cls1: 31
+    cls2: 727
+  苏州移动服务器5:
+    cls1: 31
+    cls2: 727
+  苏州移动服务器6:
+    cls1: 31
+    cls2: 727
+  苏州移动服务器7:
+    cls1: 31
+    cls2: 727
+  苏州移动服务器8:
+    cls1: 31
+    cls2: 727
+  苏州移动服务器9:
+    cls1: 31
+    cls2: 727
+  蓉胜信息:
+    cls1: 14
+    cls2: 951
+  虎扑1:
+    cls1: 18
+    cls2: 280
+  虾米音乐网2:
+    cls1: 13
+    cls2: 239
+  虾米音乐网:
+    cls1: 13
+    cls2: 239
+  蜜蜂无线:
+    cls1: 20
+    cls2: 660
+  西祠胡同:
+    cls1: 3
+    cls2: 291
+  言情小说吧:
+    cls1: 1
+    cls2: 17
+  证券之星:
+    cls1: 8
+    cls2: 182
+  评书吧 :
+    cls1: 1
+    cls2: 678
+  话匣子听书:
+    cls1: 1
+    cls2: 615
+  语音云:
+    cls1: 20
+    cls2: 803
+  请看小说网:
+    cls1: 1
+    cls2: 936
+  诺基亚:
+    cls1: 14
+    cls2: 674
+  谷歌分析:
+    cls1: 14
+    cls2: 856
+  谷歌搜索1:
+    cls1: 6
+    cls2: 281
+  谷歌搜索2:
+    cls1: 6
+    cls2: 281
+  谷歌链接:
+    cls1: 6
+    cls2: 601
+  豆丁工作室:
+    cls1: 20
+    cls2: 585
+  豆奇精品游戏:
+    cls1: 11
+    cls2: 957
+  豆果网:
+    cls1: 15
+    cls2: 586
+  豆瓣网:
+    cls1: 10
+    cls2: 198
+  豌豆夹:
+    cls1: 20
+    cls2: 751
+  豌豆荚手机精灵:
+    cls1: 20
+    cls2: 752
+  贝壳:
+    cls1: 11
+    cls2: 554
+  财付通:
+    cls1: 5
+    cls2: 262
+  财经网:
+    cls1: 8
+    cls2: 255
+  赛尔号:
+    cls1: 11
+    cls2: 207
+  赢告无限:
+    cls1: 28
+    cls2: 797
+  赶集网2:
+    cls1: 3
+    cls2: 136
+  赶集网:
+    cls1: 3
+    cls2: 136
+  赶集网图片服务器:
+    cls1: 16
+    cls2: 926
+  起点小说网:
+    cls1: 1
+    cls2: 682
+  跑跑卡丁车:
+    cls1: 11
+    cls2: 676
+  路路通时刻表:
+    cls1: 15
+    cls2: 869
+  软吧:
+    cls1: 20
+    cls2: 691
+  迅雷在线:
+    cls1: 14
+    cls2: 787
+  追客免费小说阅读网:
+    cls1: 1
+    cls2: 914
+  逐浪文学网:
+    cls1: 1
+    cls2: 11
+  酷6网:
+    cls1: 2
+    cls2: 111
+  酷我音乐盒:
+    cls1: 13
+    cls2: 237
+  酷狗音乐服务器1:
+    cls1: 13
+    cls2: 921
+  酷狗音乐服务器2:
+    cls1: 13
+    cls2: 921
+  酷狗音乐服务器3:
+    cls1: 13
+    cls2: 921
+  酷狗音乐服务器4:
+    cls1: 13
+    cls2: 921
+  酷狗音乐服务器5:
+    cls1: 13
+    cls2: 921
+  酷狗音乐服务器6:
+    cls1: 13
+    cls2: 921
+  酷狗音乐网:
+    cls1: 13
+    cls2: 235
+  酷讯旅游网:
+    cls1: 24
+    cls2: 319
+  重庆移动服务器10:
+    cls1: 31
+    cls2: 824
+  重庆移动服务器11:
+    cls1: 31
+    cls2: 824
+  重庆移动服务器12:
+    cls1: 31
+    cls2: 824
+  重庆移动服务器13:
+    cls1: 31
+    cls2: 824
+  重庆移动服务器14:
+    cls1: 31
+    cls2: 824
+  重庆移动服务器15:
+    cls1: 31
+    cls2: 824
+  重庆移动服务器17:
+    cls1: 31
+    cls2: 824
+  重庆移动服务器18:
+    cls1: 31
+    cls2: 824
+  重庆移动服务器21:
+    cls1: 31
+    cls2: 824
+  重庆移动服务器23:
+    cls1: 31
+    cls2: 824
+  重庆移动服务器24:
+    cls1: 31
+    cls2: 824
+  重庆移动服务器25:
+    cls1: 31
+    cls2: 824
+  重庆移动服务器2:
+    cls1: 31
+    cls2: 824
+  重庆移动服务器3:
+    cls1: 31
+    cls2: 824
+  重庆移动服务器5:
+    cls1: 31
+    cls2: 824
+  重庆移动服务器6:
+    cls1: 31
+    cls2: 824
+  重庆移动服务器7:
+    cls1: 31
+    cls2: 824
+  重庆移动服务器8:
+    cls1: 31
+    cls2: 824
+  重庆移动服务器9:
+    cls1: 31
+    cls2: 824
+  金山:
+    cls1: 20
+    cls2: 298
+  金山T盘:
+    cls1: 15
+    cls2: 623
+  金立门户1:
+    cls1: 14
+    cls2: 622
+  金立门户2:
+    cls1: 14
+    cls2: 622
+  铁血军事网:
+    cls1: 4
+    cls2: 326
+  铁血网图片服务器:
+    cls1: 16
+    cls2: 382
+  银狐库存管家:
+    cls1: 20
+    cls2: 941
+  锋潮网:
+    cls1: 17
+    cls2: 592
+  锦衣夜行:
+    cls1: 1
+    cls2: 864
+  长沙移动服务器2:
+    cls1: 31
+    cls2: 902
+  长沙移动服务器4:
+    cls1: 31
+    cls2: 902
+  阿里云:
+    cls1: 14
+    cls2: 524
+  陌陌:
+    cls1: 19
+    cls2: 373
+  随踪科技:
+    cls1: 28
+    cls2: 960
+  随身听:
+    cls1: 13
+    cls2: 728
+  雅虎:
+    cls1: 3
+    cls2: 788
+  零点书屋:
+    cls1: 1
+    cls2: 70
+  音悦台:
+    cls1: 13
+    cls2: 233
+  页游网:
+    cls1: 11
+    cls2: 789
+  颠簸网:
+    cls1: 16
+    cls2: 577
+  飞流网:
+    cls1: 20
+    cls2: 590
+  飞碟网:
+    cls1: 20
+    cls2: 958
+  驱动之家:
+    cls1: 20
+    cls2: 301
+  驱动精灵:
+    cls1: 20
+    cls2: 688
+  驴妈妈旅游网:
+    cls1: 24
+    cls2: 321
+  高手彩票网:
+    cls1: 15
+    cls2: 946
+  魅族:
+    cls1: 14
+    cls2: 655
+  麦包包:
+    cls1: 5
+    cls2: 354
+  黄金岛游戏:
+    cls1: 11
+    cls2: 977
+  龙之谷:
+    cls1: 11
+    cls2: 214
+
+## Semantic map for class1 of categories.
+cls1_map:
+  1: 读书
+  2: 视频
+  3: 门户
+  4: 新闻
+  5: 网上购物
+  6: 搜索导航
+  7: 政府机构
+  8: 金融投资
+  9: 求职
+  10: 休闲娱乐
+  11: 游戏
+  12: 电子邮箱
+  13: 音乐
+  14: 数码科技
+  15: 生活工具
+  16: 图片服务
+  17: 下载更新
+  18: 体育
+  19: 社交网络
+  20: 移动软件
+  21: 汽车
+  22: 女性
+  23: 教育
+  24: 旅游
+  25: 论坛社区
+  26: 健康
+  27: 房产
+  28: 广告
+  29: 即时通讯
+  30: wap网关
+  31: 移动服务器
+  32: 微博
+  33: 主页博客
+  34: 公益
+  35: 星座
+  36: 笑话
+  37: 教育
+  38: 环保
+  39: 时尚
+  40: 书签收藏
+  41: CDN服务
+  42: 彩信中心
