@@ -167,7 +167,7 @@ object Utils {
    * @return
    */
   def getMobileName(user_agent: String): String = {
-    if (user_agent == null) return null
+    if (user_agent == null) return "unknown"
 
     val pattern = """android|(bb\\d+|meego).+mobile|avantgo|bada\\/|blackberry|blazer|compal|docomo|dolfin|dolphin|elaine|fennec|hiptop|iemobile|(hpw|web)os|htc( touch)?|ip(hone|od|ad)|iris|j2me|kindle( fire)?|lge |maemo|midp|minimo|mmp|netfront|nokia|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\\/|plucker|playstation|pocket|portalmmm|psp|series(4|6)0|symbian|silk-accelerated|skyfire|sonyericsson|treo|tablet|touch(pad)?|up\\.(browser|link)|vodafone|wap|webos|windows (ce|phone)|wireless|xda|xiino|zune""".r
     val matched = pattern.findFirstMatchIn(user_agent)
@@ -175,10 +175,6 @@ object Utils {
       case Some(m) => m.group(0)
       case None => "unknown"
     }
-  }
-
-  def getServiceCategory(host: String): Unit = {
-
   }
 
 }

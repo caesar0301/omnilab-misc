@@ -1,14 +1,25 @@
 package cn.edu.sjtu.omnilab.emcbdc
 
+import java.util.UUID
+
 import org.apache.spark.SparkConf
 import org.apache.spark.SparkContext
 
+case class CleanLog(ID: String, stime: Long, etime: Long,
+                    size: Long, mobile: String, SP: String,
+                    SCAT: String, host: String, SID: String)
+
+case class SessionStat(ID: String, stime: Long, sdur: Long, mobile: String,
+                       sps: String, scats: String, bytes: String, requests: String)
+
 /**
  * A Spark job to cleanse SJTU HTTP logs for EMCBDC.
+ * @author: Xiaming Chen, chenxm35@gmail.com
  */
 object PrepareDataJob {
 
-  val serviceClassifier = new ServiceCategoryClassify()
+  final val serviceClassifier = new ServiceCategoryClassify()
+  final val sessionGapMinutes = 5
 
   def main( args: Array[String] ): Unit = {
 
@@ -26,7 +37,7 @@ object PrepareDataJob {
     conf.setAppName("Data cleansing for EMCBDC")
     val spark = new SparkContext(conf)
 
-    // extract fields from logs and valid log entry
+    // extract fields from logs and valid input data
     val inputRDD = spark.textFile(input)
       .map( cleanseLog(_) )
       .filter ( line => line != null &&
@@ -34,12 +45,27 @@ object PrepareDataJob {
         line(DataSchema.request_ts) != null &&
         line(DataSchema.request_size) != null &&
         line(DataSchema.request_host) != null)
-      .cache()
 
+    // transform raw logs into clean format
     val selectedRDD = inputRDD.map(transformFieldsForBDC(_))
-      .filter(_ != null)
+      // remove logs without service info
+      .filter(t => t != null && t.SP != null)
 
-    selectedRDD.map(_.mkString(",")).saveAsTextFile(output);
+//    selectedRDD.map(cl => {
+//      "%s,%d,%d,%d,%s,%s,%s,%s".format(cl.ID, cl.stime, cl.etime, cl.size,
+//        cl.mobile, cl.SP, cl.SCAT, cl.host)
+//    }).saveAsTextFile(output)
+
+    // extract session stat
+    val sessions = selectedRDD.groupBy(_.ID)
+      .flatMap { case (user, iter) => markSessions(iter) }
+      .groupBy(_.SID)
+      .map { case (sid, iter) => extractSessionStat(iter)}
+
+    sessions.map(m => {
+      "%s\t%d\t%d\t%s\t%s\t%s\t%s\t%s".format(m.ID, m.stime, m.sdur, m.mobile,
+        m.sps, m.scats, m.bytes, m.requests)
+    }).saveAsTextFile(output)
 
   }
 
@@ -77,7 +103,7 @@ object PrepareDataJob {
    * @param line
    * @return
    */
-  def transformFieldsForBDC(line: Array[String]): Array[Any] = {
+  def transformFieldsForBDC(line: Array[String]): CleanLog = {
     val source_ip = line(DataSchema.source_ip)
 
     // parse request starting time
@@ -97,14 +123,72 @@ object PrepareDataJob {
     val size = request_size + response_size
 
     val host = line(DataSchema.request_host).replace("www.", "")
-    val tld = Utils.getTopPrivateDomain(host)
+    // val tld = Utils.getTopPrivateDomain(host)
     // val url = Utils.stripURL(line(DataSchema.request_url))
     val mobile_type = Utils.getMobileName(line(DataSchema.request_user_agent))
     val service = serviceClassifier.parse(host).toArray()
-    val service_provider = service(0)
-    val service_category = service(1)
+    var service_provider: String = null
+    if ( service(0) != null)
+      service_provider = service(0).toString
+    var service_category: String = null
+    if (service(1) != null)
+      service_category = service(1).toString
 
-    (source_ip, stime, etime, size, host, mobile_type, service_provider, service_category, tld)
-      .productIterator.toArray
+    // output clean log entry, without sesson key
+    CleanLog(source_ip, stime, etime, size, mobile_type,
+      service_provider, service_category, host, null)
+  }
+
+  /**
+   * sessionize individual's logs
+   * @param records
+   * @return
+   */
+  def markSessions(records: Iterable[CleanLog]): Iterable[CleanLog] = {
+    var curUUID = UUID.randomUUID.toString
+    var lastTimestamp: Long = -1
+
+    records.toArray.transform( m => {
+      val curTimestamp = m.stime
+      if ( lastTimestamp < 0 || curTimestamp - lastTimestamp > sessionGapMinutes * 60 * 1000) {
+        curUUID = UUID.randomUUID.toString // update UUID for a new session
+      }
+      lastTimestamp = curTimestamp
+      m.copy( SID = curUUID)
+    }).toIterable
+  }
+
+  /**
+   * Compress user activities into sessions and calculate session metrics
+   * @param iter
+   * @return
+   */
+  def extractSessionStat(iter: Iterable[CleanLog]): SessionStat = {
+    val records = iter.toArray.sortBy(_.stime)
+    val id = records(0).ID
+    val stime = records.map(_.stime).min
+    val sdur = records.map(_.etime).max - stime
+
+    // get the toppest mobile client type which is not "unknown"
+    val mobileCount = records.map(_.mobile).groupBy(identity)
+      .mapValues(_.size).filterKeys(_ != "unknown")
+    var mobile: String = null
+    if (mobileCount.size > 0)
+      mobile = mobileCount.maxBy(_._2)._1
+
+    // calculate transmission stat for different service provider
+    val serviceGroup = records.groupBy(x => (x.SP, x.SCAT))
+      .mapValues(m => {
+        val bytes = m.map(_.size).sum
+        val requests = m.length
+        (bytes, requests)
+      })
+
+    val sps = serviceGroup.map(_._1._1).mkString(";")
+    val scats = serviceGroup.map(_._1._2).mkString(";")
+    val bytes = serviceGroup.map(_._2._1).mkString(";")
+    val requests = serviceGroup.map(_._2._2).mkString(";")
+
+    SessionStat(id, stime, sdur, mobile, bytes, requests, sps, scats)
   }
 }
