@@ -5,21 +5,22 @@ import java.util.UUID
 import org.apache.spark.SparkConf
 import org.apache.spark.SparkContext
 
-case class CleanLog(ID: String, stime: Long, etime: Long,
+case class CleanLog(IP: String, stime: Long, etime: Long,
                     size: Long, mobile: String, SP: String,
                     SCAT: String, host: String, SID: String)
 
-case class SessionStat(ID: String, stime: Long, sdur: Long, mobile: String,
-                       sps: String, scats: String, bytes: String, requests: String)
+case class SessionStat(IP: String, stime: Long, sdur: Long, mobile: String,
+                       sps: String, bytes: String, requests: String)
 
 /**
  * A Spark job to cleanse SJTU HTTP logs for EMCBDC.
- * @author: Xiaming Chen, chenxm35@gmail.com
+ * @author: Xiaming Chen
+ *         chenxm35@gmail.com
  */
 object PrepareDataJob {
 
   final val serviceClassifier = new ServiceCategoryClassify()
-  final val sessionGapMinutes = 5
+  final val sessionGapMinutes = 10
 
   def main( args: Array[String] ): Unit = {
 
@@ -51,20 +52,16 @@ object PrepareDataJob {
       // remove logs without service info
       .filter(t => t != null && t.SP != null)
 
-//    selectedRDD.map(cl => {
-//      "%s,%d,%d,%d,%s,%s,%s,%s".format(cl.ID, cl.stime, cl.etime, cl.size,
-//        cl.mobile, cl.SP, cl.SCAT, cl.host)
-//    }).saveAsTextFile(output)
-
     // extract session stat
-    val sessions = selectedRDD.groupBy(_.ID)
-      .flatMap { case (user, iter) => markSessions(iter) }
+    val sessions = selectedRDD.groupBy( m => {
+      (m.IP, m.stime / 1000 / 3600 / 24)
+    }).flatMap { case (key, iter) => markSessions(iter) }
       .groupBy(_.SID)
       .map { case (sid, iter) => extractSessionStat(iter)}
 
     sessions.map(m => {
-      "%s\t%d\t%d\t%s\t%s\t%s\t%s\t%s".format(m.ID, m.stime, m.sdur, m.mobile,
-        m.sps, m.scats, m.bytes, m.requests)
+      "%s,%d,%d,%s,%s,%s,%s".format(m.IP, m.stime, m.sdur, m.mobile,
+        m.sps, m.bytes, m.requests)
     }).saveAsTextFile(output)
 
   }
@@ -165,7 +162,7 @@ object PrepareDataJob {
    */
   def extractSessionStat(iter: Iterable[CleanLog]): SessionStat = {
     val records = iter.toArray.sortBy(_.stime)
-    val id = records(0).ID
+    val id = records(0).IP
     val stime = records.map(_.stime).min
     val sdur = records.map(_.etime).max - stime
 
@@ -189,6 +186,7 @@ object PrepareDataJob {
     val bytes = serviceGroup.map(_._2._1).mkString(";")
     val requests = serviceGroup.map(_._2._2).mkString(";")
 
-    SessionStat(id, stime, sdur, mobile, bytes, requests, sps, scats)
+    SessionStat(IP=id, stime=stime, sdur=sdur, mobile=mobile,
+      bytes=bytes, requests=requests, sps=sps)
   }
 }

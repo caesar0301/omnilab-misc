@@ -18,7 +18,7 @@ import java.util.regex.Pattern;
  */
 public class ServiceCategoryClassify {
 
-	private static final String REGEX_HOST_CATEGORY = "/host-regexes.yaml";
+	private static final String REGEX_HOST_CATEGORY = "/HostSrvCat.yaml";
 	private List<HostPattern> hostParser = new LinkedList<HostPattern>();
 	private Map<String, Map<String, Integer>> categoryClassesParser;
 	private Map<Integer, String> subCategory1Parser;

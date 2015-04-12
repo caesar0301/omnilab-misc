@@ -485,6 +485,10 @@ apprefix_sjtu:
     dsp: 学生宿舍W
     typ: DormBldg
     usr: PRVT
+  student:
+    dsp: 学生宿舍
+    typ: DormBldg
+    usr: PRVT
   southdoor:
     dsp: 凯旋门-待定
     typ: GateBldg

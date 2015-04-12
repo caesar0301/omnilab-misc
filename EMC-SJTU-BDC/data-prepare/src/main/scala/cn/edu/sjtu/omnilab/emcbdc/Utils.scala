@@ -1,6 +1,8 @@
 package cn.edu.sjtu.omnilab.emcbdc
 
 import com.google.common.net._
+import org.joda.time.DateTime
+import org.joda.time.format.{DateTimeFormat, ISODateTimeFormat}
 
 import scala.collection.immutable.HashMap
 
@@ -175,6 +177,27 @@ object Utils {
       case Some(m) => m.group(0)
       case None => "unknown"
     }
+  }
+
+  val timeFormatString = ""
+
+  /**
+   * Converts ISO8601 datetime strings to Unix Time Longs (milliseconds)
+   * @param isotime
+   * @return
+   */
+  def ISOToUnix(isotime: String): Long = {
+    val fmt = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss")
+    fmt.parseDateTime(isotime).getMillis
+  }
+
+  /**
+   * Converts Unix Time Longs (milliseconds) to ISO8601 datetime strings
+   * @param unixtime
+   * @return
+   */
+  def UnixToISO(unixtime: Long): String = {
+    new DateTime(unixtime).formatted("yyyy-MM-dd HH:mm:ss")
   }
 
 }
