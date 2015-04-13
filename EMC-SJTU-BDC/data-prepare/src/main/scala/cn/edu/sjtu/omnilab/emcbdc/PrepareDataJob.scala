@@ -13,7 +13,7 @@ case class SessionStat(IP: String, stime: Long, sdur: Long, mobile: String,
                        sps: String, bytes: String, requests: String)
 
 /**
- * A Spark job to cleanse SJTU HTTP logs for EMCBDC.
+ * A Spark job to cleanse SJTU HTTP logs for EMC Big Data Challenge (EMCBDC).
  * @author: Xiaming Chen
  *         chenxm35@gmail.com
  */
@@ -38,22 +38,27 @@ object PrepareDataJob {
     conf.setAppName("Data cleansing for EMCBDC")
     val spark = new SparkContext(conf)
 
-    // extract fields from logs and valid input data
-    val inputRDD = spark.textFile(input)
-      .map( cleanseLog(_) )
-      .filter ( line => line != null &&
-        line(DataSchema.source_port) != null &&
-        line(DataSchema.request_ts) != null &&
-        line(DataSchema.request_size) != null &&
-        line(DataSchema.request_host) != null)
+    // extract fields from raw logs and validate input data
+//    val inputRDD = spark.textFile(input)
+//      .map( m => {
+//        val cleanLog = cleanseLog(m)
+//        transformFieldsForBDC(cleanLog)
+//      }).filter(t => t != null && t.SP != null)
+//    .persist
+//
+//    inputRDD.map(m => {
+//      "%s,%d,%d,%d,%s,%s,%s,%s,%s".format(m.IP, m.stime, m.etime, m.size,
+//        m.mobile, m.SP, m.SCAT, m.host, m.SID)
+//    }).saveAsTextFile(output + ".clean")
 
-    // transform raw logs into clean format
-    val selectedRDD = inputRDD.map(transformFieldsForBDC(_))
-      // remove logs without service info
-      .filter(t => t != null && t.SP != null)
+    val inputRDD = spark.textFile(input).map { m => {
+      val parts = m.split(',')
+      CleanLog(parts(0), parts(1).toLong, parts(2).toLong, parts(3).toLong,
+        parts(4), parts(5), parts(6), parts(7), parts(8))
+    }}
 
     // extract session stat
-    val sessions = selectedRDD.groupBy( m => {
+    val sessions = inputRDD.groupBy( m => {
       (m.IP, m.stime / 1000 / 3600 / 24)
     }).flatMap { case (key, iter) => markSessions(iter) }
       .groupBy(_.SID)
@@ -101,6 +106,12 @@ object PrepareDataJob {
    * @return
    */
   def transformFieldsForBDC(line: Array[String]): CleanLog = {
+    // filter out invalid messages for this BDC
+    if ( line == null || line(DataSchema.source_port) == null ||
+      line(DataSchema.request_ts) == null || line(DataSchema.request_size) == null ||
+      line(DataSchema.request_host) == null )
+      return null
+
     val source_ip = line(DataSchema.source_ip)
 
     // parse request starting time
