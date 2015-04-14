@@ -7,7 +7,7 @@ scalaVersion := "2.10.4"
 
 libraryDependencies += "org.apache.spark" %% "spark-core" % "1.2.0" % "provided"
 
-libraryDependencies += "com.google.guava" % "guava" % "16.0"
+libraryDependencies += "com.google.guava" % "guava" % "18.0"
 
 libraryDependencies += "org.yaml" % "snakeyaml" % "1.15"
 

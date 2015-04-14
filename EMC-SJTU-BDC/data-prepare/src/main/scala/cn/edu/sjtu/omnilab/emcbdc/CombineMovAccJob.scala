@@ -3,7 +3,7 @@ package cn.edu.sjtu.omnilab.emcbdc
 import org.apache.spark.{SparkContext, SparkConf}
 import org.apache.spark.SparkContext._ // to use join etc.
 
-case class Accounts(MAC: String, time: Long, account: String, IP: String)
+case class Account(MAC: String, time: Long, account: String, IP: String)
 case class Movement(MAC: String, stime: Long, etime: Long, building: String, IP: String, account: String)
 
 /**
@@ -55,6 +55,8 @@ object CombineMovAccJob {
     joined.map(m => {
       "%s,%d,%d,%s,%s,%s".format(m._1, m._2, m._3, m._4, m._5, m._6)
     }).saveAsTextFile(output)
+
+    spark.stop()
   }
 
   /**
@@ -84,7 +86,7 @@ object CombineMovAccJob {
    * @param line
    * @return
    */
-  def formatAccLog(line: String): Accounts = {
+  def formatAccLog(line: String): Account = {
     val parts = line.split('\t')
     var hasIP = false
 
@@ -100,6 +102,6 @@ object CombineMovAccJob {
     if (hasIP)
       IP = parts(3)
 
-    Accounts(MAC=mac, time=time, account=account, IP=IP)
+    Account(MAC=mac, time=time, account=account, IP=IP)
   }
 }

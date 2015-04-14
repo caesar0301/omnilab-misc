@@ -155,7 +155,10 @@ object Utils {
 
     val host = getHost(url)
     try {
-      InternetDomainName.from(host).topPrivateDomain.toString
+      val name = InternetDomainName.from(host).topPrivateDomain.toString
+      // NB: there is a compiling error with `name()` method
+      val pattern = """name=([^=\\{\\}]+)""".r
+      pattern.findFirstMatchIn(name).get.group(1)
     } catch {
       case e: Exception => host
     }

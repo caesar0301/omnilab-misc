@@ -23,7 +23,10 @@ object WIFICodeSchema {
 }
 
 /**
- * Cleanse WIFI movement log for EMCBDC.
+ * Cleanse WIFI movement log for EMCBDC;
+ * Generate movement sessions with JAccount association.
+ *
+ * The same result with `CombineMovAccJob.scala`
  */
 object CleanseWIFILogJob {
 
@@ -76,6 +79,8 @@ object CleanseWIFILogJob {
     val authRDD = inRDD.filter(m => m.code == WIFICodeSchema.UserAuth)
       .map( m => CleanWIFILog(MAC=m.MAC, time=m.time, code=m.code, payload=m.payload))
       .distinct
+
+    spark.stop()
 
   }
 
