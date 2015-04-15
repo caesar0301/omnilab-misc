@@ -1,13 +1,15 @@
 package cn.edu.sjtu.omnilab.emcbdc
 
-import org.apache.spark.{SparkConf, SparkContext}
+import org.apache.spark.rdd.RDD
+import org.apache.spark.storage.StorageLevel
+import org.apache.spark._
 import org.apache.spark.SparkContext._
 
 import scala.collection.mutable.HashMap
 
-case class CleanWIFILog(MAC: String, time: Long, code: Int, payload: String) // payload as AP or IP
-case class WIFISession(MAC: String, stime: Long, etime: Long, AP: String)
+case class CleanWIFILog(MAC: String, time: Long, code: Int, AP: String, account: String, IP: String)
 case class IPSession(MAC: String, stime: Long, etime: Long, IP: String)
+case class WIFISession(MAC: String, stime: Long, etime: Long, AP: String, IP: String, account: String)
 
 /**
  * An imitation of WIFICode.java
@@ -30,7 +32,9 @@ object WIFICodeSchema {
  */
 object CleanseWIFILogJob {
 
+  final val ap2build = new APToBuilding()
   final val mergeSessionThreshold: Long = 10 * 1000
+  final val IPSessionTimeShift: Long = 5 * 60 * 1000
 
   def main(args: Array[String]): Unit = {
 
@@ -51,34 +55,72 @@ object CleanseWIFILogJob {
       .map { m => {
         val filtered = WIFILogFilter.filterData(m)
         var cleanLog: CleanWIFILog = null
+
         if (filtered != null) {
           val parts = filtered.split(',')
-          cleanLog = CleanWIFILog(MAC = parts(0), time = Utils.ISOToUnix(parts(1)),
-            code = parts(2).toInt, payload = parts(3))
+          val mac = parts(0)
+          val time = Utils.ISOToUnix(parts(1))
+          val code = parts(2).toInt
+          val payload = parts(3)
+
+          if ( code == WIFICodeSchema.UserAuth ) {
+            cleanLog = try {
+              val IP = parts(4)
+              CleanWIFILog(mac, time, code, null, payload, IP)
+            } catch {
+              case e: Exception =>
+                CleanWIFILog(mac, time, code, null, payload, "0.0.0.0")
+            }
+          } else if ( code == WIFICodeSchema.IPAllocation || code == WIFICodeSchema.IPRecycle) {
+            cleanLog = CleanWIFILog(mac, time, code, null, null, payload)
+          } else {
+            val building = try {
+              ap2build.parse(payload).get(0)
+            } catch {
+              case e: Exception => null
+            }
+
+            cleanLog = CleanWIFILog(mac, time, code, building, null, null)
+          }
         }
         cleanLog
-      }}.filter(_ != null).cache
 
-    // extract sessions
+      }}.filter(_ != null).persist(StorageLevel.MEMORY_AND_DISK_SER)
+
+    // extract WIFI association sessions
     val validSessionCodes = List(
       WIFICodeSchema.AuthRequest,
       WIFICodeSchema.AssocRequest,
       WIFICodeSchema.Deauth,
-      WIFICodeSchema.Disassoc
-    )
+      WIFICodeSchema.Disassoc )
 
-    val sessionRDD = inRDD.filter(m => validSessionCodes.contains(m.code)).sortBy(_.time)
-      .groupBy(_.MAC).flatMap { case (key, logs) => { extractSessions(logs) }
-    }
+    val WIFIRDD = inRDD
+      .filter(m => validSessionCodes.contains(m.code))
+      .sortBy(_.time)
+      .groupBy(_.MAC)
+      .flatMap { case (key, logs) => { extractSessions(logs) }}
+      .persist(StorageLevel.MEMORY_AND_DISK_SER)
 
+    // extract IP allocation sessions
     val IPRDD = inRDD
       .filter( m => m.code == WIFICodeSchema.IPAllocation || m.code == WIFICodeSchema.IPRecycle)
       .groupBy(_.MAC)
       .flatMap { case (key, logs) => { collectIPSession(logs) }}
+      .persist(StorageLevel.MEMORY_AND_DISK_SER)
 
+    // filter user authentication messages
     val authRDD = inRDD.filter(m => m.code == WIFICodeSchema.UserAuth)
-      .map( m => CleanWIFILog(MAC=m.MAC, time=m.time, code=m.code, payload=m.payload))
       .distinct
+      .persist(StorageLevel.MEMORY_AND_DISK_SER)
+
+    // add IP and account info onto WIFI sessions
+    val mergedIP = combineWIFIAndIP(WIFIRDD, IPRDD)
+    val mergedSession = combineWIFIAndAcc(mergedIP, authRDD)
+      .sortBy(m => (m.MAC, m.stime))
+
+    mergedSession.map { m =>
+      "%s,%d,%d,%s,%s,%s".format(m.MAC, m.stime, m.etime, m.AP, m.IP, m.account)
+    }.saveAsTextFile(output)
 
     spark.stop()
 
@@ -107,7 +149,7 @@ object CleanseWIFILogJob {
       val mac = log.MAC
       val time = log.time
       val code = log.code
-      val ap = log.payload
+      val ap = log.AP
 
       if ( code == WIFICodeSchema.AuthRequest || code == WIFICodeSchema.AssocRequest) {
 
@@ -119,7 +161,7 @@ object CleanseWIFILogJob {
         if ( APMap.contains(ap) ) {
           // record this new session and remove it from APMap
           val stime = APMap.get(ap).get
-          curSession = WIFISession(mac, stime, time, ap)
+          curSession = WIFISession(mac, stime, time, ap, null, null)
           APMap.remove(ap)
 
           // adjust session timestamps
@@ -163,7 +205,7 @@ object CleanseWIFILogJob {
       mac = log.MAC
       val time = log.time
       val code = log.code
-      val ip = log.payload
+      val ip = log.IP
 
       if ( code == WIFICodeSchema.IPAllocation ) {
 
@@ -226,4 +268,100 @@ object CleanseWIFILogJob {
     ajustedSessions.toIterable
   }
 
+  /**
+   * Combine WIFI sessions and IP sessions:
+   *
+   * Adding an IP address to individual WIFI sessions.
+   * Adding null if there is no corresponding IP address.
+   *
+   * @param WIFIRDD
+   * @param IPRDD
+   * @return
+   */
+  def combineWIFIAndIP(WIFIRDD: RDD[WIFISession], IPRDD: RDD[IPSession]): RDD[WIFISession] = {
+
+    val keyedIP = IPRDD.keyBy(m => (m.MAC, m.stime / 1000 / 3600 / 24))
+      .groupByKey.persist(StorageLevel.MEMORY_AND_DISK_SER)
+
+    WIFIRDD.keyBy(m => (m.MAC, m.stime / 1000 / 3600 / 24))
+      .groupByKey
+      .leftOuterJoin(keyedIP)
+      .flatMap {
+        case (key, (wifisession, ipsession)) => {
+
+          val orderdIP = try {
+            ipsession.get.toArray.sortBy(- _.stime) // revservely
+          } catch {
+            case e: Exception => new Array[IPSession](0)
+          }
+
+          // add IP to certain WIFI session
+          // TODO: this can be optimized
+          var results = new Array[WIFISession](0)
+
+          wifisession.foreach( mov => {
+            var IPFound: IPSession = null
+
+            // exact match
+            orderdIP.foreach { ip => {
+              if (IPFound == null && (
+                  ip.stime >= mov.stime && ip.stime <= mov.etime ||
+                  mov.stime >= ip.stime && mov.stime <= ip.etime
+                ))
+                IPFound = ip
+            }}
+
+            // fuzzy match: considering time shift of servers
+            if ( IPFound == null ) {
+              orderdIP.foreach { ip => {
+                val ipstime = ip.stime - IPSessionTimeShift
+                val ipetime = ip.etime + IPSessionTimeShift
+
+                if (ipstime >= mov.stime && ipstime <= mov.etime ||
+                    mov.stime >= ipstime && mov.stime <= ipetime)
+                  IPFound = ip
+              }}
+            }
+
+            var IP: String = null
+            if ( IPFound != null ) IP = IPFound.IP
+
+            results = results :+ mov.copy(IP=IP)
+          })
+
+          results
+      }}
+  }
+
+  /**
+   * Combine WIFI sessions and user account info, i.e.
+   * adding an account to individual WIFI sessions.
+   * @param WIFIRDD
+   * @param ACCRDD
+   * @return
+   */
+  def combineWIFIAndAcc(WIFIRDD: RDD[WIFISession], ACCRDD: RDD[CleanWIFILog]): RDD[WIFISession] = {
+    val keyedWIFI = WIFIRDD.keyBy(m => (m.MAC, m.stime/1000/3600/24))
+    val keyedAuth = ACCRDD.keyBy(m => (m.MAC, m.time/1000/3600/24)).distinct
+
+    // join movement and accounts by (MAC, day),
+    keyedWIFI.leftOuterJoin(keyedAuth).filter {
+      case (key, (mov, account)) => {
+        val acc = account.getOrElse(null)
+        // filter out the combinations without valid IP connection
+        if ( acc != null && acc.IP != null && acc.IP != "0.0.0.0" && mov.IP != acc.IP) false
+        else true
+      }
+    }.map {
+      case (key, (mov, account)) => {
+        val acc = try {
+          account.get.account
+        } catch {
+          case e: Exception => null
+        }
+
+        mov.copy(mov.MAC, mov.stime, mov.etime, mov.AP, mov.IP, acc)
+      }
+    }.distinct
+  }
 }
