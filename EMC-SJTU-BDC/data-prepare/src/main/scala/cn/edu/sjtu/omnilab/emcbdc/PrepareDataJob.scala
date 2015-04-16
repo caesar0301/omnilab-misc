@@ -122,7 +122,7 @@ object PrepareDataJob {
 
       mergedLogs.toIterable
 
-    }}
+    }}.persist(StorageLevel.MEMORY_AND_DISK_SER)
 
     // extract session stat
     val sessions = joinedRDD.groupBy( m => {

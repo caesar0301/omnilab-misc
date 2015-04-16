@@ -85,7 +85,8 @@ object CleanseWIFILogJob {
         }
         cleanLog
 
-      }}.filter(_ != null).persist(StorageLevel.MEMORY_AND_DISK_SER)
+      }}.filter(_ != null)
+      .persist(StorageLevel.MEMORY_AND_DISK_SER)
 
     // extract WIFI association sessions
     val validSessionCodes = List(
