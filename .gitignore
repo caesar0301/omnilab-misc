@@ -58,3 +58,6 @@ coverage.xml
 docs/_build/
 
 .Rproj.user
+
+.idea/
+.out
