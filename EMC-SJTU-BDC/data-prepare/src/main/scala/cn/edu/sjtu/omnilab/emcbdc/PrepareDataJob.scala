@@ -50,7 +50,7 @@ object PrepareDataJob {
 
     // configure spark
     val conf = new SparkConf()
-    conf.setAppName("Data preparation for EMCBDC")
+      .setAppName("Data preparation for EMCBDC")
     val spark = new SparkContext(conf)
 
     // extract fields from raw logs and validate input data
@@ -67,9 +67,6 @@ object PrepareDataJob {
 //      .saveAsHadoopFile(output, classOf[String], classOf[String],
 //        classOf[RDDMultipleTextOutputFormat])
 
-    val keyedCleanRDD = cleanRDD.keyBy(m => (m.IP, m.stime / 1000 / 3600 / 24))
-      .groupByKey().persist(StorageLevel.MEMORY_AND_DISK_SER)
-
     // load movement data
     val movRDD = spark.textFile(movdat).map { m => {
       val parts = m.split(',')
@@ -78,49 +75,50 @@ object PrepareDataJob {
       .groupByKey().persist(StorageLevel.MEMORY_AND_DISK_SER)
 
     // join wifi traffic and movement data
-    val joinedRDD = keyedCleanRDD.join(movRDD)
+    val joinedRDD = cleanRDD
+      .keyBy(m => (m.IP, m.stime / 1000 / 3600 / 24))
+      .groupByKey.join(movRDD)
       .flatMap { case (key, (logs, movs)) => {
 
-      val ordered = movs.toArray.sortBy(_.stime)
+        val ordered = movs.toArray.sortBy(_.stime)
 
-      // find the movement session that contains given HTTP log
-      // TODO: this can be optimized
-      var mergedLogs = new Array[ContextLog](0)
-      logs.foreach { m => {
+        // find the movement session that contains given HTTP log
+        // TODO: this can be optimized
+        var mergedLogs = new Array[ContextLog](0)
+        logs.foreach { m => {
 
-        var movFound: WIFISession = null
-
-        // exact match
-        ordered.foreach { mov => {
-          if ( movFound == null && m.stime >= mov.stime && m.stime <= mov.etime )
-            movFound = mov
-        }}
-
-        if ( movFound == null ) {
-          // fuzzy match
+          var movFound: WIFISession = null
+          // exact match
           ordered.foreach { mov => {
-            val stime_ex = mov.stime - movementToleranceMinutes * 60 * 1000
-            val etime_ex = mov.etime + movementToleranceMinutes * 60 * 1000
-
-            if ( movFound == null && m.stime >= stime_ex && m.stime <= etime_ex )
+            if ( movFound == null && m.stime >= mov.stime && m.stime <= mov.etime )
               movFound = mov
           }}
-        }
 
-        var clog: ContextLog = null
-        if ( movFound != null ) {
-          // create new contextual log
-          mergedLogs = mergedLogs :+ ContextLog(
-            IP = m.IP, stime = m.stime, etime = m.etime, size = m.size,
-            mobile = m.mobile, SP = m.SP, SCAT = m.SCAT,
-            host = Utils.getTopPrivateDomain(m.host),
-            location = movFound.AP,
-            account = movFound.account, SID = null)
-        }
+          if ( movFound == null ) {
+            // fuzzy match
+            ordered.foreach { mov => {
+              val stime_ex = mov.stime - movementToleranceMinutes * 60 * 1000
+              val etime_ex = mov.etime + movementToleranceMinutes * 60 * 1000
 
-      }}
+              if ( movFound == null && m.stime >= stime_ex && m.stime <= etime_ex )
+                movFound = mov
+            }}
+          }
 
-      mergedLogs.toIterable
+          var clog: ContextLog = null
+          if ( movFound != null ) {
+            // create new contextual log
+            mergedLogs = mergedLogs :+ ContextLog(
+              IP = m.IP, stime = m.stime, etime = m.etime, size = m.size,
+              mobile = m.mobile, SP = m.SP, SCAT = m.SCAT,
+              host = Utils.getTopPrivateDomain(m.host),
+              location = movFound.AP,
+              account = movFound.account, SID = null)
+          }
+
+        }}
+
+        mergedLogs.toIterable
 
     }}.persist(StorageLevel.MEMORY_AND_DISK_SER)
 

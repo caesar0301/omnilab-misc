@@ -182,8 +182,6 @@ object Utils {
     }
   }
 
-  val timeFormatString = ""
-
   /**
    * Converts ISO8601 datetime strings to Unix Time Longs (milliseconds)
    * @param isotime

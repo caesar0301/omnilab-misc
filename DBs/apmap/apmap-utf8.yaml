@@ -1381,6 +1381,18 @@ apprefix_sjtu:
     user: 'PUB'
     lat: '121.454753'
     lon: '31.035341'
+  GMTYC:
+    name: '光明体育场'
+    type: 'AthlBldg'
+    user: 'PUB'
+    lat: '121.433909'
+    lon: '31.025316'
+  HLSHZX:
+    name: '华联生活中心'
+    type: 'SocBldg'
+    user: 'PUB'
+    lat: '121.437682'
+    lon: '31.029841'
   XH-XJL:
     name: '徐汇新建楼'
     type: 'AcadBldg'
