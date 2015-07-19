@@ -2,7 +2,7 @@
 # encoding: utf-8
 import sys
 
-__version__ = "0.3"
+__version__ = "0.3.1"
 
 def main():
 	inputfile = 'APNamesUTF8.csv'
@@ -22,7 +22,7 @@ def main():
 			continue
 		print blddsp
 
-		lat, lon = parts[4:6]
+		lon, lat = parts[4:6]
 
 		# dump data to yaml file
 		ofile.write("  %s:\n" % bldname)
