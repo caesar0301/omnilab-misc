@@ -6,8 +6,9 @@
 ##
 
 ## set permanent CRAN mirror
+## Mirrors: https://cran.r-project.org/mirrors.html
 local({r <- getOption("repos")
-    r["CRAN"] <- "http://cran.stat.ucla.edu"
+    r["CRAN"] <- "http://cran.rstudio.com/"
     options(repos=r)
 })
 
