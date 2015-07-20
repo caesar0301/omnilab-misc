@@ -48,7 +48,7 @@ yum install -y denyhosts rkhunter nmap
 
 # development tools
 yum -y groupinstall "Development Tools"
-yum -y install subversion git git-svn git-cvs lzo-devel  snappy-devel zlib-devel ant
+yum -y install subversion git git-svn git-cvs lzo-devel  snappy-devel zlib-devel ant libcurl-devel openssl-devel libxml2-devel libxslt-devel
 yum -y install apache-maven
 
 # LNMP
