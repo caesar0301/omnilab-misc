@@ -25,6 +25,7 @@ if(interactive()){
     invisible(sapply(auto.loads, sshhh))
 }
 
+## devtools::install_github("jalvesaq/colorout")
 if(Sys.getenv("TERM") == "xterm-256color")
     library("colorout")
 
