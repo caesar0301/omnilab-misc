@@ -41,9 +41,8 @@ yum -y install tmux vim mailx zsh sudo man bash-completion emacs-nox tree wget l
 yum -y install ntp lvm2 lshw usbutils pciutils denyhosts autofs lvm2 iscsi-initiator-utils scsi-target-utils mdadm nfs-utils
 
 # admin tools
-yum install -y  iperf lshw sysstat fio iotop iftop htop iptraf tcpdump mtr tcpdump
+yum install -y  iperf lshw sysstat fio iotop iftop htop iptraf tcpdump mtr tcpdump clusterssh pdsh
 yum install -y ganglia-gmond ganglia-gmetad ganglia-gmond-python rrdtool
-yum install -y clusterssh pdsh pdsh-rcmd-ssh pdsh-rcmd-rsh mussh
 
 # security tools
 yum install -y denyhosts rkhunter nmap
