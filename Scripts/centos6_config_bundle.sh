@@ -2,6 +2,9 @@
 
 TIMEZONE="Asia/Shanghai"
 NTPSERVER=ntp.sjtu.edu.cn
+DNSSERVER=202.120.2.100
+
+sed -i.bk -e "s/^nameserver.*/nameserver $DNSSERVER/g" /etc/resolv.conf
 
 # add rpmforge repo
 rpm --import http://apt.sw.be/RPM-GPG-KEY.dag.txt
