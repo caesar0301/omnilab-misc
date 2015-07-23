@@ -18,22 +18,6 @@ rpm -iUv http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.r
 curl http://rpms.famillecollet.com/enterprise/remi.repo -o /etc/yum.repos.d/remi.repo
 rpm --import http://rpms.famillecollet.com/RPM-GPG-KEY-remi
 
-# add apache repo
-echo "
-[epel-apache-maven]
-name=maven from apache foundation.
-baseurl=http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-6Server/$basearch/
-enabled=1
-skip_if_unavailable=1
-gpgcheck=0
-[epel-apache-maven-source]
-name=maven from apache foundation. - Source
-baseurl=http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-6Server/SRPMS
-enabled=0
-skip_if_unavailable=1
-gpgcheck=0
-" > /etc/yum.repos.d/epel-apache-maven.repo
-
 # update yum repo
 yum clean all && yum check-update
 
@@ -53,7 +37,6 @@ yum install -y denyhosts rkhunter nmap
 # development tools
 yum -y groupinstall "Development Tools"
 yum -y install subversion git git-svn git-cvs lzo-devel  snappy-devel zlib-devel ant libcurl-devel openssl-devel libxml2-devel libxslt-devel
-yum -y install apache-maven
 
 # LNMP
 yum install -y nginx php mysql-server msyql-clienmaget ImageMagick
