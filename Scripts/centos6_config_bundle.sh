@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 TIMEZONE="Asia/Shanghai"
 NTPSERVER=ntp.sjtu.edu.cn
