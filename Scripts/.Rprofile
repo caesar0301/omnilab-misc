@@ -14,7 +14,11 @@ local({r <- getOption("repos")
 
 options(editor="vim")
 
-auto.loads <-c("devtools", "dplyr", "ggplot2")
+## devtools::install_github("jalvesaq/colorout")
+if(Sys.getenv("TERM") == "xterm-256color")
+    library("colorout")
+
+auto.loads <-c("devtools", "ggplot2")
 
 sshhh <- function(a.package){
     suppressWarnings(suppressPackageStartupMessages(
@@ -24,9 +28,5 @@ sshhh <- function(a.package){
 if(interactive()){
     invisible(sapply(auto.loads, sshhh))
 }
-
-## devtools::install_github("jalvesaq/colorout")
-if(Sys.getenv("TERM") == "xterm-256color")
-    library("colorout")
 
 message("n*** Successfully loaded .Rprofile ***n")
