@@ -2,6 +2,9 @@
 
 TIMEZONE="Asia/Shanghai"
 NTPSERVER=ntp.sjtu.edu.cn
+DNSSERVER=202.120.2.100
+
+sed -i.bk -e "s/^nameserver.*/nameserver $DNSSERVER/g" /etc/resolv.conf
 
 # add rpmforge repo
 rpm --import http://apt.sw.be/RPM-GPG-KEY.dag.txt
@@ -15,22 +18,6 @@ rpm -iUv http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.r
 curl http://rpms.famillecollet.com/enterprise/remi.repo -o /etc/yum.repos.d/remi.repo
 rpm --import http://rpms.famillecollet.com/RPM-GPG-KEY-remi
 
-# add apache repo
-echo "
-[epel-apache-maven]
-name=maven from apache foundation.
-baseurl=http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-6Server/$basearch/
-enabled=1
-skip_if_unavailable=1
-gpgcheck=0
-[epel-apache-maven-source]
-name=maven from apache foundation. - Source
-baseurl=http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-6Server/SRPMS
-enabled=0
-skip_if_unavailable=1
-gpgcheck=0
-" > /etc/yum.repos.d/epel-apache-maven.repo
-
 # update yum repo
 yum clean all && yum check-update
 
@@ -41,15 +28,15 @@ yum -y install tmux vim mailx zsh sudo man bash-completion emacs-nox tree wget l
 yum -y install ntp lvm2 lshw usbutils pciutils denyhosts autofs lvm2 iscsi-initiator-utils scsi-target-utils mdadm nfs-utils
 
 # admin tools
-yum install -y  iperf lshw sysstat fio iotop iftop htop iptraf tcpdump mtr tcpdump ganglia-gmond ganglia-gmetad ganglia-gmond-python rrdtool
+yum install -y  iperf lshw sysstat fio iotop iftop htop iptraf tcpdump mtr tcpdump clusterssh pdsh
+yum install -y ganglia-gmond ganglia-gmetad ganglia-gmond-python rrdtool
 
 # security tools
 yum install -y denyhosts rkhunter nmap
 
 # development tools
-yum -y groupinstall "Development Tools"
-yum -y install subversion git git-svn git-cvs lzo-devel  snappy-devel zlib-devel ant libcurl-devel openssl-devel libxml2-devel libxslt-devel
-yum -y install apache-maven
+yum groupinstall -y "Development Tools"
+yum install -y subversion R gnuplot git git-svn git-cvs lzo-devel snappy-devel zlib-devel ant libcurl-devel openssl-devel libxml2-devel libxslt-devel
 
 # LNMP
 yum install -y nginx php mysql-server msyql-clienmaget ImageMagick
