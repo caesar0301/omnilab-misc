@@ -35,8 +35,8 @@ yum install -y ganglia-gmond ganglia-gmetad ganglia-gmond-python rrdtool
 yum install -y denyhosts rkhunter nmap
 
 # development tools
-yum -y groupinstall "Development Tools"
-yum -y install subversion git git-svn git-cvs lzo-devel  snappy-devel zlib-devel ant libcurl-devel openssl-devel libxml2-devel libxslt-devel
+yum groupinstall -y "Development Tools"
+yum install -y subversion R gnuplot git git-svn git-cvs lzo-devel snappy-devel zlib-devel ant libcurl-devel openssl-devel libxml2-devel libxslt-devel
 
 # LNMP
 yum install -y nginx php mysql-server msyql-clienmaget ImageMagick
