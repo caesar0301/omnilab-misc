@@ -9,7 +9,9 @@ fi
 
 sudo yum install -y libcurl-devel openssl-devel libxml2-devel libxslt-devel
 
-R -e "install.packages(c('devtools', 'dplyr', 'tidyr', 'data.table', 'reshape', 'reshape2', 'plyr', 'ggplot2', 'gplots', 'gridExtra', 'ggvis', 'plotrix', 'scatterplot3d', 'colorRamps', 'grDevices', 'RColorBrewer', 'colorspace', 'dichromat', 'MASS', 'Hmisc', 'classInt', 'parallel', 'doBy', 'squash', 'depmixS4', 'entropy', 'psych', 'fields', 'rgdal', 'raster', 'spdep', 'spacetime', 'gstat', 'RandomFields', 'CompRandFld', 'zoo', 'xst', 'geoR', 'maptools', 'mapproj', 'maps', 'osmar', 'OpenStreetMap', 'GISTools', 'splancs', 'PBSmapping', 'deldir', 'ade4', 'ape', 'ncf', 'pgirmess', 'spatial', 'mpmcorrelogram', 'fitdistrplus', 'mixtools', 'mixdist'), repo='http://cran.rstudio.com')"
+sudo yum install -y gdal proj geos geos-devel
+
+R -e "install.packages(setdiff(c('devtools', 'dplyr', 'tidyr', 'data.table', 'reshape', 'reshape2', 'plyr', 'ggplot2', 'gplots', 'gridExtra', 'ggvis', 'plotrix', 'scatterplot3d', 'colorRamps', 'grDevices', 'RColorBrewer', 'colorspace', 'dichromat', 'MASS', 'Hmisc', 'classInt', 'parallel', 'doBy', 'squash', 'depmixS4', 'entropy', 'psych', 'fields', 'rgdal', 'raster', 'spdep', 'spacetime', 'gstat', 'RandomFields', 'CompRandFld', 'zoo', 'xst', 'geoR', 'maptools', 'mapproj', 'maps', 'osmar', 'OpenStreetMap', 'GISTools', 'splancs', 'PBSmapping', 'deldir', 'ade4', 'ape', 'ncf', 'pgirmess', 'spatial', 'mpmcorrelogram', 'fitdistrplus', 'mixtools', 'mixdist'), rownames(installed.packages())), repo='http://cran.rstudio.com')"
 
 R -e "devtools::install_github('jalvesaq/colorout')"
 
