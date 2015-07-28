@@ -9,9 +9,22 @@ fi
 
 sudo yum install -y libcurl-devel openssl-devel libxml2-devel libxslt-devel
 
-sudo yum install -y gdal proj geos geos-devel
+sudo yum install -y gdal proj geos geos-devel gdal-devel
 
-R -e "install.packages(setdiff(c('devtools', 'dplyr', 'tidyr', 'data.table', 'reshape', 'reshape2', 'plyr', 'ggplot2', 'gplots', 'gridExtra', 'ggvis', 'plotrix', 'scatterplot3d', 'colorRamps', 'grDevices', 'RColorBrewer', 'colorspace', 'dichromat', 'MASS', 'Hmisc', 'classInt', 'parallel', 'doBy', 'squash', 'depmixS4', 'entropy', 'psych', 'fields', 'rgdal', 'raster', 'spdep', 'spacetime', 'gstat', 'RandomFields', 'CompRandFld', 'zoo', 'xst', 'geoR', 'maptools', 'mapproj', 'maps', 'osmar', 'OpenStreetMap', 'GISTools', 'splancs', 'PBSmapping', 'deldir', 'ade4', 'ape', 'ncf', 'pgirmess', 'spatial', 'mpmcorrelogram', 'fitdistrplus', 'mixtools', 'mixdist'), rownames(installed.packages())), repo='http://cran.rstudio.com')"
+R -e "install.packages(setdiff(c('devtools', 'dplyr', 'tidyr', 'data.table', 'reshape', 'reshape2', 'plyr'), rownames(installed.packages())), repo='http://cran.rstudio.com')"
+
+R -e "install.packages(setdiff(c('ggplot2', 'gplots', 'gridExtra', 'ggvis', 'plotrix', 'scatterplot3d', 'colorRamps', 'grDevices', 'RColorBrewer', 'colorspace', 'dichromat'), rownames(installed.packages())), repo='http://cran.rstudio.com')"
+
+R -e "install.packages(setdiff(c('MASS', 'Hmisc', 'classInt', 'parallel', 'doBy', 'squash'), rownames(installed.packages())), repo='http://cran.rstudio.com')"
+
+R -e "install.packages(setdiff(c('depmixS4', 'entropy', 'psych', 'fields'), rownames(installed.packages())), repo='http://cran.rstudio.com')"
+
+R -e "install.packages(setdiff(c(), rownames(installed.packages())), repo='http://cran.rstudio.com')"
+
+R -e "install.packages(setdiff(c(), rownames(installed.packages())), repo='http://cran.rstudio.com')"
+
+R -e "install.packages(setdiff(c(), rownames(installed.packages())), repo='http://cran.rstudio.com')"
+
 
 R -e "devtools::install_github('jalvesaq/colorout')"
 
