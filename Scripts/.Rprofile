@@ -12,18 +12,26 @@ local({r <- getOption("repos")
     options(repos=r)
 })
 
-options(editor="vim")
-
-## devtools::install_github("jalvesaq/colorout")
-if(Sys.getenv("TERM") == "xterm-256color")
-    library("colorout")
-
-auto.loads <-c("devtools", "ggplot2")
+test.library <- function(pkg) {
+    if (! require(pkg))
+        install.packages(pkg)
+}
 
 sshhh <- function(a.package){
     suppressWarnings(suppressPackageStartupMessages(
         library(a.package, character.only=TRUE)))
 }
+
+options(editor="vim")
+auto.loads <-c("devtools", "ggplot2")
+
+# test the presence of libraries
+test.library(auto.loads)
+
+## devtools::install_github("jalvesaq/colorout")
+if(Sys.getenv("TERM") == "xterm-256color")
+    if(! require("colorout"))
+        devtools::install_github("jalvesaq/colorout")
 
 if(interactive()){
     invisible(sapply(auto.loads, sshhh))
