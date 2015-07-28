@@ -19,12 +19,11 @@ R -e "install.packages(setdiff(c('MASS', 'Hmisc', 'classInt', 'parallel', 'doBy'
 
 R -e "install.packages(setdiff(c('depmixS4', 'entropy', 'psych', 'fields'), rownames(installed.packages())), repo='http://cran.rstudio.com')"
 
-R -e "install.packages(setdiff(c(), rownames(installed.packages())), repo='http://cran.rstudio.com')"
+# R -e "install.packages(setdiff(c('rgdal', 'raster', 'spdep', 'spacetime', 'gstat', 'RandomFields', 'CompRandFld', 'zoo', 'xst'), rownames(installed.packages())), repo='http://cran.rstudio.com')"
 
-R -e "install.packages(setdiff(c(), rownames(installed.packages())), repo='http://cran.rstudio.com')"
+# R -e "install.packages(setdiff(c('geoR', 'maptools', 'mapproj', 'maps', 'osmar', 'OpenStreetMap', 'GISTools', 'splancs', 'PBSmapping', 'deldir', 'ade4', 'ape', 'ncf', 'pgirmess', 'spatial'), rownames(installed.packages())), repo='http://cran.rstudio.com')"
 
-R -e "install.packages(setdiff(c(), rownames(installed.packages())), repo='http://cran.rstudio.com')"
-
+R -e "install.packages(setdiff(c('mpmcorrelogram', 'fitdistrplus', 'mixtools', 'mixdist'), rownames(installed.packages())), repo='http://cran.rstudio.com')"
 
 R -e "devtools::install_github('jalvesaq/colorout')"
 
