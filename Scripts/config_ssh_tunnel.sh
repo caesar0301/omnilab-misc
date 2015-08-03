@@ -27,14 +27,14 @@ THISKEY=`cat $PUBKEY`
 if [ -e $AUTHKEYS ]; then
   cp $AUTHKEYS $AUTHKEYS.bk
 fi
-echo $THISKEY > $AUTHKEYS
+echo $THISKEY >> $AUTHKEYS
 
 RCMD="touch $SSHOME/this_is_a_test_file;
 mkdir -p ${SSHOME}/keys.bk > /dev/null 2>&1;
 mv ${SSHOME}/id_rsa* ${SSHOME}/keys.bk > /dev/null 2>&1;
 ssh-keygen -b 2048 -t rsa -f ${PRTKEY} -q -N '';
 cp ${AUTHKEYS} ${AUTHKEYS}.bk > /dev/null 2>&1;
-echo ${THISKEY} > ${AUTHKEYS}
+echo ${THISKEY} >> ${AUTHKEYS}
 "
 
 # generate keys for all hosts
