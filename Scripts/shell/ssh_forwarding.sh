@@ -1,7 +1,7 @@
 ## SSH forwarding configurations
 
 # local port forwarding
-ssh -N -f -L 8080:localhost:80 guest@joes-pc
+ssh -N -f -L 8080:localhost:80 <host>
 
 # remote port forwarding
 ssh -N -f -R 5900:localhost:5900 guest@joes-pc
