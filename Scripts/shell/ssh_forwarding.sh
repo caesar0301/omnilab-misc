@@ -12,7 +12,8 @@ host2=username@dest.ination.com
 ssh -L 7777:localhost:7777 $host1 ssh -L 7777:localhost:7777 -N $host2
 
 # dynamic port forwarding
-ssh -C -D 7777 guest@joes-pc
+ssh -fqNC -D 7777 guest@joes-pc
+ssh -vNC -D 7777 guest@joes-pc
 
 # my ssh tunnal to desktop
 function mxc_ssh_tunnels() {
