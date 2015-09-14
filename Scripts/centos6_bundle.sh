@@ -2,7 +2,7 @@
 # set -e
 
 TIMEZONE="Asia/Shanghai"
-NTPSERVER=ntp.sjtu.edu.cn
+NTPSERVER=202.120.2.100
 DNSSERVER=202.120.2.100
 
 sed -i.bk -e "s/^nameserver.*/nameserver $DNSSERVER/g" /etc/resolv.conf
