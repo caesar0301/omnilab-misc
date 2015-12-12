@@ -1,0 +1,8 @@
+include README*
+include LICENSE
+include MANIFEST.in
+include *.py
+recursive-include omnipy *.py
+recursive-include tests *.py
+recursive-include omnipy/db *.csv
+recursive-include omnipy/db *.yaml
