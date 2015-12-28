@@ -1,8 +1,8 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % My preamble file to define useful package
 % importing and commands definition.
 %
-% Version 0.1.3
+% Version 0.1.4
 % Xiaming Chen - chenxm35@gmail.com
 %
 %% Math
@@ -37,42 +37,66 @@
 % \usepackage{cite}
 \usepackage{paralist}
 \usepackage[numbers]{natbib}
+\usepackage{ifthen}
 
 %% Theorems
 \theoremstyle{plain}% default
-\newtheorem{thm}{Theorem}[section]
-\newtheorem{lem}[thm]{Lemma}
-\newtheorem{prop}[thm]{Proposition}
-\newtheorem*{cor}{Corollary} % without numbering
+\ifthenelse{\isundefined{theorem}}{%
+\newtheorem{theorem}{\bf Theorem}[section]%
+}{}
+\ifthenelse{\isundefined{condition}}{%
+\newtheorem{condition}{\bf Condition}[section]%
+}{}
+\ifthenelse{\isundefined{corollary}}{%
+\newtheorem{corollary}{\bf Corollary}[section]%
+}{}
+\ifthenelse{\isundefined{corollarynonum}}{%
+\newtheorem*{corollarynonum}{Corollary}%
+}{}
+\ifthenelse{\isundefined{lemma}}{%
+\newtheorem{lemma}[theorem]{Lemma}%
+}{}
+\ifthenelse{\isundefined{proposition}}{%
+\newtheorem{proposition}[theorem]{Proposition}%
+}{}
 
 %% Definition and example
 \theoremstyle{definition}
-\newtheorem{defnn}{Definition}
-\newtheorem{defn}{Definition}[section]
-\newtheorem{conj}{Conjecture}[section]
-\newtheorem*{exmpn}{Example}
-\newtheorem{exmp}{Example}[section]
+\ifthenelse{\isundefined{definition}}{%
+\newtheorem{definition}{Definition}[section]%
+}{}
+\ifthenelse{\isundefined{conjecture}}{%
+\newtheorem{conjecture}{Conjecture}[section]%
+}{}
+\ifthenelse{\isundefined{example}}{%
+\newtheorem{example}{Example}[section]%
+}{}
+\ifthenelse{\isundefined{examplenonum}}{%
+\newtheorem*{examplenonum}{Example}%
+}{}
 
-%% Other remarks and notes
+%% Remarks and notes
 \theoremstyle{remark}
-\newtheorem*{rem}{Remark}
-\newtheorem*{note}{Note}
-\newtheorem{case}{Case}
+\ifthenelse{\isundefined{remarknonum}}{%
+\newtheorem*{remarknonum}{Remark}%
+}{}
+\ifthenelse{\isundefined{notenonum}}{%
+\newtheorem*{notenonum}{Note}%
+}{}
+\ifthenelse{\isundefined{case}}{%
+\newtheorem{case}{Case}%
+}{}
 
-%% Definition equality
-\newcommand{\defeq}{\vcentcolon=}
-\newcommand{\eqdef}{=\vcentcolon}
+%% New commands
+\providecommand{\defeq}{\vcentcolon=}
+\providecommand{\eqdef}{=\vcentcolon}
+\providecommand{\argmin}{\mathop{\arg\min}}
+\providecommand{\argmax}{\mathop{\arg\max}}
+\providecommand{\emphbf}[1]{\emph{\textbf{#1}}}
+\providecommand{\bftable}{\fontseries{b}\selectfont}
 
-%% Argument min/max
-\newcommand{\argmin}{\mathop{\arg\min}}
-\newcommand{\argmax}{\mathop{\arg\max}}
-
-%% Bold emphasis
-\newcommand{\emphbf}[1]{\emph{\textbf{#1}}}
-\newcommand{\bftable}{\fontseries{b}\selectfont}
-
-%% Figure files
-\graphicspath{ {../figures/} }
+%%%%%%%%%%% User-defined controls  %%%%%%%%%%%
+\graphicspath{ {../figures/som} }
 \DeclareGraphicsExtensions{.eps,.pdf}
 
 %% Set Letter paper size
@@ -80,4 +104,4 @@
 %\setlength{\paperwidth}{8.5in}
 %\usepackage[pass]{geometry}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
