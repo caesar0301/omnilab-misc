@@ -29,6 +29,6 @@ R -e "install.packages(setdiff(c('doParallel', 'foreach', 'parallel'), rownames(
 
 R -e "devtools::install_github('jalvesaq/colorout')"
 
-curl https://raw.githubusercontent.com/caesar0301/omnilab-misc/master/Scripts/.Rprofile -o ~/.Rprofile
+curl https://raw.githubusercontent.com/caesar0301/omnilab-misc/master/Scripts/dotfiles/.Rprofile -o ~/.Rprofile
 
 echo "Done!"
