@@ -16,13 +16,13 @@ options(editor="vim")
 
 ## devtools::install_github("jalvesaq/colorout")
 if(Sys.getenv("TERM") == "xterm-256color")
-    library("colorout")
+    require("colorout")
 
 auto.loads <-c("devtools", "ggplot2")
 
 sshhh <- function(a.package){
     suppressWarnings(suppressPackageStartupMessages(
-        library(a.package, character.only=TRUE)))
+        require(a.package, character.only=TRUE)))
 }
 
 if(interactive()){
