@@ -2,7 +2,7 @@
 # encoding: utf-8
 import sys
 
-__version__ = "0.3.2"
+__version__ = "0.3.5"
 
 def main():
     inputfile = 'apnames-utf8.csv'
@@ -18,7 +18,7 @@ def main():
 
         parts = line.split(',')
         bldname, blddsp, bldrole, bldschool = parts[0:4]
-        if 'N/A' in [bldname, blddsp]:
+        if 'null' in [bldname, blddsp]:
             continue
         print blddsp
 
