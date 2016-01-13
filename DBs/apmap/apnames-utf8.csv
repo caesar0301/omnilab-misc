@@ -61,14 +61,12 @@ GCXLZX-SYL,工程训练中心-思源楼,AcadBldg,Public,121.434977,31.030602
 GMTYC,光明体育场,AthlBldg,Public,121.434673,31.025502
 HJKXL,环境科学楼,AcadBldg,Environment,121.435656,31.030586
 HLGC,哈乐小吃广场,CantBldg,Public,121.438754,31.027072
-HLSHZX,null,null,null,null,null
 HLSHZX,华联生活中心,SocBldg,Public,121.437682,31.029841
 HX-A,化学楼A,AcadBldg,Chemistry,121.435449,31.02988
 HX-GCG,徐汇工程馆,AcadBldg,Public,121.440172,31.206592
 HX-HRDS,徐汇浩然大厦,AdmBldg,Public,121.441337,31.204106
 HX-LTSG,徐汇老图书馆,LibBldg,Public,121.442247,31.205264
 JJC,基建处,SuppBldg,Public,121.437969,31.031187
-JJFJJ,null,null,null,null,null
 JJFJJ,null,null,null,null,null
 JJT,菁菁堂,SocBldg,Public,121.436211,31.024619
 JXDLXY,机械与动力工程学院,AcadBldg,Mechanical,121.453173,31.033146
@@ -126,7 +124,6 @@ NYZQGY,null,null,null,null,null
 QB-WLZX,七宝网络中心,AdmBldg,Public,null,null
 RWL,人文楼,AcadBldg,Literature,121.445654,31.027899
 SDLCY,null,null,null,null,null
-SDLCY,null,null,null,null,null
 SJTZX,下交通中心,SuppBldg,Public,121.436013,31.025226
 ST,null,null,null,null,null
 STHJCLYJS,生态与环境材料研究所,AcadBldg,Environment,121.435039,31.030244
@@ -151,7 +148,6 @@ XH-GCG,徐汇工程馆,AcadBldg,Public,121.440172,31.206592
 XH-HRDS,徐汇浩然大厦,AdmBldg,Public,121.441337,31.204106
 XH-JGHDZX,徐汇教工活动中心,SocBldg,Public,121.442138,31.205882
 XH-ST,null,null,null,null,null
-XH-TLY,null,null,null,null,null
 XH-TLY,null,null,null,null,null
 XH-TSG,徐汇图书馆,LibBldg,Public,121.439392,31.20609
 XH-TYG,徐汇体育馆,AthlBldg,Public,121.44009,31.205434
