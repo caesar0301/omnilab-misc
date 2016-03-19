@@ -55,7 +55,8 @@ def parse_html(url):
             name = name.strip('\r\n ')
             issn = issn.strip('\r\n ')
             press = issn.strip('\r\n ')
-            record = ';;'.join([name, issn, press])
+            # record = ';;'.join([name, issn, press])
+            record = ' << '.join([name, issn])
             print(record)
             res.append(record)
             name = None
