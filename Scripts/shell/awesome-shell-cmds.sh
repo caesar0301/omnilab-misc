@@ -4,6 +4,9 @@
 # Get parent directory
 base_dir=$(dirname $0)/..
 
+# Linux and mac
+abspath=$(cd ${0%/*} && echo $PWD/${0##*/})
+
 # Check value
 if [ "x$LOG_DIR" = "x" ]; then
     LOG_DIR="$base_dir/logs"
