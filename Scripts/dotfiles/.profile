@@ -5,9 +5,6 @@ export LC_CTYPE=zh_CN.UTF-8
 export EDITOR='vim'
 export DEVROOT=/home/chenxm/workspace/tw
 
-# Alias
-alias bingo="unset TMUX; tmux attach-session -t dev; if [[ $? != 0 ]]; then tmux new-session -s dev; fi"
-
 # Java
 export JAVA_OPTIONS="-Xmx8191m -XX:MaxPermSize=2048m"
 export JAVA_HOME=/usr/lib/jvm/default
