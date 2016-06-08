@@ -6,3 +6,5 @@ $*   Stores all the arguments that were entered on the command line ($1 $2 ...).
 $?   Expands to the decimal exit status of the most recent pipeline.
 $$   Expands to the decimal process ID of the invoked shell.
 $!   Expands to the decimal process ID of the most recent background command executed from the current shell.
+
+${@:$#} The last argument of command line
