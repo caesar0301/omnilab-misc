@@ -4,7 +4,7 @@
 #  2015-07-20
 set -e
 
-HOSTFILE=hosts
+HOSTFILE=~/bin/hosts
 SSHOME=~/.ssh
 PRTKEY=$SSHOME/id_rsa
 PUBKEY=$SSHOME/id_rsa.pub
