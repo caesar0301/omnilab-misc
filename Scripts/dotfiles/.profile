@@ -6,7 +6,7 @@ export EDITOR='vim'
 export DEVROOT=/home/chenxm/workspace/tw
 
 # Alias
-alias bingo="tmux attach-session -t 0; if [[ $? == 1 ]]; then tmux new-session -s 0; fi"
+alias bingo="unset TMUX; tmux attach-session -t dev; if [[ $? != 0 ]]; then tmux new-session -s dev; fi"
 
 # Java
 export JAVA_OPTIONS="-Xmx8191m -XX:MaxPermSize=2048m"
