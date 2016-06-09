@@ -14,6 +14,6 @@ export PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin
 export MAVEN_OPTS="-Xmx8191m -XX:MaxPermSize=2048m"
 
 # Texlive
-export PATH=$PATH:/usr/local/texlive/2015/bin/x86_64-linux/:$PATH
-export MANPATH=/usr/local/texlive/2015/texmf-dist/doc/man:$MANPATH
-export INFOPATH=/usr/local/texlive/2015/texmf-dist/doc/info:$INFOPATH
+export PATH=$PATH:/usr/local/texlive/2016/bin/x86_64-linux/:$PATH
+export MANPATH=/usr/local/texlive/2016/texmf-dist/doc/man:$MANPATH
+export INFOPATH=/usr/local/texlive/2016/texmf-dist/doc/info:$INFOPATH
