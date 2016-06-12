@@ -19,9 +19,10 @@ sudo apt-get install -y build-essential subversion r-base r-base-dev r-base-core
 
 sudo pip install dbgp vim-debug pep8 flake8 pyflakes isort
 
+# Java and Scala
 sudo apt-get autoremove openjdk-*-jre
 sudo apt-get purge openjdk*
-sudo apt-get install oracle-java7-installer oracle-java7-set-default
+sudo apt-get install oracle-java7-installer oracle-java7-set-default scala
 
 # TMUX
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
