@@ -9,7 +9,7 @@ sudo add-apt-repository -y ppa:webupd8team/sublime-text-3
 sudo apt-get update
 
 # basics
-sudo apt-get install -y tmux vim zsh bash-completion emacs tree wget curl sshpass nano mlocate virtualbox gparted exfat-utils sublime-text-installer openvpn indicator-multiload openssh-server openssh-client
+sudo apt-get install -y tmux vim zsh bash-completion emacs tree wget curl sshpass nano mlocate virtualbox gparted exfat-utils sublime-text-installer openvpn indicator-multiload openssh-server openssh-client wps-office
 
 # system
 sudo apt-get install -y ntp lvm2 lshw usbutils pciutils denyhosts autofs mdadm iperf lshw sysstat fio iotop iftop htop iptraf tcpdump mtr tcpdump clusterssh pdsh nmap
