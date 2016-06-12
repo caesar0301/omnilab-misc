@@ -15,9 +15,13 @@ sudo apt-get install -y sublime-text-installer tmux vim zsh bash-completion emac
 sudo apt-get install -y ntp lvm2 lshw usbutils pciutils denyhosts autofs mdadm iperf lshw sysstat fio iotop iftop htop iptraf tcpdump mtr tcpdump clusterssh pdsh nmap
 
 # development
-sudo apt-get install -y build-essential subversion r-base r-base-dev r-base-core gnuplot git git-svn git-cvs ant libcurl3 libcurl4-openssl-dev openssl libxml2-dev libxslt-dev maven oracle-java7-installer libssl-dev exuberant-ctags
+sudo apt-get install -y build-essential subversion r-base r-base-dev r-base-core gnuplot git git-svn git-cvs ant libcurl3 libcurl4-openssl-dev openssl libxml2-dev libxslt-dev maven libssl-dev exuberant-ctags
 
 sudo pip install dbgp vim-debug pep8 flake8 pyflakes isort
+
+sudo apt-get autoremove openjdk-*-jre
+sudo apt-get purge openjdk*
+sudo apt-get install oracle-java7-installer oracle-java7-set-default
 
 # TMUX
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
