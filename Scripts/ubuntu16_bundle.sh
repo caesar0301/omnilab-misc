@@ -27,6 +27,12 @@ sudo apt-get install -y oracle-java7-installer oracle-java7-set-default scala
 # Sogou input and WPS
 curl http://cdn2.ime.sogou.com/dl/index/1465191139/sogoupinyin_2.0.0.0078_amd64.deb?st=hBYrFcS3EvCOkTfsqNK3cA&e=1465736249&fn=sogoupinyin_2.0.0.0078_amd64.deb -o sogoupinyin_2.0.0.0078_amd64.deb
 sudo apt-get install -y sogoupinyin_2.0.0.0078_amd64.deb
+sudo apt-get update
+# WPS in ubuntukylin repo
+# Fix GPG key error:
+# sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 3C962022012520A0
+# replace final key with yours
+sudo apt-get install wps-office
 
 # TMUX
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
