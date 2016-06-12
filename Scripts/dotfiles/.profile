@@ -17,3 +17,10 @@ export MAVEN_OPTS="-Xmx8191m -XX:MaxPermSize=2048m"
 export PATH=$PATH:/usr/local/texlive/2016/bin/x86_64-linux/:$PATH
 export MANPATH=/usr/local/texlive/2016/texmf-dist/doc/man:$MANPATH
 export INFOPATH=/usr/local/texlive/2016/texmf-dist/doc/info:$INFOPATH
+
+# Alias
+alias go_hive_metastore="$DEVROOT/inceptor_idea/bin/start_hive.sh org.apache.hadoop.hive.metastore.HiveMetaStore &"
+alias go_hive_server1="$DEVROOT/inceptor_idea/bin/start_hive.sh io.transwarp.ngmr.NgmrServer --hiveconf hive.metastore.uris=thrift://localhost:9083 &"
+alias go_beeline1="$DEVROOT/inceptor_idea/bin/start_hive.sh org.apache.hive.beeline.BeeLine -u jdbc:hive://localhost:10000/default"
+alias go_hive_server2="$DEVROOT/inceptor_idea/bin/start_hive.sh io.transwarp.inceptor.InceptorServer2 &"
+alias go_beeline2="$DEVROOT/inceptor_idea/bin/start_hive.sh org.apache.hive.beeline.BeeLine -u jdbc:hive2://localhost:10000/default"
