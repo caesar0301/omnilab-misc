@@ -9,7 +9,7 @@ sudo add-apt-repository -y ppa:webupd8team/sublime-text-3
 sudo apt-get update
 
 # basics
-sudo apt-get install -y sublime-text-installer tmux vim zsh bash-completion emacs tree wget curl sshpass nano mlocate virtualbox gparted exfat-utils openvpn indicator-multiload openssh-server openssh-client wps-office python-pip sysv-rc-conf
+sudo apt-get install -y sublime-text-installer tmux vim zsh bash-completion emacs tree wget curl sshpass nano mlocate virtualbox gparted exfat-utils openvpn indicator-multiload openssh-server openssh-client python-pip sysv-rc-conf fcitx
 
 # system
 sudo apt-get install -y ntp lvm2 lshw usbutils pciutils denyhosts autofs mdadm iperf lshw sysstat fio iotop iftop htop iptraf tcpdump mtr tcpdump clusterssh pdsh nmap
@@ -17,12 +17,16 @@ sudo apt-get install -y ntp lvm2 lshw usbutils pciutils denyhosts autofs mdadm i
 # development
 sudo apt-get install -y build-essential subversion r-base r-base-dev r-base-core gnuplot git git-svn git-cvs ant libcurl3 libcurl4-openssl-dev openssl libxml2-dev libxslt-dev maven libssl-dev exuberant-ctags
 
-sudo pip install -y dbgp vim-debug pep8 flake8 pyflakes isort
+sudo pip install -U dbgp vim-debug pep8 flake8 pyflakes isort
 
 # Java and Scala
 sudo apt-get remove -y openjdk-*-jre-*
 sudo apt-get purge -y openjdk*
 sudo apt-get install -y oracle-java7-installer oracle-java7-set-default scala
+
+# Sogou input and WPS
+curl http://cdn2.ime.sogou.com/dl/index/1465191139/sogoupinyin_2.0.0.0078_amd64.deb?st=hBYrFcS3EvCOkTfsqNK3cA&e=1465736249&fn=sogoupinyin_2.0.0.0078_amd64.deb -o sogoupinyin_2.0.0.0078_amd64.deb
+sudo apt-get install -y sogoupinyin_2.0.0.0078_amd64.deb
 
 # TMUX
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
@@ -36,5 +40,7 @@ git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
 
 # VIM
 curl https://raw.githubusercontent.com/fisadev/fisa-vim-config/master/.vimrc -o ~/.vimrc
+
+sudo apt-get autoremove
 
 exit 0;
