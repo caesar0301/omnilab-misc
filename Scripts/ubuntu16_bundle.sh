@@ -4,6 +4,7 @@
 # Add third-party ppas
 sudo apt-add-repository -y ppa:webupd8team/java
 sudo add-apt-repository -y ppa:webupd8team/sublime-text-3
+sudo add-apt-repository -y ppa:smathot/cogscinl
 
 # update yum repo
 sudo apt-get update
@@ -34,6 +35,10 @@ sudo apt-get update
 # replace final key with yours
 sudo apt-get install wps-office
 
+sudo apt-get install zotero-standalone
+
+sudo apt-get autoremove
+
 # TMUX
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 curl https://raw.githubusercontent.com/caesar0301/omnilab-misc/master/Scripts/dotfiles/.tmux.conf -o ~/.tmux.conf
@@ -46,7 +51,5 @@ git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
 
 # VIM
 curl https://raw.githubusercontent.com/fisadev/fisa-vim-config/master/.vimrc -o ~/.vimrc
-
-sudo apt-get autoremove
 
 exit 0;
