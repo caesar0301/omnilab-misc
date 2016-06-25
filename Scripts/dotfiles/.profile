@@ -6,11 +6,14 @@ export EDITOR='vim'
 export DEVROOT=/home/chenxm/workspace/tw
 
 # Java
-export JAVA_OPTIONS="-Xmx8191m -XX:MaxPermSize=2048m"
 export JAVA_HOME=/usr/lib/jvm/default
+# export JAVA_HOME=$(/usr/libexec/java_home -v 1.7*) # For macOS
+
+export JAVA_OPTIONS="-Xmx8191m -XX:MaxPermSize=2048m"
 export JRE_HOME=$JAVA_HOME/jre
 export CLASSPATH=.:$CLASSPATH:$JAVA_HOME/lib:$JRE_HOME/lib
 export PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin
+
 export MAVEN_OPTS="-Xmx8191m -XX:MaxPermSize=2048m"
 
 # Texlive
