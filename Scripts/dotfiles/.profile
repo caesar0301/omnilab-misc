@@ -27,3 +27,11 @@ alias go_hive_server1="$DEVROOT/inceptor_idea/bin/start_hive.sh io.transwarp.ngm
 alias go_beeline1="$DEVROOT/inceptor_idea/bin/start_hive.sh org.apache.hive.beeline.BeeLine -u jdbc:hive://localhost:10000/default"
 alias go_hive_server2="$DEVROOT/inceptor_idea/bin/start_hive.sh io.transwarp.inceptor.InceptorServer2 &"
 alias go_beeline2="$DEVROOT/inceptor_idea/bin/start_hive.sh org.apache.hive.beeline.BeeLine -u jdbc:hive2://localhost:10000/default"
+
+alias rstudio='LD_LIBRARY_PATH=$JAVA_HOME/jre/lib/server: open -a RStudio'
+
+# Spark
+export SPARK_HOME=/opt/spark
+export PATH=$SPARK_HOME/bin:$PATH
+export PYTHONPATH=$SPARK_HOME/python/:$PYTHONPATH
+alias sbt-java1.6="sbt -java-home $(/usr/libexec/java_home -v '1.6*')" # For macOS
